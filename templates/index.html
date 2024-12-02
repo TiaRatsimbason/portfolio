@@ -10,6 +10,15 @@
     <canvas id="neuro"></canvas>
     <header>
         <div class="main-container">
+          <section class="profile-special">
+            <div class="profile-avatar" style="--bg-img:url({{ url_for('static', filename='images/photo.png') }})">
+                <div class="profile-avatar-img">
+                    <img src="{{ url_for('static', filename='images/photo_sans_contour.png') }}">
+                </div>
+                <p>Tia Ratsimbason</p>
+            </div>
+          </section>
+        <div class="main-container">
             <div class="first-container share">
                 <h1>
                     <span>M</span>
@@ -43,40 +52,14 @@
         </div>
     </header>
 
-    <section class="competences">
-        <div class="competence">Python</div>
-        <div class="competence">Machine Learning</div>
-        <div class="competence">Deep Learning</div>
-        <div class="competence">TensorFlow</div>
-        <div class="competence">PyTorch</div>
-        <div class="competence">Flask</div>
-        <div class="competence">SQL</div>
-        <div class="competence">Docker</div>
-    </section>
-
-    <div class="projet-container">
-        <div class="projet">
-            <h2>Système de Recommandation IA</h2>
-            <p>Développement d'un système de recommandation basé sur l'apprentissage profond pour une plateforme e-commerce. Utilisation de PyTorch et mise en production avec Docker.</p>
-        </div>
-    </div>
-
-    <div class="projet-container">
-        <div class="projet">
-            <h2>Détection d'Anomalies en Temps Réel</h2>
-            <p>Implémentation d'un système de détection d'anomalies en temps réel utilisant des algorithmes de machine learning et déployé sur une architecture microservices.</p>
-        </div>
-    </div>
-
-    <section class="contact">
-        <h2>Contact</h2>
-        <p>Email: ratsimbason.tia@email.com</p>
-        <p>LinkedIn: linkedin.com/in/tia-ratsimbason-42110887</p>
-        <p>GitHub: github.com/votre-compte</p>
-    </section>
+    <main class="content-wrapper">
+        <section id="skills-target" class="section-container"></section>
+        <section id="projet-target" class="section-container"></section>
+        <section id="contact-target" class="section-container"></section>
+    </main>
 
     <!-- Scripts des shaders -->
-    <script type="x-shader/x-fragment" id="vertShader">
+    <script type="x-shader/x-vertex" id="vertShader">
         precision mediump float;
         varying vec2 vUv;
         attribute vec2 a_position;
@@ -141,8 +124,9 @@
             gl_FragColor = vec4(color, noise);
         }
     </script>
-
-    <!-- Votre JavaScript -->
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='script.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='skills/index.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='projet/index.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='contact/index.js') }}"></script>
 </body>
 </html>

@@ -1,0 +1,77 @@
+/* Ajout d'un conteneur pour la section projets */
+.projet-section {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    width: 100%;
+    max-width: 1800px;
+    margin: 0 auto;
+}
+
+.projet-container {
+    position: relative;
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+    z-index: 2;
+    pointer-events: none;
+    margin-bottom: 2rem;
+}
+
+.projet {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    border-radius: 15px;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    color: white;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    opacity: 1;
+    pointer-events: auto;
+    height: 100%;
+}
+
+/* Le reste du CSS reste inchangé */
+.projet.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.projet:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    z-index: 10;
+}
+
+.projet h2 {
+    color: #3498db;
+    margin-bottom: 1rem;
+}
+
+.projet p {
+    line-height: 1.6;
+}
+
+/* Adaptation pour les écrans mobiles */
+@media (max-width: 768px) {
+    .projet-container {
+        min-width: 100%;
+        margin: 1rem 0;
+    }
+
+    .projet {
+        padding: 1rem;
+    }
+    
+    .projet-section {
+        padding: 1rem;
+        flex-direction: column;
+    }
+}

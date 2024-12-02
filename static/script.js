@@ -1,6 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
+    console.log("Script starting...");
     const canvasEl = document.querySelector("canvas#neuro");
+    console.log("Canvas found:", canvasEl);
+
     const devicePixelRatio = Math.min(window.devicePixelRatio, 2);
+    console.log("Device pixel ratio:", devicePixelRatio);
 
     if (!canvasEl) {
         console.error("Canvas element not found");
@@ -14,8 +18,11 @@ document.addEventListener("DOMContentLoaded", function() {
         tY: 0,
     };
 
-    let uniforms;
+    let uniforms; // Déclarer uniforms dans le scope global de la fonction
+
+    console.log("Initializing shader...");
     const gl = initShader();
+    console.log("WebGL context:", gl);
 
     if (!gl) {
         console.error("WebGL context could not be initialized.");
@@ -28,13 +35,15 @@ document.addEventListener("DOMContentLoaded", function() {
     render();
 
     function initShader() {
+        console.log("Getting shader sources...");
         const vsSource = document.getElementById("vertShader").innerHTML;
         const fsSource = document.getElementById("fragShader").innerHTML;
+        console.log("Shader sources loaded:", { vsSource, fsSource });
 
-        const gl = canvasEl.getContext("webgl") || canvasEl.getContext("experimental-webgl");
-
+        const gl = canvasEl.getContext("webgl", { alpha: true }) || canvasEl.getContext("experimental-webgl", { alpha: true });
+        
         if (!gl) {
-            alert("WebGL is not supported by your browser.");
+            console.error("WebGL not supported");
             return null;
         }
 
@@ -135,5 +144,17 @@ document.addEventListener("DOMContentLoaded", function() {
             pointer.tX = eX;
             pointer.tY = eY;
         }
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const contactButton = document.querySelector('.contact button');
+    
+    if (contactButton) {
+      contactButton.addEventListener('click', function() {
+        this.classList.toggle('active');
+        document.querySelector('.contact .title').classList.toggle('active');
+        document.querySelector('.contact nav').classList.toggle('active');
+      });
     }
 });
