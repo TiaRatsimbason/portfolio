@@ -1,0 +1,40 @@
+# Web Framework
+Flask==3.0.2
+Werkzeug==3.0.1
+
+# Development & Debugging
+python-dotenv==1.0.1
+Flask-DebugToolbar==0.14.1
+
+# Logging & Monitoring
+logging==0.4.9.6
+
+# Security
+Flask-Security-Too==5.3.2
+Flask-Login==0.6.3
+Flask-WTF==1.2.1
+
+# Static Files & Assets
+Flask-Assets==2.1.0
+
+# Production Server
+gunicorn==21.2.0
+
+# Testing
+pytest==8.0.2
+pytest-flask==1.3.0
+
+# Documentation
+Sphinx==7.2.6
+sphinx-rtd-theme==2.0.0
+
+# Code Quality
+flake8==7.0.0
+black==24.2.0
+isort==5.13.2
+
+# Additional Dependencies
+Jinja2==3.1.3
+MarkupSafe==2.1.5
+itsdangerous==2.1.2
+click==8.1.7
