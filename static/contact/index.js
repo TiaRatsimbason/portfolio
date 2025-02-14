@@ -8,13 +8,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     const contactSection = document.createElement('section');
     contactSection.className = 'contact-area';
 
+    const contactContainer = document.createElement('div');
+    contactContainer.className = 'contact-container';
+
     try {
         const styleLink = document.createElement('link');
         styleLink.rel = 'stylesheet';
         styleLink.href = '/static/contact/contact.css';
         document.head.appendChild(styleLink);
 
-        contactSection.innerHTML = `
+        contactContainer.innerHTML = `
             <div class="card">
                 <ul>
                     <li class="iso-pro">
@@ -52,8 +55,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                     </li>
                 </ul>
             </div>
+                
         `;
-
+        contactSection.appendChild(contactContainer);
         targetElement.parentNode.replaceChild(contactSection, targetElement);
     } catch (error) {
         console.error('Erreur lors du chargement du contact:', error);

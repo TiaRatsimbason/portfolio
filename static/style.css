@@ -164,7 +164,7 @@ header {
     text-align: center;
     animation: fadeIn 1s ease-out;
     position: relative;
-    z-index: 1;
+    z-index: 3;
     backdrop-filter: blur(5px);
     width: 100%;
 }
@@ -299,57 +299,59 @@ canvas#neuro {
     --bg-blur: var(--bg-blur-hover);
   }
 
-/* Modifiez les styles existants dans le style.css */
-
-/* Wrapper global pour toutes les sections */
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 130vh; /* Utilise toute la hauteur de la vue */
-    position: relative;
-}
-
+/* Conteneur principal avec isolation globale */
 .content-wrapper {
-  flex: 1;
   display: flex;
   flex-direction: column;
+  gap: 2rem;
   position: relative;
-  z-index: 2;
+  isolation: isolate;
   width: 100%;
-  min-height: 100vh; /* Garantit une hauteur minimale */
-  padding: 4rem 0; /* Espacement vertical global */
+  contain: layout paint style;
+  /* Ajout d'une hauteur minimale pour le conteneur */
+  min-height: 100vh;
+  padding-bottom: 2rem;
 }
 
-/* Sections avec espaces dédiés */
-#skills-target {
-  min-height: 40vh; /* Espace minimum pour les compétences */
-  margin-bottom: 6rem; /* Grand espace après les compétences */
+/* Base commune pour toutes les sections */
+.section-base {
+  contain: layout style;  /* Retirons size du containment */
+  isolation: isolate;
+  position: relative;
+  width: 100%;
+  margin: 0;
   padding: 2rem 0;
+  height: auto;
+  overflow: visible; /* Permettons au contenu d'être visible même s'il déborde */
 }
 
-#projet-target {
-  min-height: 60vh; /* Plus d'espace pour les projets */
-  margin-bottom: 6rem; /* Grand espace après les projets */
-  padding: 2rem 0;
+.skills-section {
+  contain: strict;
+  height: auto;
+  min-height: 40vh;
 }
 
-#contact-target {
-  min-height: 40vh; /* Espace minimum pour le contact */
-  margin-top: 4rem; /* Espace avant le contact */
-  padding: 2rem 0;
+.skills-section__content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  contain: content;
 }
 
-/* Media queries pour les écrans mobiles */
+/* Media queries avec respect de l'isolation */
 @media (max-width: 768px) {
-  .content-wrapper {
-      padding: 2rem 0;
+  .section-base {
+    contain: content;
+    padding: 2rem 0;
   }
+}
 
-  #skills-target,
-  #projet-target,
-  #contact-target {
-      min-height: auto;
-      margin-bottom: 4rem;
-      padding: 1rem 0;
-  }
+/* Conteneurs de contenu avec isolation stricte */
+.skills-section__content{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  contain: content;
+  /* Assurer que le contenu ne déborde pas */
+  overflow: auto;
 }

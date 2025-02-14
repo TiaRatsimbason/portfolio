@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='projet/projet.css') }}">
+    <!-- Linking SwiperJS CSS partie projet-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+    <!-- Linking SwiperJS script partie projet-->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <title>Mon Portfolio</title>
 </head>
 <body>
@@ -53,9 +60,18 @@
     </header>
 
     <main class="content-wrapper">
-        <section id="skills-target" class="section-container"></section>
-        <section id="projet-target" class="section-container"></section>
-        <section id="contact-target" class="section-container"></section>
+        <section class="section-base skills-section" id="skills-target">
+            <!-- ... -->
+        </section>
+        
+        <section id="projet-target">
+            {% include 'projet.html' %}
+        </section>
+        
+        <!-- Suppression de la classe contact-section -->
+        <section id="contact-target">
+            <!-- Le contenu sera injecté ici par contact/index.js -->
+        </section>
     </main>
 
     <!-- Scripts des shaders -->
@@ -124,6 +140,7 @@
             gl_FragColor = vec4(color, noise);
         }
     </script>
+    <!-- Modifiez votre script projet pour utiliser babel -->
     <script type="module" src="{{ url_for('static', filename='script.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='skills/index.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='projet/index.js') }}"></script>
