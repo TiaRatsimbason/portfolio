@@ -1,0 +1,109 @@
+.projet-walkthrough {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 60px;
+    position: relative;
+    overflow: visible; /* Permet aux cartes d'être visibles en dehors du conteneur */
+}
+
+.swiper-slide {
+    transition: all 0.8s ease;
+    opacity: 0.5;
+}
+
+.swiper-slide-active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.swiper-slide-prev,
+.swiper-slide-next {
+    opacity: 0.5;
+    transform: scale(0.8);
+}
+
+.card-item {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 35px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(30px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: all 0.8s ease;
+}
+
+/* Navigation buttons - Structure de base du cercle */
+.swiper-button-prev,
+.swiper-button-next {
+    /* Dimensions du cercle */
+    width: 45px;
+    height: 45px;
+    
+    /* Style du cercle */
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    backdrop-filter: blur(10px);
+    
+    /* Centrage absolu */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    
+    /* Centrage du contenu */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Style des flèches */
+.swiper-button-prev:after,
+.swiper-button-next:after {
+    /* Réinitialisation du style Swiper */
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 24px;
+    font-weight: bold;
+    
+    /* Utilisez des caractères spéciaux pour les flèches */
+    font-family: monospace;
+}
+
+.swiper-button-prev:after {
+    content: '←';
+    padding-right: 3px; /* Ajustement fin pour le centrage visuel */
+}
+
+.swiper-button-next:after {
+    content: '→';
+    padding-left: 3px; /* Ajustement fin pour le centrage visuel */
+}
+
+/* Positionnement des boutons */
+.swiper-button-prev {
+    left: 0;
+}
+
+.swiper-button-next {
+    right: 0;
+}
+
+/* Pagination */
+.swiper-pagination {
+    position: relative;
+    bottom: -20px;
+}
+
+.swiper-pagination-bullet {
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+    background: #fff;
+    opacity: 1;
+    transform: scale(1.2);
+}

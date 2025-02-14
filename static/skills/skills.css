@@ -1,0 +1,286 @@
+/* Container principal */
+.skills-container {
+    width: 100%;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    position: relative;
+    padding: 2rem;
+    background-color: transparent;
+}
+
+.skills-periodic {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.skills-container h1 {
+    color: white;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 40px;
+}
+
+/* Grid Layout */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(9, 90px);
+    grid-template-rows: repeat(4, 90px);
+    gap: 1rem;
+    justify-content: center;
+    align-items: start;
+    margin: 2rem auto;
+    max-width: 900px;
+    min-height: 400px;
+}
+
+/* Positionnement des éléments dans la grille */
+/* Première ligne */
+.pos-r1-c1 { grid-area: 1 / 1; }  /* FastAPI */
+.pos-r1-c2 { grid-area: 1 / 2; }  /* Flask */
+.pos-r1-c8 { grid-area: 1 / 8; } /* Python */
+.pos-r1-c9 { grid-area: 1 / 9; } /* Shell */
+.pos-r1-c7 { grid-area: 1 / 7; }  /* SQL */
+
+/* Deuxième ligne */
+.pos-r2-c1 { grid-area: 2 / 1; } /* NumPy */
+.pos-r2-c2 { grid-area: 2 / 2; } /* Pandas */
+.pos-r2-c3 { grid-area: 2 / 3; } /* Statsmodels */
+.pos-r2-c4 { grid-area: 2 / 4; }  /* Matplotlib */
+.pos-r2-c5 { grid-area: 2 / 5; }  /* Bokeh */
+.pos-r2-c6 { grid-area: 2 / 6; }   /* Scikit-learn */
+.pos-r2-c7 { grid-area: 2 / 7; }   /* TensorFlow */
+.pos-r2-c8 { grid-area: 2 / 8; }   /* PyTorch */
+.pos-r2-c9 { grid-area: 2 / 9; }   /* Keras */
+
+/* Troisième ligne */
+.pos-r3-c1 { grid-area: 3 / 1; } /* Docker */
+.pos-r3-c2 { grid-area: 3 / 2; } /* Kubernetes */
+.pos-r3-c3 { grid-area: 3 / 3; } /* Airflow */
+.pos-r3-c4 { grid-area: 3 / 4; } /* Jenkins */
+.pos-r3-c5 { grid-area: 3 / 5; } /* AWS */
+.pos-r3-c6 { grid-area: 3 / 6; } /* MLFlow */
+.pos-r3-c7 { grid-area: 3 / 7; }   /* BeautifulSoup */
+.pos-r3-c8 { grid-area: 3 / 8; }   /* NLTK */
+.pos-r3-c9 { grid-area: 3 / 9; }   /* Spacy */
+
+/* Quatrième ligne */
+.pos-r4-c1 { grid-area: 4 / 1; } /* Prometheus */
+.pos-r4-c2 { grid-area: 4 / 2; } /* Grafana */
+.pos-r4-c3 { grid-area: 4 / 3; }    /* DVC */
+.pos-r4-c4 { grid-area: 4 / 4; }    /* Pytest */
+.pos-r4-c5 { grid-area: 4 / 5; }      /* MongoDB */
+.pos-r4-c6 { grid-area: 4 / 6; }      /* BentoML */
+.pos-r4-c7 { grid-area: 4 / 7; }   /* PowerBI */
+.pos-r4-c8 { grid-area: 4 / 8; }   /* Git */
+.pos-r4-c9 { grid-area: 4 / 9; }   /* Tableau */
+
+/* Styles des éléments */
+.tooltip-container {
+    position: relative;
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    filter: brightness(1.2);
+    transition: filter 0.3s ease;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    z-index: 1; 
+}
+
+.icon {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.layer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s;
+}
+
+.layer span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.layer span.fab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    background: transparent;
+    z-index: 1;
+    padding: 0;    
+}
+
+/* Couleurs des catégories */
+/* Frameworks Web */
+.tooltip-container.web .layer span { 
+    border-color: #FF5733; 
+    color: #FF5733; 
+}
+
+/* Languages */
+.tooltip-container.lang .layer span { 
+    border-color: #FFC107; 
+    color: #FFC107; 
+}
+
+/* Data Analysis */
+.tooltip-container.data .layer span { 
+    border-color: #2196F3; 
+    color: #2196F3; 
+}
+
+/* Visualization */
+.tooltip-container.viz .layer span { 
+    border-color: #9C27B0; 
+    color: #9C27B0; 
+}
+
+/* Machine Learning */
+.tooltip-container.ml .layer span { 
+    border-color: #4CAF50; 
+    color: #4CAF50; 
+}
+
+/* MLOps & DevOps */
+.tooltip-container.mlops .layer span { 
+    border-color: #FF9800; /* Modifié - Orange */
+    color: #FF9800; 
+}
+
+/* NLP & Text Processing */
+.tooltip-container.nlp .layer span { 
+    border-color: #E91E63; 
+    color: #E91E63; 
+}
+
+/* Monitoring & Testing */
+.tooltip-container.monitor .layer span { 
+    border-color: #607D8B; 
+    color: #607D8B; 
+}
+
+.tooltip-container.test .layer span { 
+    border-color: #795548; 
+    color: #795548; 
+}
+
+/* Base de données */
+.tooltip-container.db .layer span { 
+    border-color: #3F51B5; 
+    color: #3F51B5; 
+}
+
+/* Tooltip styles */
+.tooltip {
+    position: absolute;
+    top: -150px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.3s;
+    border-radius: 15px;
+    min-width: 600px;
+    background: rgba(42, 43, 47, 0.95);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 1000;
+}
+
+.tooltip-container:hover {
+    z-index: 1001; /* Ajoutez cette ligne */
+}
+
+.tooltip-container:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Hover effects */
+.tooltip-container:hover .layer {
+    transform: rotate(-35deg) skew(20deg);
+}
+
+.tooltip-container:hover .layer span:nth-child(1) { opacity: 0.2; }
+.tooltip-container:hover .layer span:nth-child(2) {
+    opacity: 0.4;
+    transform: translate(5px, -5px);
+}
+.tooltip-container:hover .layer span:nth-child(3) {
+    opacity: 0.6;
+    transform: translate(10px, -10px);
+}
+.tooltip-container:hover .layer span:nth-child(4) {
+    opacity: 0.8;
+    transform: translate(15px, -15px);
+}
+.tooltip-container:hover .layer span:nth-child(5) {
+    opacity: 1;
+    transform: translate(20px, -20px);
+}
+
+/* Styles du contenu du tooltip */
+.profile {
+    padding: 10px;
+}
+
+.user {
+    display: flex;
+    gap: 10px;
+}
+
+.img {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.details {
+    color: #fff;
+}
+
+.about {
+    color: #ccc;
+    margin-top: 5px;
+}
+
+/* Styles des logos et images */
+.skill-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    padding: 8px;
+    filter: brightness(1.2);
+    transition: filter 0.3s ease;
+}
+
+.img img.skill-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 0;
+}

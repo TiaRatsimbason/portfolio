@@ -1,0 +1,357 @@
+@import url("https://fonts.googleapis.com/css?family=Luckiest+Guy");
+@import url('https://fonts.googleapis.com/css?family=Saira+Semi+Condensed');
+
+body:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    margin: auto;
+    border-radius: 100%;
+    background: transparent;
+    display: block;
+    box-shadow: 
+        0 0 150px 100px rgba(255, 255, 255, 0.1), /* Réduisez l'opacité ici */
+        200px 0 200px 150px rgba(255, 255, 255, 0.1),
+        -250px 0 300px 150px rgba(255, 255, 255, 0.1),
+        550px 0 300px 200px rgba(255, 255, 255, 0.1),
+        -550px 0 300px 200px rgba(255, 255, 255, 0.1); /* Ajustez ou supprimez cet effet lumineux */
+}
+
+h1 {
+    cursor: default;
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    margin: 2rem auto;
+    display: block;
+    text-align: center;
+}
+
+h1 span {
+    position: relative;
+    top: 20px;
+    display: inline-block;
+    -webkit-animation: bounce 0.3s ease infinite alternate;
+    font-size: 60px;
+    color: #fff; /* Texte blanc */
+    text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc, 0 3px 0 #ccc, 0 4px 0 #ccc,
+        0 5px 0 #ccc, 0 6px 0 transparent, 0 7px 0 transparent,
+        0 8px 0 transparent, 0 9px 0 transparent,
+        0 10px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Animation bounce */
+@-webkit-keyframes bounce {
+    100% {
+        top: -20px;
+        text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc, 0 3px 0 #ccc, 0 4px 0 #ccc,
+          0 5px 0 #ccc, 0 6px 0 #ccc, 0 7px 0 #ccc, 0 8px 0 #ccc, 0 9px 0 #ccc,
+          0 50px 25px rgba(0, 0, 0, 0.2);
+    }
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding-top: 2rem;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.first-container, .second-container, .third-container {
+    cursor: pointer;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.share h1 {
+    font-size: 3vw;
+    letter-spacing: 5px;
+    margin: 10px 0;
+    line-height: 1;
+    white-space: nowrap;
+    position: relative;
+    z-index: 2; /* Assurez-vous que le texte est au premier plan */
+}
+
+.share span {
+    display: inline-block;
+    position: relative;
+    margin: 0 2px;
+    transition: color 0.6s, transform 0.6s;
+}
+
+.share span:after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 0;
+    top: 0;
+    left: 0;
+    transition: 0.6s;
+    z-index: -5;
+    background: white;
+}
+
+.share:hover span {
+    color: #000;
+}
+
+.share:hover span:after {
+    width: 100%;
+}
+
+/* Animation pour chaque lettre avec délai - dans le bon ordre */
+/* MACHINE */
+.share:hover > h1 > span:nth-child(1):after { transition-delay: 100ms; transform: rotate(-25deg); } /* M */
+.share:hover > h1 > span:nth-child(2):after { transition-delay: 200ms; transform: rotate(-20deg); } /* A */
+.share:hover > h1 > span:nth-child(3):after { transition-delay: 300ms; transform: rotate(-15deg); } /* C */
+.share:hover > h1 > span:nth-child(4):after { transition-delay: 400ms; transform: rotate(-10deg); } /* H */
+.share:hover > h1 > span:nth-child(5):after { transition-delay: 500ms; transform: rotate(-5deg); } /* I */
+.share:hover > h1 > span:nth-child(6):after { transition-delay: 600ms; transform: rotate(0deg); } /* N */
+.share:hover > h1 > span:nth-child(7):after { transition-delay: 700ms; transform: rotate(5deg); } /* E */
+
+/* LEARNING */
+.share:hover > h1 > span:nth-child(9):after { transition-delay: 800ms; transform: rotate(-25deg); } /* L */
+.share:hover > h1 > span:nth-child(10):after { transition-delay: 900ms; transform: rotate(-20deg); } /* E */
+.share:hover > h1 > span:nth-child(11):after { transition-delay: 1000ms; transform: rotate(-15deg); } /* A */
+.share:hover > h1 > span:nth-child(12):after { transition-delay: 1100ms; transform: rotate(-10deg); } /* R */
+.share:hover > h1 > span:nth-child(13):after { transition-delay: 1200ms; transform: rotate(-5deg); } /* N */
+.share:hover > h1 > span:nth-child(14):after { transition-delay: 1300ms; transform: rotate(0deg); } /* I */
+.share:hover > h1 > span:nth-child(15):after { transition-delay: 1400ms; transform: rotate(5deg); } /* N */
+.share:hover > h1 > span:nth-child(16):after { transition-delay: 1500ms; transform: rotate(10deg); } /* G */
+
+/* ENGINEER */
+.share:hover > h1 > span:nth-child(18):after { transition-delay: 1600ms; transform: rotate(-25deg); } /* E */
+.share:hover > h1 > span:nth-child(19):after { transition-delay: 1700ms; transform: rotate(-20deg); } /* N */
+.share:hover > h1 > span:nth-child(20):after { transition-delay: 1800ms; transform: rotate(-15deg); } /* G */
+.share:hover > h1 > span:nth-child(21):after { transition-delay: 1900ms; transform: rotate(-10deg); } /* I */
+.share:hover > h1 > span:nth-child(22):after { transition-delay: 2000ms; transform: rotate(-5deg); } /* N */
+.share:hover > h1 > span:nth-child(23):after { transition-delay: 2100ms; transform: rotate(0deg); } /* E */
+.share:hover > h1 > span:nth-child(24):after { transition-delay: 2200ms; transform: rotate(5deg); } /* E */
+.share:hover > h1 > span:nth-child(25):after { transition-delay: 2300ms; transform: rotate(10deg); } /* R */
+
+body, html {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: #151912;
+    overflow-x: hidden;
+    font-family: 'Saira Semi Condensed', sans-serif;
+    color: white;
+}
+
+header {
+    position: relative;
+    min-height: 25vh; /* Ajoutez ceci */
+    padding-top: 6rem; /* Pour éviter que le contenu ne chevauche le titre */
+    background: rgba(44, 62, 80, 0.7);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    animation: fadeIn 1s ease-out;
+    position: relative;
+    z-index: 3;
+    backdrop-filter: blur(5px);
+    width: 100%;
+}
+
+
+  .avatar-img::before {
+    content: '';
+    position: absolute;
+    display: block;
+    inset: 50% 0 0 0;
+    z-index: -1;
+    border-radius: 20px;
+    background-color: var(--bg-clr);
+    background-image: var(--bg-img);
+    background-size: cover;
+    background-position: center;
+    filter: blur(var(--bg-blur));
+    transition: filter 300ms ease-in-out;
+  }
+  
+  .avatar-img > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: scale 300ms, filter 300ms;
+    transform-origin: bottom;
+    scale: var(--img-scale, .9);
+    filter: var(--img-shadow);
+  }
+  
+
+  .avatar:hover {
+    --img-scale: 1.1;
+    --img-shadow: drop-shadow(10px 15px 4px rgba(0 0 0 / 0.5));
+    --name-y: 0;
+    --name-opacity: 1;
+    --bg-blur: var(--bg-blur-hover);
+  }
+
+  .avatar img:hover {
+    transform: scale(1.1);
+    transition: transform 300ms ease;
+  }
+
+
+canvas#neuro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: .95;
+    z-index: 0;
+}
+
+.profile-special {
+    --size: 300px;
+    --img-clip: "M 0 100 L 50 50 L 250 50 L 300 100 L 300 200 C 150 300, 0 250, 0 200 Z";
+    --img-shadow: drop-shadow(5px 5px 2px rgba(0 0 0 / 0.5));
+    --name-txt-clr: #EEE;
+    --bg-clr: steelblue;
+    --bg-blur: 0;
+    --bg-blur-hover: 20px;
+    
+    font-family: 'Roboto', sans-serif;
+    width: fit-content;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+  }
+  
+  .profile-avatar {
+    position: relative;
+    width: var(--size);
+    height: var(--size);
+    aspect-ratio: 1;
+  }
+  
+  .profile-avatar-img {
+    clip-path: path(var(--img-clip));
+  }
+  
+  .profile-avatar-img::before {
+    content: '';
+    position: absolute;
+    display: block;
+    inset: 50% 0 0 0;
+    z-index: -1;
+    border-radius: 20px;
+    background-color: var(--bg-clr);
+    background-image: var(--bg-img);
+    background-size: cover;
+    background-position: center;
+    filter: blur(var(--bg-blur));
+    transition: filter 300ms ease-in-out;
+  }
+  
+  .profile-avatar-img > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Ajusté pour que la tête dépasse bien */
+    object-position: center 20%;
+    transition: scale 300ms, filter 300ms;
+    transform-origin: bottom;
+    scale: var(--img-scale, .9);
+    filter: var(--img-shadow);
+  }
+  
+  .profile-avatar > p {
+    font-size: .9rem;
+    color: var(--name-txt-clr);
+    position: absolute;
+    bottom: .5rem;
+    right: 0;
+    translate: 0 var(--name-y,-50px);
+    opacity: var(--name-opacity,0);
+    z-index: -1;
+    transition-name: translate, opacity;
+    transition-delay: 150ms;
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0.47, 1.64, 0.41, 0.8), ease-in-out;
+  }
+  
+  .profile-avatar:hover {
+    --img-scale: 1.1;
+    --img-shadow: drop-shadow(10px 15px 4px rgba(0 0 0 / 0.5));
+    --name-y: 0;
+    --name-opacity: 1;
+    --bg-blur: var(--bg-blur-hover);
+  }
+
+/* Conteneur principal avec isolation globale */
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  contain: layout paint style;
+  /* Ajout d'une hauteur minimale pour le conteneur */
+  min-height: 100vh;
+  padding-bottom: 2rem;
+}
+
+/* Base commune pour toutes les sections */
+.section-base {
+  contain: layout style;  /* Retirons size du containment */
+  isolation: isolate;
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 2rem 0;
+  height: auto;
+  overflow: visible; /* Permettons au contenu d'être visible même s'il déborde */
+}
+
+.skills-section {
+  contain: strict;
+  height: auto;
+  min-height: 40vh;
+}
+
+.skills-section__content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  contain: content;
+}
+
+/* Media queries avec respect de l'isolation */
+@media (max-width: 768px) {
+  .section-base {
+    contain: content;
+    padding: 2rem 0;
+  }
+}
+
+/* Conteneurs de contenu avec isolation stricte */
+.skills-section__content{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  contain: content;
+  /* Assurer que le contenu ne déborde pas */
+  overflow: auto;
+}

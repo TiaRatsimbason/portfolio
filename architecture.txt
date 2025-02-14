@@ -1,0 +1,40 @@
+.
+├── app
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── __init__.cpython-312.pyc
+│   │   └── routes.cpython-312.pyc
+│   └── routes.py
+├── app.py
+├── architecture.txt
+├── requirements.txt
+├── static
+│   ├── contact
+│   │   ├── contact.css
+│   │   └── index.js
+│   ├── images
+│   │   ├── photo.png
+│   │   ├── photo.png.png:Zone.Identifier
+│   │   ├── photo_sans_contour.png
+│   │   └── projects
+│   │       ├── mlops_bg.png
+│   │       └── mlops_bg.png:Zone.Identifier
+│   ├── projet
+│   │   ├── index.js
+│   │   └── projet.css
+│   ├── script.js
+│   ├── skills
+│   │   ├── index.js
+│   │   ├── logos
+│   │   │   ├── Certificat_Tensorflow.pdf:Zone.Identifier
+│   │   │   ├── Certificat_Tensorflow.png
+│   │   │   ├── Machine Learning.jpg:Zone.Identifier
+│   │   │   ├── Machine_Learning.jpg
+│   │   │   ├── Tensorflow.png
+│   │   │   └── pngegg (38).png:Zone.Identifier
+│   │   └── skills.css
+│   └── style.css
+└── templates
+    └── index.html
+
+11 directories, 27 files
