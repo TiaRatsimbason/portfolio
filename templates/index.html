@@ -168,5 +168,52 @@
     <script type="module" src="{{ url_for('static', filename='skills/index.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='projet/index.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='contact/index.js') }}"></script>
+    <script>
+        // Fonction pour initialiser Swiper quand le bouton View Work est cliqué
+        document.addEventListener('click', function(e) {
+          if (e.target.closest('.project-button')) {
+            console.log('View Work button clicked');
+            
+            // Attendre un moment pour que la transition se produise
+            setTimeout(function() {
+              try {
+                // Si Swiper existe déjà, le détruire
+                if (window.mySwiper) {
+                  window.mySwiper.destroy();
+                }
+                
+                // Créer une nouvelle instance Swiper
+                window.mySwiper = new Swiper('.swiper-container', {
+                  slidesPerView: 1,
+                  spaceBetween: 30,
+                  initialSlide: 0,
+                  centeredSlides: true,
+                  loop: false,
+                  
+                  // Navigation
+                  navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                  },
+                  
+                  // Pagination
+                  pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                  }
+                });
+                
+                console.log('Swiper initialized');
+                
+                // Forcer l'affichage du premier slide
+                document.querySelector('.swiper-slide').style.opacity = '1';
+                
+              } catch(error) {
+                console.error('Erreur lors de l\'initialisation de Swiper:', error);
+              }
+            }, 1000);
+          }
+        });
+      </script>
 </body>
 </html>

@@ -6,21 +6,36 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px 0; /* Réduire le padding horizontal */
-  position: relative; /* Pour positionner la pagination et les boutons */
+  padding: 20px 0;
+  position: relative;
   overflow: hidden;
+  opacity: 0;
+  height: 0;
+  transition: opacity 0.5s ease-in-out, height 0.5s ease-in-out;
+}
+
+.projet-walkthrough.visible {
+  opacity: 1;
+  height: auto;
+  overflow: visible;
 }
 
 /* Styles pour chaque slide */
 .swiper-slide {
   display: flex;
-  justify-content: center !important;
-  align-items: center !important;
-  overflow: visible;
-  padding: 0 !important;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0;
   box-sizing: border-box;
-  margin: 0 auto !important;
-  transform: none !important;
+  margin: 0 auto;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+/* Seul le slide actif est visible */
+.swiper-slide-active {
+  opacity: 1;
 }
 
 /* Styles pour chaque carte (slide) */
