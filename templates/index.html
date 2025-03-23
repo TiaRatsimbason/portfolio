@@ -14,6 +14,164 @@
     <!-- Linking SwiperJS script partie projet-->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <title>Mon Portfolio</title>
+    <!-- 
+Solution HTML directe pour intégrer le texte rotatif sans modifier la structure du titre.
+Cette solution est une alternative si l'approche JavaScript pose problème.
+-->
+
+<!-- Ajouter dans la partie <head> du document -->
+<style>
+  /* Styles pour le texte rotatif */
+  @import url('https://fonts.googleapis.com/css?family=Oswald:700');
+  @import url('https://fonts.googleapis.com/css?family=Rubik');
+  
+  /* CSS pour contenir le titre dans sa zone */
+  /* Container principal */
+  .main-container {
+    position: relative;
+    overflow: hidden; /* Empêche les débordements */
+  }
+  
+  /* Zone du titre avec hauteur fixe */
+  .first-container.share {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    /* Hauteur fixe augmentée */
+    height: 250px; /* Augmenté de 230px à 250px */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: visible; /* Changé à visible pour éviter toute troncature */
+    padding-bottom: 40px; /* Padding inférieur augmenté */
+  }
+  
+  /* Style du titre avec espacement contrôlé */
+  .first-container.share h1 {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    line-height: 1.2;
+    position: relative;
+    top: -30px; /* Décalage vers le haut augmenté */
+    margin-bottom: 20px; /* Marge inférieure ajoutée */
+  }
+
+  .first-container.share h1 span {
+    overflow: visible; /* Assure que les animations ne sont pas coupées */
+  }
+  
+  /* Contrôle de l'espacement entre les lignes */
+  .first-container.share h1 br {
+    line-height: 1.2;
+  }
+  
+  /* Section pour positionner le texte rotatif après le contenu original du header */
+  .header-extension {
+    width: 100%;
+    padding: 20px 0;
+    position: relative;
+    clear: both;
+    display: block;
+    margin-top: 20px;
+    /* Séparation claire entre le titre et le texte rotatif */
+    padding-top: 20px;
+    border-top: 1px solid transparent; /* Séparateur optionnel */
+  }
+  
+  /* Animation rotative */
+  .rotating-text-section {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    height: 140px;
+    z-index: 5;
+  }
+  
+  #rotate-words {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    height: 140px;
+    font-size: 1.9em;
+    text-transform: uppercase;
+    font-family: 'Oswald', sans-serif;
+    position: relative;
+    text-align: center;
+  }
+  
+  #rotate-words span {
+    display: block;
+    height: 35px;
+    font-size: .7em;
+    text-transform: lowercase;
+    opacity: .9;
+    font-family: 'Rubik', sans-serif;
+  }
+  
+  #rotate-words div {
+    position: absolute;
+    opacity: 0;
+    overflow: hidden;
+    width: 100%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    line-height: 1.3em;
+    animation: rotate-word 32s linear infinite 0s;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0,0,0,0.3);
+  }
+  
+  @keyframes rotate-word {
+    0% { opacity: 0; transform: translateX(0); filter: blur(10px); transform: scale(1.2); }
+    3% { opacity: 1; transform: translateX(0); filter: blur(0px); transform: scale(.9); }
+    12% { opacity: 1; transform: translateX(0); filter: blur(0px); transform: scale(1); }
+    16% { opacity: 0; transform: translateX(0); filter: blur(10px); transform: scale(1.2); }
+    80% { opacity: 0; }
+    100% { opacity: 0; }
+  }
+  
+  #rotate-words div:nth-child(2) { animation-delay: 4s; }
+  #rotate-words div:nth-child(3) { animation-delay: 8s; }
+  #rotate-words div:nth-child(4) { animation-delay: 12s; }
+  #rotate-words div:nth-child(5) { animation-delay: 16s; }
+  #rotate-words div:nth-child(6) { animation-delay: 20s; }
+  #rotate-words div:nth-child(7) { animation-delay: 24s; }
+  #rotate-words div:nth-child(8) { animation-delay: 28s; }
+  
+  /* Ajustement responsive */
+  @media (max-width: 768px) {
+    .first-container.share {
+      height: 180px;
+    }
+    
+    #rotate-words {
+      font-size: 1.7em;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .first-container.share {
+      height: 150px;
+    }
+    
+    #rotate-words {
+      font-size: 1.5em;
+    }
+    
+    #rotate-words span {
+      height: 30px;
+    }
+  }
+  </style>
 </head>
 <body>
     <canvas id="neuro"></canvas>
@@ -80,6 +238,23 @@
                   
             </div>
         </div>
+          
+  <!-- HTML à ajouter juste après la fermeture de la div du titre -->
+  <!-- Cherchez la div avec classe "first-container share" et ajoutez ce code après la balise </div> -->
+  <div class="header-extension">
+    <div class="rotating-text-section">
+      <div id="rotate-words">  
+        <div>Développement de solution IA<br /><span>Machine Learning & Deep Learning</span></div>
+        <div>Industrialisation d'une solution IA<br /><span>Mise en production & déploiement</span></div>
+        <div>Business Intelligence<br /><span>Data Driven & Design thinking</span></div>
+        <div>Monitoring en production<br /><span>Suivi de la performance avec Prometheus et Grafana</span></div>
+        <div>Automatisation<br /><span>Creation de workflow avec les DAGs d'Airflow</span></div>
+        <div>Création de tableau de bord dynamique<br /><span>PowerBI & Tableau</span></div>
+        <div>manipulation & ingénierie des données<br /><span>Python, numpy & pandas</span></div>
+        <div>MLOps & CI/CD<br /><span>MLFlow, DVC, Git</span></div>
+      </div>
+    </div>
+  </div>
     </header>
 
     <main class="content-wrapper">

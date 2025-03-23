@@ -1,0 +1,93 @@
+/* Ajustements pour la mise en page globale */
+
+/* Réduire la hauteur de l'en-tête */
+header {
+    position: relative;
+    padding-bottom: 120px; /* Réduction du padding inférieur */
+    min-height: 350px; /* Réduction de la hauteur minimale */
+  }
+  
+  /* Ajuster le positionnement de l'animation de texte rotative */
+  .rotating-text-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: absolute;
+    top: 100%; /* Positionnement en bas du header */
+    left: 0;
+    margin-top: 20px; /* Espace réduit entre le titre et l'animation */
+    z-index: 5;
+  }
+  
+  #rotate-words {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 10px 0; /* Padding réduit */
+    height: 140px; /* Hauteur réduite */
+    font-size: 1.8em; /* Taille de police légèrement réduite */
+  }
+  
+  /* Ajustements pour la section skills */
+  .skills-section {
+    margin-top: 20px; /* Espace réduit au-dessus de la section */
+    padding-top: 20px; /* Padding supérieur réduit */
+  }
+  
+  .skills-container {
+    padding-top: 10px; /* Réduction du padding supérieur */
+  }
+  
+  /* Ajustements pour le contenu principal */
+  .content-wrapper {
+    position: relative;
+    z-index: 1;
+    margin-top: 20px; /* Réduction de l'espace au-dessus du contenu principal */
+  }
+  
+  /* Ajustements pour la section projet */
+  #projet-target {
+    margin-top: 20px; /* Réduction de l'espace au-dessus des projets */
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 992px) {
+    header {
+      padding-bottom: 150px;
+      min-height: 320px;
+    }
+    
+    .rotating-text-section {
+      margin-top: 30px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    header {
+      padding-bottom: 180px;
+      min-height: 300px;
+    }
+    
+    #rotate-words {
+      font-size: 1.5em;
+      height: 130px;
+    }
+    
+    .skills-section {
+      margin-top: 30px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    header {
+      padding-bottom: 160px;
+      min-height: 280px;
+    }
+    
+    #rotate-words {
+      font-size: 1.3em;
+      height: 120px;
+    }
+  }

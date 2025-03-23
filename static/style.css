@@ -169,8 +169,7 @@ header {
     width: 100%;
 }
 
-
-  .avatar-img::before {
+.avatar-img::before {
     content: '';
     position: absolute;
     display: block;
@@ -183,9 +182,9 @@ header {
     background-position: center;
     filter: blur(var(--bg-blur));
     transition: filter 300ms ease-in-out;
-  }
+}
   
-  .avatar-img > img {
+.avatar-img > img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -193,22 +192,20 @@ header {
     transform-origin: bottom;
     scale: var(--img-scale, .9);
     filter: var(--img-shadow);
-  }
-  
+}
 
-  .avatar:hover {
+.avatar:hover {
     --img-scale: 1.1;
     --img-shadow: drop-shadow(10px 15px 4px rgba(0 0 0 / 0.5));
     --name-y: 0;
     --name-opacity: 1;
     --bg-blur: var(--bg-blur-hover);
-  }
+}
 
-  .avatar img:hover {
+.avatar img:hover {
     transform: scale(1.1);
     transition: transform 300ms ease;
-  }
-
+}
 
 canvas#neuro {
     position: fixed;
@@ -221,35 +218,45 @@ canvas#neuro {
     z-index: 0;
 }
 
+/* Modifications ici - Agrandissement du profil avec clip-path ajusté */
 .profile-special {
-    --size: 300px;
-    --img-clip: "M 0 100 L 50 50 L 250 50 L 300 100 L 300 200 C 150 300, 0 250, 0 200 Z";
-    --img-shadow: drop-shadow(5px 5px 2px rgba(0 0 0 / 0.5));
-    --name-txt-clr: #EEE;
-    --bg-clr: steelblue;
-    --bg-blur: 0;
-    --bg-blur-hover: 20px;
-    
-    font-family: 'Roboto', sans-serif;
-    width: fit-content;
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    z-index: 10;
-  }
+  --size: 350px; /* Taille augmentée */
+  /* Clip path ajusté avec plus d'espace à gauche */
+  --img-clip: "M -20 120 L 60 60 L 300 60 L 370 120 L 370 240 C 180 360, -20 300, -20 240 Z";
+  --img-shadow: drop-shadow(5px 5px 2px rgba(0 0 0 / 0.5));
+  --name-txt-clr: #EEE;
+  --bg-clr: steelblue;
+  --bg-blur: 0;
+  --bg-blur-hover: 20px;
   
-  .profile-avatar {
+  font-family: 'Roboto', sans-serif;
+  width: fit-content;
+  position: absolute;
+  top: 20px;
+  left: 30px; /* Ajout de marge à gauche */
+  z-index: 10;
+  transform: scale(1.2);
+  overflow: visible;
+  margin-left: 20px; /* Marge supplémentaire à gauche */
+  padding-left: 20px; /* Padding supplémentaire à gauche */
+}
+  
+.profile-avatar {
     position: relative;
     width: var(--size);
     height: var(--size);
     aspect-ratio: 1;
-  }
+    overflow: visible; /* Permettre au contenu de déborder */
+}
   
-  .profile-avatar-img {
+.profile-avatar-img {
     clip-path: path(var(--img-clip));
-  }
+    width: 100%;
+    height: 100%;
+    overflow: visible; /* Permettre au contenu de déborder */
+}
   
-  .profile-avatar-img::before {
+.profile-avatar-img::before {
     content: '';
     position: absolute;
     display: block;
@@ -262,9 +269,9 @@ canvas#neuro {
     background-position: center;
     filter: blur(var(--bg-blur));
     transition: filter 300ms ease-in-out;
-  }
+}
   
-  .profile-avatar-img > img {
+.profile-avatar-img > img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -274,30 +281,35 @@ canvas#neuro {
     transform-origin: bottom;
     scale: var(--img-scale, .9);
     filter: var(--img-shadow);
-  }
+}
   
-  .profile-avatar > p {
-    font-size: .9rem;
-    color: var(--name-txt-clr);
-    position: absolute;
-    bottom: .5rem;
-    right: 0;
-    translate: 0 var(--name-y,-50px);
-    opacity: var(--name-opacity,0);
-    z-index: -1;
-    transition-name: translate, opacity;
-    transition-delay: 150ms;
-    transition-duration: 300ms;
-    transition-timing-function: cubic-bezier(0.47, 1.64, 0.41, 0.8), ease-in-out;
-  }
+.profile-avatar > p {
+  font-size: 1.2rem;
+  color: var(--name-txt-clr);
+  position: absolute;
+  bottom: -30px; /* Modifié de 0.5rem à -30px pour créer plus d'espace */
+  right: 0;
+  translate: 0 var(--name-y,-50px);
+  opacity: var(--name-opacity,0);
+  z-index: -1;
+  transition-name: translate, opacity;
+  transition-delay: 150ms;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.47, 1.64, 0.41, 0.8), ease-in-out;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  margin-top: 15px; /* Ajoute une marge supérieure */
+  padding-top: 10px; /* Ajoute un padding supérieur */
+  width: 100%; /* Assure que le texte s'étend sur toute la largeur */
+  text-align: center; /* Centre le texte horizontalement */
+}
   
-  .profile-avatar:hover {
+.profile-avatar:hover {
     --img-scale: 1.1;
     --img-shadow: drop-shadow(10px 15px 4px rgba(0 0 0 / 0.5));
     --name-y: 0;
     --name-opacity: 1;
     --bg-blur: var(--bg-blur-hover);
-  }
+}
 
 /* Conteneur principal avec isolation globale */
 .content-wrapper {
@@ -343,6 +355,28 @@ canvas#neuro {
   .section-base {
     contain: content;
     padding: 2rem 0;
+  }
+  
+  /* Ajustement responsive pour le profil */
+  .profile-special {
+    --size: 300px;
+    --img-clip: "M 0 100 L 50 50 L 250 50 L 300 100 L 300 200 C 150 300, 0 250, 0 200 Z";
+    transform: scale(1);
+    top: 10px;
+    left: 10px;
+  }
+  
+  .profile-avatar > p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Ajustement responsive supplémentaire pour le profil sur mobile */
+  .profile-special {
+    --size: 250px;
+    --img-clip: "M 0 83 L 42 42 L 208 42 L 250 83 L 250 166 C 125 250, 0 208, 0 166 Z";
+    transform: scale(0.9);
   }
 }
 
