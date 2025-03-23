@@ -8,3 +8,4 @@ python-dotenv==1.0.0
 
 # Pour le déploiement en production
 gunicorn==21.2.0
+
