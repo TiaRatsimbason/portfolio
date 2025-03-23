@@ -21,9 +21,12 @@
     <!-- Diploma Button -->
     <div class="diploma-button-wrap">
         <a href="https://files.datascientest.com/diploma/296857c9-558e-4479-8afd-8abc77af97bf.pdf" target="_blank" class="diploma-button">
-            <span>DIPLOMA</span>
+            <div class="button-outer">
+                <div class="button-inner">
+                    <span>DIPLOMA</span>
+                </div>
+            </div>
         </a>
-        <div class="button-shadow"></div>
     </div>
     <!-- Dotted Background - caché -->
     <svg class="diploma-dotted-grid" style="position: absolute; width: 100%; height: 100%; z-index: 0;" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -165,5 +168,52 @@
     <script type="module" src="{{ url_for('static', filename='skills/index.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='projet/index.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='contact/index.js') }}"></script>
+    <script>
+        // Fonction pour initialiser Swiper quand le bouton View Work est cliqué
+        document.addEventListener('click', function(e) {
+          if (e.target.closest('.project-button')) {
+            console.log('View Work button clicked');
+            
+            // Attendre un moment pour que la transition se produise
+            setTimeout(function() {
+              try {
+                // Si Swiper existe déjà, le détruire
+                if (window.mySwiper) {
+                  window.mySwiper.destroy();
+                }
+                
+                // Créer une nouvelle instance Swiper
+                window.mySwiper = new Swiper('.swiper-container', {
+                  slidesPerView: 1,
+                  spaceBetween: 30,
+                  initialSlide: 0,
+                  centeredSlides: true,
+                  loop: false,
+                  
+                  // Navigation
+                  navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                  },
+                  
+                  // Pagination
+                  pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                  }
+                });
+                
+                console.log('Swiper initialized');
+                
+                // Forcer l'affichage du premier slide
+                document.querySelector('.swiper-slide').style.opacity = '1';
+                
+              } catch(error) {
+                console.error('Erreur lors de l\'initialisation de Swiper:', error);
+              }
+            }, 1000);
+          }
+        });
+      </script>
 </body>
 </html>

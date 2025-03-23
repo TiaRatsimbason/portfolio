@@ -1,31 +1,58 @@
+/* Styles épurés pour la section projet - solution définitive */
 /* Importer la police Montserrat */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-/* Styles de base */
+/* ---- Styles pour le conteneur principal du slider ---- */
 .projet-walkthrough {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px 0; /* Réduire le padding horizontal */
-  position: relative; /* Pour positionner la pagination et les boutons */
+  padding: 20px 0;
+  position: relative;
   overflow: hidden;
+  opacity: 0;
+  height: 0;
+  visibility: hidden;
+  transition: all 0.5s ease-in-out;
 }
 
-/* Styles pour chaque slide */
-.swiper-slide {
-  display: flex;
-  justify-content: center !important;
-  align-items: center !important;
+.projet-walkthrough.visible {
+  opacity: 1;
+  height: auto;
+  visibility: visible;
   overflow: visible;
-  padding: 0 !important;
-  box-sizing: border-box;
-  margin: 0 auto !important;
-  transform: none !important;
 }
 
-/* Styles pour chaque carte (slide) */
+/* ---- Styles Swiper ---- */
+.swiper-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.swiper-wrapper {
+  display: flex;
+  position: relative;
+}
+
+/* ---- Styles des slides ---- */
+.swiper-slide {
+  flex-shrink: 0;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Afficher uniquement le slide actif */
+.swiper-slide-active {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* ---- Styles des cartes de projet ---- */
 .card-item {
-  width: 80%;
+  width: 85%;
   max-width: 800px;
   margin: 0 auto;
   padding: 35px;
@@ -40,8 +67,6 @@
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  transform: translateX(0) !important;
-  left: 0 !important;
 }
 
 .card-item:hover {
@@ -56,6 +81,7 @@
   gap: 15px;
 }
 
+/* ---- Styles des éléments de texte ---- */
 .card-item h2 {
   font-size: 1.8rem;
   margin-bottom: 5px;
@@ -117,6 +143,7 @@
   display: inline-block;
 }
 
+/* ---- Styles du bouton de démo ---- */
 .voir-projet {
   font-size: 1rem;
   padding: 10px 20px;
@@ -140,10 +167,10 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Styles pour les boutons de navigation */
+/* ---- Styles des boutons de navigation Swiper ---- */
 .swiper-button-prev,
 .swiper-button-next {
-  color: #fff;
+  color: #fff !important;
   background: rgba(255, 255, 255, 0.15);
   width: 40px !important;
   height: 40px !important;
@@ -152,15 +179,15 @@
   z-index: 100;
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  margin-top: -20px;
 }
 
 .swiper-button-prev {
-  left: 10px !important; /* Positionnement fixe */
+  left: 15px !important;
 }
 
 .swiper-button-next {
-  right: 10px !important; /* Positionnement fixe */
+  right: 15px !important;
 }
 
 .swiper-button-prev:after,
@@ -172,12 +199,27 @@
 .swiper-button-prev:hover,
 .swiper-button-next:hover {
   background: rgba(255, 255, 255, 0.25);
-  color: #64ffda;
+  color: #64ffda !important;
+}
+
+/* ---- Styles de pagination Swiper ---- */
+.swiper-pagination {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 100;
 }
 
 .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
   background: #fff;
   opacity: 0.5;
+  display: inline-block;
+  border-radius: 50%;
 }
 
 .swiper-pagination-bullet-active {
@@ -185,7 +227,7 @@
   background: #64ffda;
 }
 
-/* Media queries pour la responsivité */
+/* ---- Media queries ---- */
 @media (max-width: 768px) {
   .projet-walkthrough {
     padding: 20px 25px;
@@ -193,6 +235,7 @@
   
   .card-item {
     padding: 25px;
+    width: 90%;
   }
   
   .card-item h2 {
@@ -207,6 +250,7 @@
   
   .card-item {
     padding: 20px;
+    width: 95%;
   }
   
   .projet-details {
