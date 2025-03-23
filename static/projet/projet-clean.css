@@ -20,19 +20,23 @@
   opacity: 1;
   height: auto;
   visibility: visible;
-  overflow: visible;
+  overflow: visible !important; /* Force l'overflow visible */
+  padding-top: 10px; /* Espace supplémentaire en haut pour éviter la troncature */
 }
 
 /* ---- Styles Swiper ---- */
 .swiper-container {
   width: 100%;
-  overflow: hidden;
+  overflow: visible !important; /* Changé de hidden à visible pour permettre le débordement */
   position: relative;
+  padding-top: 10px; /* Espace pour le déplacement vers le haut */
+  padding-bottom: 30px; /* Espace pour l'ombre projetée */
 }
 
 .swiper-wrapper {
   display: flex;
   position: relative;
+  overflow: visible !important; /* Permet aux slides de déborder */
 }
 
 /* ---- Styles des slides ---- */
@@ -42,12 +46,15 @@
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
+  overflow: visible !important; /* Permet aux cartes de déborder */
+  padding-top: 5px; /* Marge supplémentaire pour éviter la troncature */
 }
 
 /* Afficher uniquement le slide actif */
 .swiper-slide-active {
   opacity: 1 !important;
   visibility: visible !important;
+  z-index: 10 !important; /* Garantit que le slide actif reste au-dessus */
 }
 
 /* ---- Styles des cartes de projet ---- */
@@ -67,12 +74,14 @@
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
+  transform-origin: center center; /* Centre le point d'origine de la transformation */
 }
 
 .card-item:hover {
   background: rgba(255, 255, 255, 0.15);
   transform: translateY(-5px);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+  z-index: 20; /* S'assure que la carte en hover reste au-dessus des autres éléments */
 }
 
 .card-content {
