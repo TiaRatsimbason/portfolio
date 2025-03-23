@@ -1,7 +1,7 @@
 from flask import Flask
 import os
 import logging
-from app.routes import configure_routes  # Importer les routes
+from routes_package.routes import configure_routes # Importer les routes
 
 app = Flask(__name__)
 logging.basicConfig(level=logging.DEBUG)  # Ajout du logging
