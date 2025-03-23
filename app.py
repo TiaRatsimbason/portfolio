@@ -21,3 +21,5 @@ configure_routes(app)
 if __name__ == '__main__':
     app.logger.debug("Démarrage de l'application")  # Ajout d'un log de démarrage
     app.run(debug=True, use_reloader=True)
+    
+app = app  # Nécessaire pour l'environnement Vercel
