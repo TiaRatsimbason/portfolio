@@ -171,3 +171,94 @@ document.addEventListener('DOMContentLoaded', function() {
     ensureContactCompatibility();
     window.addEventListener('resize', ensureContactCompatibility);
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Configuration du comportement tactile pour les tooltips sur mobile
+    function setupMobileTooltips() {
+        // Ne s'applique que sur les appareils tactiles
+        if (!('ontouchstart' in window)) return;
+        
+        const tooltipContainers = document.querySelectorAll('.tooltip-container');
+        if (tooltipContainers.length === 0) return;
+        
+        // Gestion des événements tactiles pour les tooltips
+        tooltipContainers.forEach(container => {
+            container.addEventListener('touchstart', function(e) {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    
+                    // Fermer tous les autres tooltips
+                    tooltipContainers.forEach(otherContainer => {
+                        if (otherContainer !== container) {
+                            otherContainer.classList.remove('touch-active');
+                        }
+                    });
+                    
+                    // Basculer l'état actif
+                    container.classList.toggle('touch-active');
+                }
+            });
+        });
+        
+        // Fermer les tooltips en touchant ailleurs sur l'écran
+        document.addEventListener('touchstart', function(e) {
+            if (!e.target.closest('.tooltip-container')) {
+                tooltipContainers.forEach(container => {
+                    container.classList.remove('touch-active');
+                });
+            }
+        });
+    }
+    
+    // Calculer la hauteur minimale nécessaire pour la section en fonction du scale
+    function adjustSkillsContainerHeight() {
+        const skillsContainer = document.querySelector('.skills-container');
+        const skillsGrid = document.querySelector('.skills-grid');
+        
+        if (!skillsContainer || !skillsGrid) return;
+        
+        // Obtenir le facteur d'échelle actuel à partir du style transform
+        const transformStyle = window.getComputedStyle(skillsGrid).transform;
+        let scale = 1;
+        
+        if (transformStyle && transformStyle !== 'none') {
+            const matrix = transformStyle.match(/matrix\(([^)]+)\)/);
+            if (matrix) {
+                const values = matrix[1].split(',');
+                scale = parseFloat(values[0]);
+            }
+        }
+        
+        // Calculer la hauteur naturelle de la grille
+        const gridHeight = skillsGrid.scrollHeight;
+        
+        // Appliquer une hauteur minimale au conteneur en fonction de l'échelle
+        // Plus le scale est petit, moins la hauteur nécessaire est grande
+        skillsContainer.style.minHeight = `${gridHeight * scale * 1.1}px`;
+    }
+    
+    // Observer les changements de dimensions pour ajuster la hauteur
+    function observeResizing() {
+        // Appliquer une fois immédiatement
+        adjustSkillsContainerHeight();
+        
+        // Puis observer les changements
+        const resizeObserver = new ResizeObserver(() => {
+            adjustSkillsContainerHeight();
+        });
+        
+        const skillsGrid = document.querySelector('.skills-grid');
+        if (skillsGrid) {
+            resizeObserver.observe(skillsGrid);
+        }
+        
+        // S'assurer que ça s'ajuste également lors du redimensionnement de la fenêtre
+        window.addEventListener('resize', adjustSkillsContainerHeight);
+    }
+    
+    // Initialiser
+    setupMobileTooltips();
+    
+    // Utiliser un délai pour s'assurer que tous les éléments sont bien chargés
+    setTimeout(observeResizing, 300);
+});
