@@ -172,6 +172,10 @@ Cette solution est une alternative si l'approche JavaScript pose problème.
     }
   }
   </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <!-- Chargement du CSS responsif après tous les autres styles -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='responsive.css') }}">
 </head>
 <body>
     <canvas id="neuro"></canvas>
@@ -390,5 +394,6 @@ Cette solution est une alternative si l'approche JavaScript pose problème.
           }
         });
       </script>
+      <script src="{{ url_for('static', filename='responsive.js') }}"></script>
 </body>
 </html>
