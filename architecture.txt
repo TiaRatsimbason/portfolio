@@ -1,27 +1,46 @@
 .
-├── app
+├── app.py
+├── architecture.txt
+├── dossier non compris
+│   └── Responsive Card Slider
+│       ├── images
+│       │   ├── bg.jpg
+│       │   ├── img-1.jpg
+│       │   ├── img-2.jpg
+│       │   ├── img-3.jpg
+│       │   ├── img-4.jpg
+│       │   ├── img-5.jpg
+│       │   └── img-6.jpg
+│       ├── index.html
+│       ├── script.js
+│       └── style.css
+├── requirements.txt
+├── routes_package
 │   ├── __init__.py
 │   ├── __pycache__
 │   │   ├── __init__.cpython-312.pyc
 │   │   └── routes.cpython-312.pyc
 │   └── routes.py
-├── app.py
-├── architecture.txt
-├── requirements.txt
 ├── static
 │   ├── contact
 │   │   ├── contact.css
 │   │   └── index.js
+│   ├── diploma-button.css
 │   ├── images
 │   │   ├── photo.png
 │   │   ├── photo.png.png:Zone.Identifier
 │   │   ├── photo_sans_contour.png
 │   │   └── projects
 │   │       ├── mlops_bg.png
-│   │       └── mlops_bg.png:Zone.Identifier
+│   │       ├── mlops_bg.png:Zone.Identifier
+│   │       ├── pngegg.png:Zone.Identifier
+│   │       ├── —Pngtree—blue planet walpaper iphone_6607261.png:Zone.Identifier
+│   │       └── —Pngtree—rhinoceros coming out of the_3729811.png:Zone.Identifier
 │   ├── projet
 │   │   ├── index.js
-│   │   └── projet.css
+│   │   ├── project-card.css
+│   │   ├── projet-clean.css
+│   │   └── swiper-ultimate.js
 │   ├── script.js
 │   ├── skills
 │   │   ├── index.js
@@ -35,6 +54,7 @@
 │   │   └── skills.css
 │   └── style.css
 └── templates
-    └── index.html
+    ├── index.html
+    └── projet.html
 
-11 directories, 27 files
+14 directories, 44 files
