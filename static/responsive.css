@@ -1,343 +1,133 @@
-/* responsive.css - Styles responsives globaux pour le portfolio */
+/* Solution pour préserver la forme exacte du tableau périodique tout en le rendant responsive */
 
-/* Base responsive pour tous les éléments */
-*, *::before, *::after {
-    box-sizing: border-box;
-  }
-  
-  html, body {
-    overflow-x: hidden;
+/* Base responsive pour la section skills */
+.skills-container {
     width: 100%;
-    margin: 0;
-    padding: 0;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    position: relative;
+    background-color: transparent;
+    overflow: hidden;
   }
   
-  img {
+  .skills-periodic {
     max-width: 100%;
-    height: auto;
+    margin: 0 auto;
+    transform-origin: center top;
   }
   
-  /* Correction de la photo de profil et du profil spécial */
+  /* Titre responsive */
+  .skills-container h1 {
+    font-size: clamp(24px, 5vw, 40px);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: white;
+  }
+  
+  /* Grille qui préserve ses proportions mais se redimensionne */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(9, 90px);
+    grid-template-rows: repeat(4, 90px);
+    gap: 1rem;
+    justify-content: center;
+    align-items: start;
+    margin: 2rem auto;
+    transform-origin: center top;
+  }
+  
+  /* Media queries pour redimensionner proportionnellement la grille entière */
   @media (max-width: 1200px) {
-    .profile-special {
-      --size: 300px;
-      transform: scale(1.1);
-      position: relative;
-      top: 10px;
-      left: 0;
-      margin: 0 auto 30px auto;
-    }
-    
-    header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-top: 30px;
-    }
-    
-    .first-container.share {
-      margin-top: 30px;
-    }
-    
-    .diploma-button-wrap {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      transform: scale(1.2);
+    .skills-grid {
+      transform: scale(0.9);
+      margin: 0 auto;
     }
   }
   
-  @media (max-width: 768px) {
-    .profile-special {
-      --size: 250px;
-      transform: scale(1);
-      margin-bottom: 20px;
-    }
-    
-    .profile-avatar > p {
-      bottom: -40px;
-      font-size: 1rem;
-    }
-    
-    .first-container.share {
-      height: 220px;
-    }
-    
-    .first-container.share h1 {
-      font-size: clamp(1.3rem, 4vw, 2.5rem);
-    }
-    
-    .rotating-text-section {
-      height: 120px;
-    }
-    
-    #rotate-words {
-      font-size: 1.4em;
-      height: 120px;
-    }
-    
-    .diploma-button-wrap {
-      top: 15px;
-      right: 15px;
+  @media (max-width: 1080px) {
+    .skills-grid {
       transform: scale(0.8);
+      margin: -20px auto;
     }
   }
   
-  @media (max-width: 480px) {
-    .profile-special {
-      --size: 200px;
-      margin-bottom: 40px;
-    }
-    
-    .first-container.share {
-      height: 180px;
-      padding-bottom: 20px;
-    }
-    
-    .first-container.share h1 {
-      font-size: clamp(1.1rem, 3.5vw, 2rem);
-      top: -20px;
-    }
-    
-    .rotating-text-section {
-      height: 100px;
-    }
-    
-    #rotate-words {
-      font-size: 1.2em;
-      height: 100px;
-    }
-    
-    #rotate-words span {
-      font-size: 0.6em;
-    }
-    
-    .diploma-button-wrap {
-      top: 10px;
-      right: 10px;
-      transform: scale(0.6);
-    }
-  }
-  
-  /* Corrections pour la section skills */
-  @media (max-width: 990px) {
+  @media (max-width: 970px) {
     .skills-grid {
-      grid-template-columns: repeat(auto-fill, 80px);
-      grid-template-rows: repeat(auto-fill, 80px);
-      gap: 0.8rem;
-      max-width: 800px;
+      transform: scale(0.7);
+      margin: -40px auto;
     }
-    
-    .tooltip-container {
-      width: 80px;
-      height: 80px;
-    }
-    
-    .tooltip {
-      min-width: 300px;
-      top: -120px;
+  }
+  
+  @media (max-width: 880px) {
+    .skills-grid {
+      transform: scale(0.6);
+      margin: -60px auto;
     }
   }
   
   @media (max-width: 768px) {
-    .skills-container h1 {
-      font-size: 32px;
-    }
-    
     .skills-grid {
-      grid-template-columns: repeat(auto-fill, 70px);
-      grid-template-rows: repeat(auto-fill, 70px);
-      gap: 0.7rem;
-      max-width: 600px;
+      transform: scale(0.5);
+      margin: -80px auto;
     }
-    
-    .tooltip-container {
-      width: 70px;
-      height: 70px;
+  }
+  
+  @media (max-width: 650px) {
+    .skills-grid {
+      transform: scale(0.45);
+      margin: -90px auto;
     }
-    
-    .tooltip {
-      min-width: 250px;
-      top: -100px;
+  }
+  
+  @media (max-width: 550px) {
+    .skills-grid {
+      transform: scale(0.4);
+      margin: -100px auto; 
     }
   }
   
   @media (max-width: 480px) {
-    .skills-container h1 {
-      font-size: 24px;
-    }
-    
     .skills-grid {
-      grid-template-columns: repeat(auto-fill, 60px);
-      grid-template-rows: repeat(auto-fill, 60px);
-      gap: 0.5rem;
-      justify-content: center;
-      max-width: 100%;
+      transform: scale(0.35);
+      margin: -110px auto;
     }
     
-    .tooltip-container {
-      width: 60px;
-      height: 60px;
+    .skills-container {
+      padding: 0.5rem;
+      min-height: 300px;
+    }
+  }
+  
+  @media (max-width: 400px) {
+    .skills-grid {
+      transform: scale(0.3);
+      margin: -120px auto;
     }
     
-    .layer span.fab {
-      font-size: 18px;
+    .skills-container {
+      min-height: 270px;
     }
-    
+  }
+  
+  /* Ajustement des tooltips sur mobile */
+  @media (max-width: 768px) {
     .tooltip {
-      min-width: 200px;
-      max-width: 90vw;
+      width: 300px;
       left: 50%;
       transform: translateX(-50%);
-      top: -90px;
-    }
-  }
-  
-  /* Corrections pour la section projet */
-  @media (max-width: 768px) {
-    .thumb {
-      width: 320px;
-      height: 450px;
-      min-width: 280px;
     }
     
-    .project-button {
-      padding: 1.5em;
+    .tooltip-container:hover .tooltip {
+      opacity: 0;
+      visibility: hidden;
     }
     
-    .project-button span {
-      font-size: 1rem;
-    }
-    
-    .card-item {
-      width: 90%;
-      padding: 25px;
-    }
-    
-    .card-item h2 {
-      font-size: 1.4rem;
-    }
-    
-    .projet-tasks {
-      padding-left: 15px;
-    }
-    
-    .projet-tasks li {
-      font-size: 0.9rem;
-    }
-    
-    .swiper-button-prev, 
-    .swiper-button-next {
-      width: 35px !important;
-      height: 35px !important;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .thumb {
-      width: 280px;
-      height: 400px;
-    }
-    
-    .project-button {
-      padding: 1.25em;
-    }
-    
-    .project-button span {
-      font-size: 0.9rem;
-    }
-    
-    .card-item {
-      width: 95%;
-      padding: 20px;
-    }
-    
-    .card-item h2 {
-      font-size: 1.2rem;
-    }
-    
-    .card-item p {
-      font-size: 0.95rem;
-    }
-    
-    .projet-details {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 5px;
-      margin-bottom: 15px;
-    }
-    
-    .projet-tasks li {
-      font-size: 0.85rem;
-      margin-bottom: 6px;
-    }
-    
-    .tech-stack {
-      font-size: 0.85rem;
-    }
-    
-    .voir-projet {
-      font-size: 0.9rem;
-      padding: 8px 16px;
-    }
-    
-    .swiper-button-prev, 
-    .swiper-button-next {
-      width: 30px !important;
-      height: 30px !important;
-    }
-    
-    .swiper-button-prev:after,
-    .swiper-button-next:after {
-      font-size: 16px !important;
-    }
-  }
-  
-  /* Corrections pour la section contact */
-  @media (max-width: 768px) {
-    .contact-area {
-      height: 100px;
-    }
-    
-    .card {
-      padding: 0.2rem;
-    }
-    
-    .svg {
-      height: 30px;
-      width: 30px;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .contact-area {
-      height: 80px;
-    }
-    
-    .card {
-      gap: 0.2rem;
-    }
-    
-    .svg {
-      height: 25px;
-      width: 25px;
-      padding: 0.4rem;
-    }
-    
-    .card ul {
-      gap: 0.2rem;
-    }
-  }
-  
-  /* Fix pour les éléments qui pourraient déborder sur mobile */
-  @media (max-width: 768px) {
-    .content-wrapper {
-      overflow: hidden;
-      width: 100%;
-    }
-    
-    .section-base {
-      overflow: hidden;
-      width: 100%;
+    .tooltip-container.touch-active .tooltip {
+      opacity: 1;
+      visibility: visible;
     }
   }
