@@ -27,59 +27,75 @@
       object-fit: cover !important;
     }
 
-    /* Reste du code inchangé */
-    .main-container {
-        width: 100vw !important;
-        max-width: 100% !important;
+    header {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
         padding: 0 !important;
         margin: 0 !important;
+        width: 100vw !important;
+        overflow: hidden !important;
+    }
+
+    /* Conteneur principal */
+    .main-container {
+        width: 100% !important;
+        max-width: 100vw !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
         justify-content: center !important;
+        padding: 0 !important;
+        margin: 0 !important;
     }
 
-    /* Correction spécifique pour .first-container.share */
+    /* Conteneur du titre */
     .first-container.share {
-        width: 100% !important;
+        width: 100vw !important;
         max-width: 100% !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
         justify-content: center !important;
+        text-align: center !important;
         padding: 0 15px !important;
+        margin: 50px 0 0 0 !important;
         box-sizing: border-box !important;
-        position: relative !important;
-        margin-top: 50px !important;
+        overflow: visible !important;
     }
 
     /* Style du titre */
     .first-container.share h1 {
-        width: 100% !important;
-        max-width: 100% !important;
         display: flex !important;
-        flex-wrap: wrap !important;
+        flex-direction: column !important;
         justify-content: center !important;
         align-items: center !important;
+        width: 100% !important;
+        max-width: 100% !important;
         text-align: center !important;
-        font-size: clamp(1.5rem, 7vw, 2.5rem) !important;
-        margin: 0 auto !important;
+        font-size: clamp(1.5rem, 8vw, 3rem) !important;
+        margin: 0 !important;
         padding: 0 !important;
+        line-height: 1.2 !important;
+        overflow: visible !important;
     }
 
-    /* Style des lettres individuelles */
+    /* Lettres individuelles */
     .first-container.share h1 span {
         display: inline-block !important;
         text-align: center !important;
         white-space: nowrap !important;
-        margin: 0 2px !important;
+        margin: 0 3px !important;
+        overflow: visible !important;
     }
 
-    /* Correction des sauts de ligne */
+    /* Gestion des sauts de ligne */
     .first-container.share h1 br {
         width: 100% !important;
+        content: '' !important;
         display: block !important;
-        height: 0 !important;
+        height: 10px !important;
         margin: 10px 0 !important;
     }
     
@@ -195,9 +211,9 @@
 @media (max-width: 480px) {
     /* Reste de votre code précédent */
     .first-container.share h1 {
-        font-size: clamp(1.2rem, 6vw, 2rem) !important;
+        font-size: clamp(1.2rem, 7vw, 2.5rem) !important;
     }
-    
+
     .profile-special {
       transform: scale(0.8) !important;
     }
