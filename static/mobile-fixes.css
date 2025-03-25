@@ -28,42 +28,59 @@
     }
 
     /* Reste du code inchangé */
+    .main-container {
+        width: 100vw !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    /* Correction spécifique pour .first-container.share */
     .first-container.share {
-        width: 100vw !important; /* Largeur totale de la viewport */
+        width: 100% !important;
         max-width: 100% !important;
         display: flex !important;
         flex-direction: column !important;
-        justify-content: center !important;
         align-items: center !important;
+        justify-content: center !important;
         padding: 0 15px !important;
         box-sizing: border-box !important;
-        position: relative !important; /* Ajouter un positionnement relatif */
-        margin-top: 50px !important; /* Surélevation */
+        position: relative !important;
+        margin-top: 50px !important;
     }
 
+    /* Style du titre */
     .first-container.share h1 {
         width: 100% !important;
         max-width: 100% !important;
-        text-align: center !important;
         display: flex !important;
         flex-wrap: wrap !important;
         justify-content: center !important;
-        font-size: clamp(1.5rem, 7vw, 2.5rem) !important; /* Réduction légère de la taille */
+        align-items: center !important;
+        text-align: center !important;
+        font-size: clamp(1.5rem, 7vw, 2.5rem) !important;
         margin: 0 auto !important;
-        line-height: 1.2 !important;
-        overflow: visible !important; /* Assurer la visibilité complète */
+        padding: 0 !important;
     }
 
+    /* Style des lettres individuelles */
     .first-container.share h1 span {
         display: inline-block !important;
         text-align: center !important;
-        white-space: nowrap !important; /* Empêche le retour à la ligne */
+        white-space: nowrap !important;
+        margin: 0 2px !important;
     }
 
-    /* Ajustement spécifique pour les lignes */
+    /* Correction des sauts de ligne */
     .first-container.share h1 br {
         width: 100% !important;
         display: block !important;
+        height: 0 !important;
+        margin: 10px 0 !important;
     }
     
     #rotate-words {
@@ -177,6 +194,10 @@
 /* === Fixes pour très petits écrans === */
 @media (max-width: 480px) {
     /* Reste de votre code précédent */
+    .first-container.share h1 {
+        font-size: clamp(1.2rem, 6vw, 2rem) !important;
+    }
+    
     .profile-special {
       transform: scale(0.8) !important;
     }
