@@ -1,41 +1,74 @@
-/* mobile-fixes.css - Version finale */
+/* mobile-fixes.css - Solution complète pour mobile */
 
-/* ====== RÉPARATION DE LA MISE EN PAGE GÉNÉRALE ====== */
+/* ====== SOLUTION FINALE POUR L'ESPACE VIDE ====== */
 @media (max-width: 768px) {
-    /* Structure globale */
-    body, html {
-        min-height: 100vh !important;
+    /* Approche radicale pour l'espace */
+    #contact-target, .contact-area {
+        position: fixed !important; /* Position fixe au lieu de relative */
+        bottom: 0 !important; /* Accrocher en bas de l'écran */
+        left: 0 !important;
+        width: 100% !important;
+        z-index: 1000 !important; /* Très haut z-index pour être au-dessus de tout */
+        background: rgba(0, 0, 0, 0.7) !important; /* Fond semi-transparent */
+        margin: 0 !important;
+        padding: 10px 0 !important;
+    }
+    
+    /* Cache complètement l'espace vide */
+    #projet-section, .projet-walkthrough {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+        height: auto !important;
+        max-height: 95vh !important; /* Limite la hauteur pour éviter les espaces vides */
+        overflow: hidden !important;
+    }
+    
+    /* Réinitialisation de tous les éléments qui pourraient créer de l'espace */
+    body, html, main, section, div {
+        min-height: 0 !important;
+    }
+    
+    /* Structure globale sans espace */
+    .content-wrapper {
+        gap: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        overflow: hidden !important;
+    }
+    
+    /* Forcer la page à s'arrêter à la fin du contenu */
+    body {
         height: auto !important;
         overflow-x: hidden !important;
     }
     
-    .content-wrapper {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 0 !important;
-        padding: 0 !important;
+    /* Force les icônes à être visibles */
+    .card {
+        background: rgba(0, 0, 0, 0.7) !important;
+        z-index: 1001 !important; /* Au-dessus de tout */
+        padding: 10px !important;
         margin: 0 !important;
-        min-height: 0 !important;
+        border-radius: 0 !important; /* Pas de coins arrondis */
     }
     
-    /* Gestion du "canvas#neuro" qui peut causer des espaces vides */
-    canvas#neuro {
-        position: fixed !important;
-        height: 100% !important;
-        z-index: -1 !important;
+    .card ul {
+        gap: 30px !important; /* Plus d'espace entre les icônes */
+        padding: 5px !important;
+        margin: 0 !important;
     }
     
-    /* Sections principales */
+    /* Empêcher tout contenu de déborder */
     .section-base {
-        min-height: 0 !important;
+        overflow: hidden !important;
         height: auto !important;
-        padding: 0 !important;
-        margin: 0 !important;
     }
 }
 
-/* ====== STYLES DU HEADER ====== */
+/* ====== STYLES DU HEADER ET TITRE ====== */
 @media (max-width: 768px) {
+    /* Structure */
     header {
         min-height: auto !important;
         padding: 1rem !important;
@@ -67,11 +100,12 @@
         height: 250px !important;
     }
     
-    /* Titre principal */
+    /* Conteneur principal */
     .main-container {
         padding: 0 !important;
         margin: 0 !important;
         width: 100% !important;
+        overflow: visible !important;
     }
     
     .first-container.share {
@@ -80,10 +114,13 @@
         padding: 0 10px !important;
         margin: 0 auto 20px auto !important;
         display: block !important;
+        overflow: visible !important;
     }
     
+    /* Titre */
     .first-container.share h1 {
         font-size: 1.9rem !important;
+        display: block !important;
         width: 90% !important;
         margin: 0 auto 30px auto !important;
         text-align: center !important;
@@ -91,19 +128,32 @@
         letter-spacing: -1px !important;
     }
     
+    .first-container.share h1 br {
+        display: block !important;
+        margin-bottom: 5px !important;
+        line-height: 1.5 !important;
+    }
+    
     /* Texte rotatif */
     .header-extension {
         width: 100% !important;
         padding: 10px 0 !important;
         margin-top: 40px !important;
+        position: relative !important;
     }
     
     .rotating-text-section {
+        max-width: 100% !important;
+        height: auto !important;
         min-height: 120px !important;
+        position: relative !important;
+        top: 20px !important;
     }
     
     #rotate-words {
         font-size: 1.4em !important;
+        height: auto !important;
+        min-height: 120px !important;
     }
 }
 
@@ -122,7 +172,7 @@
         justify-content: center !important;
         gap: 10px !important;
         width: 100% !important;
-        margin: 0 !important;
+        margin: 0 auto !important;
         grid-template-columns: unset !important;
         grid-template-rows: unset !important;
     }
@@ -136,66 +186,82 @@
     .tooltip {
         width: 300px !important;
         min-width: auto !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
         z-index: 1000 !important;
     }
 }
 
 /* ====== PROJETS ET SWIPER ====== */
 @media (max-width: 768px) {
-    /* Conteneur projet principal */
-    #projet-section {
-        display: flex !important;
-        flex-direction: column !important;
-        padding: 0 !important;
-        margin-bottom: 0 !important;
-        height: auto !important;
-    }
-    
-    .project-card-container {
-        margin-bottom: 0 !important;
-        padding-bottom: 0 !important;
-    }
-    
-    /* Conteneur Swiper */
+    /* Conteneur projet */
     .projet-walkthrough {
         width: 100% !important;
-        margin: 0 !important;
+        padding: 0 !important;
+        margin: 0 auto !important;
         overflow: hidden !important;
         height: auto !important;
-        padding-bottom: 60px !important; /* Espace pour contact en dessous */
     }
-    
+
+    /* Swiper */
     .swiper-container {
         width: 100% !important;
         overflow: hidden !important;
+        margin: 0 auto !important;
         padding: 0 30px !important;
     }
     
-    /* Assurer que les slides sont correctement affichés */
+    .swiper-wrapper, .swiper-slide {
+        transform: none !important;
+    }
+    
     .swiper-slide {
         opacity: 1 !important;
         visibility: visible !important;
+        width: 100% !important;
     }
     
-    /* Style des cartes */
+    /* Cartes de projet */
     .card-item {
         width: 85% !important;
+        max-width: 85% !important;
         margin: 0 auto !important;
         padding: 15px !important;
+        transform: scale(0.95) !important;
     }
     
     .card-item h2 {
         font-size: 1.2rem !important;
+        margin-bottom: 8px !important;
     }
     
-    /* Navigation Swiper */
+    .card-item p, .projet-description {
+        font-size: 0.9rem !important;
+        line-height: 1.3 !important;
+    }
+    
+    .projet-details {
+        flex-direction: column !important;
+        font-size: 0.85rem !important;
+    }
+    
+    .projet-tasks {
+        font-size: 0.85rem !important;
+        padding-left: 15px !important;
+    }
+    
+    /* Contrôles de navigation */
     .swiper-button-prev,
     .swiper-button-next {
         width: 30px !important;
         height: 30px !important;
+        position: absolute !important;
         top: 50% !important;
+        transform: translateY(-50%) !important;
+        z-index: 10 !important;
         background: rgba(255,255,255,0.2) !important;
         border-radius: 50% !important;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3) !important;
     }
     
     .swiper-button-prev {
@@ -206,64 +272,14 @@
         right: 10px !important;
     }
     
-    .swiper-pagination {
-        bottom: 10px !important;
+    .swiper-button-prev:after,
+    .swiper-button-next:after {
+        font-size: 15px !important;
+        font-weight: bold !important;
     }
 }
 
-/* ====== CONTACT - SOLUTION FINALE ====== */
-@media (max-width: 768px) {
-    /* Au lieu de position: fixed, nous utilisons une approche plus naturelle */
-    .contact-area {
-        height: auto !important;
-        width: 100% !important;
-        margin: 0 !important;
-        padding: 15px 0 !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        position: relative !important;
-        bottom: 0 !important;
-        background: none !important; /* Supprimer l'arrière-plan noir */
-    }
-    
-    .contact-container {
-        height: auto !important;
-        width: 100% !important;
-    }
-    
-    /* Style de la carte de contact - sans fond noir */
-    .card {
-        max-width: 95% !important;
-        padding: 15px 10px !important;
-        margin: 0 auto !important;
-        background: none !important; /* Supprimer l'arrière-plan noir */
-        z-index: 5 !important; /* Plus faible z-index pour éviter les chevauchements */
-        box-shadow: none !important;
-        backdrop-filter: none !important;
-    }
-    
-    .card ul {
-        gap: 30px !important;
-        justify-content: center !important;
-        padding: 10px !important;
-        margin: 0 !important;
-    }
-    
-    /* Style des icônes de contact */
-    .card ul li {
-        transform: scale(1.1) !important;
-    }
-    
-    .svg {
-        height: 30px !important;
-        width: 30px !important;
-        background: rgba(0, 0, 0, 0.5) !important; /* Fond sombre pour l'icône seulement */
-        border-radius: 50% !important;
-    }
-}
-
-/* ====== CORRECTIONS POUR TRÈS PETITS ÉCRANS ====== */
+/* ====== TRÈS PETITS ÉCRANS ====== */
 @media (max-width: 480px) {
     .profile-special {
         transform: scale(0.65) !important;
@@ -281,6 +297,11 @@
     
     .card-item {
         padding: 12px !important;
+        transform: scale(0.92) !important;
+    }
+    
+    .card-item h2 {
+        font-size: 1.1rem !important;
     }
     
     .swiper-button-prev,
@@ -292,34 +313,5 @@
     .swiper-button-prev:after,
     .swiper-button-next:after {
         font-size: 12px !important;
-    }
-}
-
-/* ==== SOLUTION NETTOYAGE D'ESPACE ==== */
-@media (max-width: 768px) {
-    /* Supprimer tous les espaces vides possibles */
-    .projet-walkthrough.visible + div,
-    .projet-walkthrough + div,
-    .project-card-container + div,
-    #projet-section + div,
-    .section-base + div {
-        display: none !important;
-    }
-    
-    /* Forcer la mise en page directe sans écarts */
-    main.content-wrapper > section {
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-    
-    /* Réduire la hauteur des éléments pour éviter les espaces */
-    .project-card-container {
-        min-height: 0 !important;
-    }
-    
-    /* Corriger les problèmes de hauteur du body */
-    body {
-        height: auto !important;
-        overflow-y: auto !important;
     }
 }
