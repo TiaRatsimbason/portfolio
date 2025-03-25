@@ -1,20 +1,44 @@
 /* mobile-fixes.css - Corrections pour l'affichage sur appareils mobiles */
 
-/* ====== CORRECTION DE L'ESPACE VIDE ====== */
+/* ====== CORRECTION DE L'ESPACE VIDE - SOLUTION AGRESSIVE ====== */
 @media (max-width: 768px) {
-    /* Réduction de l'espace entre les sections */
+    /* Réduction drastique de l'espace entre les sections */
     .content-wrapper {
         gap: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        min-height: auto !important;
+    }
+    
+    /* Forcer la mise en page compacte */
+    .section-base {
+        padding: 10px 0 !important;
+        margin: 0 !important;
+        height: auto !important;
     }
     
     /* Réduction spécifique de l'espace entre projets et contact */
     #projet-section {
         margin-bottom: 0 !important;
         padding-bottom: 0 !important;
+        position: relative !important;
+    }
+    
+    .project-card-container {
+        margin-bottom: 0 !important;
     }
     
     .projet-walkthrough {
-        margin-bottom: 20px !important;
+        margin-bottom: 0 !important;
+        height: auto !important;
+    }
+    
+    /* Rapprocher la section contact */
+    #contact-target, .contact-area {
+        margin-top: 0 !important;
+        padding-top: 10px !important;
+        position: relative !important;
+        top: -30px !important; /* Déplacer vers le haut pour éliminer l'espace */
     }
 }
 @media (max-width: 768px) {
@@ -212,51 +236,63 @@
         min-height: 0 !important;
     }
 
-    /* Conteneur Swiper - Correction du centrage */
-    .swiper-container {
-        width: 95% !important;
-        max-width: 95% !important;
-        padding: 0 !important;
-        overflow: hidden !important;
-        margin: 0 auto !important;
-        height: auto !important;
-        position: relative !important;
-        left: 0 !important; /* Empêche le décalage */
-        right: 0 !important;
-    }
-
-    /* Wrapper des slides - Force le centrage */
-    .swiper-wrapper {
-        height: auto !important;
-        min-height: 0 !important;
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        margin: 0 auto !important;
-        transform: translate3d(0, 0, 0) !important; /* Empêche le décalage après navigation */
-    }
-
-    /* Style des slides individuels - Centrage amélioré */
+/* Correction pour le Swiper - Approche avec JavaScript intégré */
+@media (max-width: 768px) {
+    /* Suppression des styles qui causent des conflits */
+    .swiper-container,
+    .swiper-wrapper,
     .swiper-slide {
-        width: 100% !important;
-        height: auto !important;
-        padding: 0 !important;
-        margin: 0 auto !important;
-        transform: scale(0.9) !important;
-        display: flex !important; 
-        justify-content: center !important;
-        align-items: center !important;
-        position: relative !important;
-        left: 0 !important;
-        right: 0 !important;
+        transform: none !important; /* Ne pas interférer avec les transitions Swiper */
     }
     
-    /* Style pour le slide actif - Force le centrage */
-    .swiper-slide-active {
-        left: 50% !important;
-        transform: translateX(-50%) scale(0.9) !important;
-        position: relative !important;
+    /* Conteneur Swiper simplifié */
+    .swiper-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: hidden !important;
+        margin: 0 auto !important;
+        padding: 0 30px !important; /* Espace pour les boutons de navigation */
     }
+    
+    /* Assurer que les slides sont toujours visibles */
+    .swiper-slide {
+        opacity: 1 !important;
+        visibility: visible !important;
+        width: 100% !important;
+        transform: none !important;
+        transition: none !important;
+    }
+    
+    /* Style des cartes - Réduire la taille pour éviter débordement */
+    .card-item {
+        width: 85% !important;
+        max-width: 85% !important;
+        margin: 0 auto !important;
+        transform: scale(0.95) !important;
+    }
+    
+    /* Corriger la disposition des boutons de navigation */
+    .swiper-button-prev,
+    .swiper-button-next {
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        position: absolute !important;
+        z-index: 100 !important;
+        width: 30px !important;
+        height: 30px !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        background: rgba(255,255,255,0.2) !important;
+    }
+    
+    .swiper-button-prev {
+        left: 10px !important;
+    }
+    
+    .swiper-button-next {
+        right: 10px !important;
+    }
+}
 
     /* Style des cartes de projet */
     .card-item {
@@ -318,9 +354,9 @@
     /* Boutons de navigation - Position et apparence améliorées */
     .swiper-button-prev,
     .swiper-button-next {
-        width: 25px !important;
-        height: 25px !important;
-        margin-top: -12px !important;
+        width: 30px !important;
+        height: 30px !important;
+        margin-top: -15px !important;
         position: absolute !important;
         top: 50% !important;
         z-index: 10 !important;
@@ -329,14 +365,14 @@
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
+        color: white !important;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3) !important;
     }
     
-    .swiper-button-prev {
-        left: 5% !important;
-    }
-    
-    .swiper-button-next {
-        right: 5% !important;
+    .swiper-button-prev:after,
+    .swiper-button-next:after {
+        font-size: 18px !important;
+        font-weight: bold !important;
     }
 
     .swiper-button-prev:after,
