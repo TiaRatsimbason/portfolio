@@ -1,68 +1,81 @@
-/* mobile-fixes.css - Corrections pour l'affichage sur appareils mobiles */
+/* mobile-fixes.css - Solution complète pour mobile */
 
-/* ====== ÉLIMINATION COMPLÈTE DE L'ESPACE VIDE - SOLUTION RADICALE ====== */
+/* ====== SOLUTION FINALE POUR L'ESPACE VIDE ====== */
 @media (max-width: 768px) {
-    /* Reset complet des espacements */
-    body, html, .content-wrapper, main, section, div {
+    /* Approche radicale pour l'espace */
+    #contact-target, .contact-area {
+        position: fixed !important; /* Position fixe au lieu de relative */
+        bottom: 0 !important; /* Accrocher en bas de l'écran */
+        left: 0 !important;
+        width: 100% !important;
+        z-index: 1000 !important; /* Très haut z-index pour être au-dessus de tout */
+        background: rgba(0, 0, 0, 0.7) !important; /* Fond semi-transparent */
+        margin: 0 !important;
+        padding: 10px 0 !important;
+    }
+    
+    /* Cache complètement l'espace vide */
+    #projet-section, .projet-walkthrough {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+        height: auto !important;
+        max-height: 95vh !important; /* Limite la hauteur pour éviter les espaces vides */
+        overflow: hidden !important;
+    }
+    
+    /* Réinitialisation de tous les éléments qui pourraient créer de l'espace */
+    body, html, main, section, div {
         min-height: 0 !important;
     }
     
-    /* Structure globale compacte */
+    /* Structure globale sans espace */
     .content-wrapper {
         gap: 0 !important;
         padding: 0 !important;
         margin: 0 !important;
         display: flex !important;
         flex-direction: column !important;
+        overflow: hidden !important;
     }
     
-    /* Correction spécifique pour la carte de projet */
-    .project-card-container {
-        margin-bottom: 0 !important;
-        padding-bottom: 0 !important;
+    /* Forcer la page à s'arrêter à la fin du contenu */
+    body {
         height: auto !important;
+        overflow-x: hidden !important;
     }
     
-    .page, .thumb {
-        margin-bottom: 0 !important;
-        padding-bottom: 0 !important;
-    }
-    
-    /* Forcer le contact à monter */
-    #contact-target, .contact-area {
-        margin-top: -80vh !important; /* Solution extrême pour éliminer l'espace */
-        position: relative !important;
-        z-index: 10 !important;
-    }
-    
-    /* Élimination de l'espace vide dans les conteneurs parents */
-    #projet-section, .section-base {
-        padding: 0 !important;
-        margin: 0 !important;
-        height: auto !important;
-        min-height: 0 !important;
-        overflow: visible !important;
-    }
-    
-    .thumb {
-        height: 450px !important; /* Hauteur fixe réduite */
-    }
-    
-    /* Forcer la visibilité des icônes de contact */
+    /* Force les icônes à être visibles */
     .card {
-        z-index: 100 !important;
-        background: rgba(0, 0, 0, 0.7) !important; /* Fond semi-transparent pour la visibilité */
+        background: rgba(0, 0, 0, 0.7) !important;
+        z-index: 1001 !important; /* Au-dessus de tout */
+        padding: 10px !important;
+        margin: 0 !important;
+        border-radius: 0 !important; /* Pas de coins arrondis */
+    }
+    
+    .card ul {
+        gap: 30px !important; /* Plus d'espace entre les icônes */
+        padding: 5px !important;
+        margin: 0 !important;
+    }
+    
+    /* Empêcher tout contenu de déborder */
+    .section-base {
+        overflow: hidden !important;
+        height: auto !important;
     }
 }
+
+/* ====== STYLES DU HEADER ET TITRE ====== */
 @media (max-width: 768px) {
-    /* Structure globale */
+    /* Structure */
     header {
         min-height: auto !important;
         padding: 1rem !important;
         overflow: visible !important;
     }
     
-    /* Bouton diplôme - position plus accessible */
+    /* Bouton diplôme */
     .diploma-button-wrap {
         position: absolute !important;
         top: 10px !important;
@@ -71,13 +84,11 @@
         z-index: 30 !important;
     }
     
-    /* ---- Photo de profil ---- */
+    /* Photo de profil */
     .profile-special {
         position: static !important;
         margin: 15px auto 20px auto !important;
         transform: scale(0.75) !important;
-        left: auto !important;
-        top: auto !important;
         width: 100% !important;
         display: flex !important;
         justify-content: center !important;
@@ -89,7 +100,7 @@
         height: 250px !important;
     }
     
-    /* ---- Conteneur du titre principal ---- */
+    /* Conteneur principal */
     .main-container {
         padding: 0 !important;
         margin: 0 !important;
@@ -99,60 +110,36 @@
     
     .first-container.share {
         width: 100% !important; 
-        max-width: 100% !important;
         height: auto !important;
         padding: 0 10px !important;
         margin: 0 auto 20px auto !important;
         display: block !important;
         overflow: visible !important;
-        text-align: center !important;
     }
     
-    /* ---- Style du titre MACHINE LEARNING ENGINEER ---- */
+    /* Titre */
     .first-container.share h1 {
-        font-size: 1.9rem !important; /* Taille réduite pour éviter troncature */
+        font-size: 1.9rem !important;
         display: block !important;
-        width: 90% !important; /* Légèrement réduit pour éviter débordement */
-        margin: 0 auto 30px auto !important; /* Ajout d'une marge inférieure importante pour éviter chevauchement */
+        width: 90% !important;
+        margin: 0 auto 30px auto !important;
         text-align: center !important;
-        line-height: 1.1 !important; /* Ligne plus serrée */
-        overflow: visible !important;
-        max-width: 100% !important;
-        flex-wrap: nowrap !important;
-        white-space: normal !important;
-        font-weight: bold !important;
-        transform: none !important;
-        padding: 0 !important;
-        position: relative !important;
-        top: 0 !important;
-        letter-spacing: -1px !important; /* Réduire légèrement l'espacement des lettres */
+        line-height: 1.1 !important;
+        letter-spacing: -1px !important;
     }
     
-    /* Conserver les sauts de ligne explicites */
     .first-container.share h1 br {
         display: block !important;
-        content: " " !important;
-        margin-bottom: 5px !important; /* Ajouter un peu d'espace entre les lignes */
+        margin-bottom: 5px !important;
         line-height: 1.5 !important;
     }
     
-    /* Styles des lettres individuelles */
-    .first-container.share h1 span {
-        display: inline-block !important;
-        white-space: normal !important;
-        text-align: center !important;
-        padding: 0 2px !important;
-        margin: 0 !important;
-        transition: all 0.3s ease !important;
-    }
-    
-    /* ---- Section du texte rotatif ---- */
+    /* Texte rotatif */
     .header-extension {
         width: 100% !important;
         padding: 10px 0 !important;
-        margin-top: 40px !important; /* Augmenté pour créer plus d'espace avec le titre */
+        margin-top: 40px !important;
         position: relative !important;
-        clear: both !important;
     }
     
     .rotating-text-section {
@@ -160,7 +147,7 @@
         height: auto !important;
         min-height: 120px !important;
         position: relative !important;
-        top: 20px !important; /* Déplacer vers le bas */
+        top: 20px !important;
     }
     
     #rotate-words {
@@ -168,46 +155,15 @@
         height: auto !important;
         min-height: 120px !important;
     }
-    
-    #rotate-words span {
-        height: auto !important;
-        min-height: 30px !important;
-    }
 }
 
-/* ====== CORRECTIONS POUR TRÈS PETITS ÉCRANS ====== */
-@media (max-width: 480px) {
-    .profile-special {
-        transform: scale(0.65) !important;
-    }
-    
-    .first-container.share h1 {
-        font-size: 1.7rem !important; /* Encore plus petit pour les très petits écrans */
-        width: 85% !important; /* Plus étroit pour petits écrans */
-        margin-bottom: 40px !important; /* Plus d'espace pour éviter le chevauchement */
-        letter-spacing: -1.5px !important; /* Réduire davantage l'espacement des lettres */
-    }
-    
-    #rotate-words {
-        font-size: 1.2em !important;
-        margin-top: 10px !important; /* Espace supplémentaire */
-    }
-    
-    /* Force la séparation entre titre et texte défilant */
-    .header-extension {
-        margin-top: 50px !important;
-        padding-top: 20px !important;
-        /* Séparateur supprimé */
-    }
-}
-
-/* ====== CORRECTIONS POUR LES COMPÉTENCES ====== */
+/* ====== COMPÉTENCES ====== */
 @media (max-width: 768px) {
     .skills-container {
         overflow: visible !important;
         height: auto !important;
-        min-height: 500px !important;
-        padding: 30px 10px !important;
+        min-height: 0 !important;
+        padding: 20px 10px !important;
     }
     
     .skills-grid {
@@ -222,8 +178,8 @@
     }
     
     .tooltip-container {
-        width: 70px !important;
-        height: 70px !important;
+        width: 65px !important;
+        height: 65px !important;
         margin: 5px !important;
     }
     
@@ -236,66 +192,76 @@
     }
 }
 
-/* ====== CORRECTIONS POUR LES PROJETS ====== */
+/* ====== PROJETS ET SWIPER ====== */
 @media (max-width: 768px) {
-    /* Conteneur principal du slider */
+    /* Conteneur projet */
     .projet-walkthrough {
         width: 100% !important;
-        max-width: 100% !important;
         padding: 0 !important;
         margin: 0 auto !important;
-        overflow: hidden !important; /* Empêche le débordement */
+        overflow: hidden !important;
         height: auto !important;
-        min-height: 0 !important;
     }
 
-/* Correction pour le Swiper - Approche avec JavaScript intégré */
-@media (max-width: 768px) {
-    /* Suppression des styles qui causent des conflits */
-    .swiper-container,
-    .swiper-wrapper,
-    .swiper-slide {
-        transform: none !important; /* Ne pas interférer avec les transitions Swiper */
-    }
-    
-    /* Conteneur Swiper simplifié */
+    /* Swiper */
     .swiper-container {
         width: 100% !important;
-        max-width: 100% !important;
         overflow: hidden !important;
         margin: 0 auto !important;
-        padding: 0 30px !important; /* Espace pour les boutons de navigation */
+        padding: 0 30px !important;
     }
     
-    /* Assurer que les slides sont toujours visibles */
+    .swiper-wrapper, .swiper-slide {
+        transform: none !important;
+    }
+    
     .swiper-slide {
         opacity: 1 !important;
         visibility: visible !important;
         width: 100% !important;
-        transform: none !important;
-        transition: none !important;
     }
     
-    /* Style des cartes - Réduire la taille pour éviter débordement */
+    /* Cartes de projet */
     .card-item {
         width: 85% !important;
         max-width: 85% !important;
         margin: 0 auto !important;
+        padding: 15px !important;
         transform: scale(0.95) !important;
     }
     
-    /* Corriger la disposition des boutons de navigation */
+    .card-item h2 {
+        font-size: 1.2rem !important;
+        margin-bottom: 8px !important;
+    }
+    
+    .card-item p, .projet-description {
+        font-size: 0.9rem !important;
+        line-height: 1.3 !important;
+    }
+    
+    .projet-details {
+        flex-direction: column !important;
+        font-size: 0.85rem !important;
+    }
+    
+    .projet-tasks {
+        font-size: 0.85rem !important;
+        padding-left: 15px !important;
+    }
+    
+    /* Contrôles de navigation */
     .swiper-button-prev,
     .swiper-button-next {
-        top: 50% !important;
-        transform: translateY(-50%) !important;
-        position: absolute !important;
-        z-index: 100 !important;
         width: 30px !important;
         height: 30px !important;
-        opacity: 1 !important;
-        visibility: visible !important;
+        position: absolute !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        z-index: 10 !important;
         background: rgba(255,255,255,0.2) !important;
+        border-radius: 50% !important;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3) !important;
     }
     
     .swiper-button-prev {
@@ -305,188 +271,47 @@
     .swiper-button-next {
         right: 10px !important;
     }
-}
-
-    /* Style des cartes de projet */
-    .card-item {
-        width: 95% !important;
-        max-width: 95% !important;
-        margin: 0 auto !important;
-        padding: 15px !important; /* Padding réduit */
-        transform: scale(0.95) !important;
-    }
-
-    /* Titre du projet */
-    .card-item h2 {
-        font-size: 1.2rem !important;
-        margin-bottom: 8px !important;
-        line-height: 1.3 !important;
-    }
-
-    /* Description du projet */
-    .card-item p {
-        font-size: 0.9rem !important;
-        margin-bottom: 8px !important;
-        line-height: 1.3 !important;
-    }
-
-    /* Détails du projet (entreprise et dates) */
-    .projet-details {
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        gap: 3px !important;
-        margin-bottom: 8px !important;
-        font-size: 0.85rem !important;
-    }
-
-    /* Liste des tâches */
-    .projet-tasks {
-        margin: 8px 0 !important;
-        padding-left: 15px !important;
-        font-size: 0.85rem !important;
-    }
-
-    .projet-tasks li {
-        margin-bottom: 8px !important;
-        line-height: 1.3 !important;
-    }
-
-    /* Description du projet */
-    .projet-description {
-        font-size: 0.85rem !important;
-        line-height: 1.3 !important;
-    }
-
-    /* Technologies utilisées */
-    .tech-stack {
-        font-size: 0.85rem !important;
-        padding: 5px 8px !important;
-        margin: 8px 0 !important;
-    }
-
-    /* Boutons de navigation - Position et apparence améliorées */
-    .swiper-button-prev,
-    .swiper-button-next {
-        width: 30px !important;
-        height: 30px !important;
-        margin-top: -15px !important;
-        position: absolute !important;
-        top: 50% !important;
-        z-index: 10 !important;
-        background: rgba(255,255,255,0.15) !important;
-        border-radius: 50% !important;
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        color: white !important;
-        box-shadow: 0 0 10px rgba(0,0,0,0.3) !important;
-    }
     
     .swiper-button-prev:after,
     .swiper-button-next:after {
-        font-size: 18px !important;
+        font-size: 15px !important;
         font-weight: bold !important;
-    }
-
-    .swiper-button-prev:after,
-    .swiper-button-next:after {
-        font-size: 12px !important;
-    }
-
-    /* Pagination */
-    .swiper-pagination {
-        bottom: -5px !important;
     }
 }
 
-/* Ajustements spécifiques pour très petits écrans */
+/* ====== TRÈS PETITS ÉCRANS ====== */
 @media (max-width: 480px) {
+    .profile-special {
+        transform: scale(0.65) !important;
+    }
+    
+    .first-container.share h1 {
+        font-size: 1.7rem !important;
+        width: 85% !important;
+        letter-spacing: -1.5px !important;
+    }
+    
+    #rotate-words {
+        font-size: 1.2em !important;
+    }
+    
     .card-item {
         padding: 12px !important;
         transform: scale(0.92) !important;
     }
-
+    
     .card-item h2 {
         font-size: 1.1rem !important;
     }
-
-    .projet-tasks {
-        font-size: 0.8rem !important;
-    }
-
-    .tech-stack {
-        font-size: 0.8rem !important;
-    }
     
-    /* Réduction spécifique des boutons pour petits écrans */
     .swiper-button-prev,
     .swiper-button-next {
-        width: 20px !important;
-        height: 20px !important;
+        width: 25px !important;
+        height: 25px !important;
     }
     
     .swiper-button-prev:after,
     .swiper-button-next:after {
-        font-size: 10px !important;
-    }
-    
-    /* Réduire l'espace après les projets */
-    .projet-walkthrough {
-        margin-bottom: 10px !important;
-    }
-}
-
-/* ====== CORRECTIONS POUR LA SECTION CONTACT ====== */
-@media (max-width: 768px) {
-    .contact-area {
-        height: auto !important;
-        min-height: 150px !important;
-        padding: 40px 0 !important; /* Augmenté pour éviter troncature */
-        margin: 20px 0 30px 0 !important; /* Ajout de marges verticales */
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        position: relative !important;
-        overflow: visible !important; /* Empêche la troncature */
-    }
-    
-    .contact-container {
-        height: auto !important;
-        min-height: 100px !important;
-        width: 100% !important;
-        position: relative !important;
-        overflow: visible !important;
-    }
-    
-    .card {
-        max-width: 95% !important;
-        padding: 15px 10px !important; /* Padding accru */
-        margin: 0 auto !important;
-        position: relative !important;
-        overflow: visible !important;
-    }
-    
-    .card ul {
-        gap: 20px !important;
-        justify-content: center !important;
-        padding: 10px !important;
-        margin: 0 !important;
-        position: relative !important;
-        overflow: visible !important;
-    }
-    
-    /* Style pour les éléments individuels */
-    .card ul li {
-        position: relative !important;
-        overflow: visible !important;
-        transform: scale(1.1) !important; /* Légèrement plus grand */
-    }
-    
-    /* Style pour les icônes SVG */
-    .card ul li a .svg {
-        overflow: visible !important;
-        height: 30px !important;
-        width: 30px !important;
-        padding: 10px !important;
+        font-size: 12px !important;
     }
 }
