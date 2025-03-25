@@ -68,7 +68,7 @@
     /* Style du titre */
     .first-container.share h1 {
         display: flex !important;
-        flex-direction: column !important;
+        flex-wrap: wrap !important;
         justify-content: center !important;
         align-items: center !important;
         width: 100% !important;
@@ -78,25 +78,17 @@
         margin: 0 !important;
         padding: 0 !important;
         line-height: 1.2 !important;
-        overflow: visible !important;
     }
 
-    /* Lettres individuelles */
+    .first-container.share h1 br {
+        display: none !important;
+    }
+
     .first-container.share h1 span {
         display: inline-block !important;
         text-align: center !important;
         white-space: nowrap !important;
-        margin: 0 3px !important;
-        overflow: visible !important;
-    }
-
-    /* Gestion des sauts de ligne */
-    .first-container.share h1 br {
-        width: 100% !important;
-        content: '' !important;
-        display: block !important;
-        height: 10px !important;
-        margin: 10px 0 !important;
+        margin: 0 2px !important;
     }
     
     #rotate-words {
