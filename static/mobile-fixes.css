@@ -144,7 +144,7 @@
     .header-extension {
         margin-top: 50px !important;
         padding-top: 20px !important;
-        border-top: 1px solid rgba(255,255,255,0.1) !important; /* Séparateur subtil */
+        /* Séparateur supprimé */
     }
 }
 
