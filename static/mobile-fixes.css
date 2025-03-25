@@ -1,44 +1,57 @@
 /* mobile-fixes.css - Corrections pour l'affichage sur appareils mobiles */
 
-/* ====== CORRECTION DE L'ESPACE VIDE - SOLUTION AGRESSIVE ====== */
+/* ====== ÉLIMINATION COMPLÈTE DE L'ESPACE VIDE - SOLUTION RADICALE ====== */
 @media (max-width: 768px) {
-    /* Réduction drastique de l'espace entre les sections */
+    /* Reset complet des espacements */
+    body, html, .content-wrapper, main, section, div {
+        min-height: 0 !important;
+    }
+    
+    /* Structure globale compacte */
     .content-wrapper {
         gap: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
         display: flex !important;
         flex-direction: column !important;
-        min-height: auto !important;
     }
     
-    /* Forcer la mise en page compacte */
-    .section-base {
-        padding: 10px 0 !important;
-        margin: 0 !important;
-        height: auto !important;
-    }
-    
-    /* Réduction spécifique de l'espace entre projets et contact */
-    #projet-section {
-        margin-bottom: 0 !important;
-        padding-bottom: 0 !important;
-        position: relative !important;
-    }
-    
+    /* Correction spécifique pour la carte de projet */
     .project-card-container {
         margin-bottom: 0 !important;
-    }
-    
-    .projet-walkthrough {
-        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
         height: auto !important;
     }
     
-    /* Rapprocher la section contact */
+    .page, .thumb {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+    
+    /* Forcer le contact à monter */
     #contact-target, .contact-area {
-        margin-top: 0 !important;
-        padding-top: 10px !important;
+        margin-top: -80vh !important; /* Solution extrême pour éliminer l'espace */
         position: relative !important;
-        top: -30px !important; /* Déplacer vers le haut pour éliminer l'espace */
+        z-index: 10 !important;
+    }
+    
+    /* Élimination de l'espace vide dans les conteneurs parents */
+    #projet-section, .section-base {
+        padding: 0 !important;
+        margin: 0 !important;
+        height: auto !important;
+        min-height: 0 !important;
+        overflow: visible !important;
+    }
+    
+    .thumb {
+        height: 450px !important; /* Hauteur fixe réduite */
+    }
+    
+    /* Forcer la visibilité des icônes de contact */
+    .card {
+        z-index: 100 !important;
+        background: rgba(0, 0, 0, 0.7) !important; /* Fond semi-transparent pour la visibilité */
     }
 }
 @media (max-width: 768px) {
