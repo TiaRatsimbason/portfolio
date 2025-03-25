@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <!-- Correction: 'projet.css' remplacé par 'projet-clean.css' et project-card.css -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='projet/projet-clean.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='projet/project-card.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='diploma-button.css') }}">
@@ -176,8 +175,94 @@ Cette solution est une alternative si l'approche JavaScript pose problème.
   </style>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-  <!-- Commenté temporairement pour résoudre les conflits avec Swiper -->
-  <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='responsive.css') }}"> -->
+  <!-- CSS de correction urgente pour mobile -->
+  <style>
+    /* Style d'urgence pour mobile - priorité maximale */
+    @media (max-width: 768px) {
+      /* Force la correction du chevauchement photo/titre */
+      .profile-special {
+        position: static !important;
+        transform: none !important;
+        scale: 0.8 !important;
+        margin: 0 auto 40px auto !important;
+        width: 100% !important;
+        top: 0 !important;
+        left: 0 !important;
+      }
+      
+      /* Force le titre à être bien visible */
+      .first-container.share h1 {
+        margin-top: 70px !important;
+        clear: both !important;
+        font-size: 8vw !important;
+        width: 100% !important;
+        text-align: center !important;
+      }
+      
+      /* Transformation radicale du tableau périodique */
+      .skills-grid {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        transform: none !important;
+        width: 100% !important;
+        margin: 0 auto !important;
+        gap: 8px !important;
+      }
+      
+      /* Redimensionnement des éléments du tableau */
+      .tooltip-container {
+        width: 60px !important;
+        height: 60px !important;
+        margin: 5px !important;
+      }
+
+      /* Ajustement du conteneur de compétences */
+      .skills-container {
+        overflow: visible !important;
+        height: auto !important;
+        min-height: 400px !important;
+        padding: 10px !important;
+      }
+
+      /* Amélioration des tooltips sur mobile */
+      .tooltip {
+        width: 250px !important;
+        position: fixed !important;
+        left: 50% !important;
+        top: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        z-index: 1000 !important;
+      }
+      
+      /* Ajustement du bouton diploma */
+      .diploma-button-wrap {
+        transform: scale(0.6) !important;
+        top: 10px !important;
+        right: 10px !important;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .profile-special {
+        scale: 0.7 !important;
+      }
+      
+      .first-container.share h1 {
+        font-size: 7vw !important;
+      }
+      
+      .skills-grid {
+        gap: 5px !important;
+      }
+      
+      .tooltip-container {
+        width: 50px !important;
+        height: 50px !important;
+        margin: 4px !important;
+      }
+    }
+  </style>
 </head>
 <body>
     <canvas id="neuro"></canvas>
@@ -396,7 +481,107 @@ Cette solution est une alternative si l'approche JavaScript pose problème.
           }
         });
       </script>
-      <!-- Commenté temporairement pour résoudre les conflits avec Swiper -->
-      <!-- <script src="{{ url_for('static', filename='responsive.js') }}"></script> -->
+
+      <!-- Script de correction d'urgence pour mobile -->
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          // Vérification si on est sur mobile
+          const isMobile = window.innerWidth <= 768;
+          
+          if (isMobile) {
+            console.log("Applying mobile fixes");
+            
+            // 1. Correction du chevauchement photo/titre
+            const profileElement = document.querySelector('.profile-special');
+            if (profileElement) {
+              profileElement.style.position = 'static';
+              profileElement.style.transform = 'none';
+              profileElement.style.scale = window.innerWidth <= 480 ? '0.7' : '0.8';
+              profileElement.style.margin = '0 auto 30px auto';
+              profileElement.style.width = '100%';
+            }
+            
+            // 2. Correction du titre
+            const titleElement = document.querySelector('.first-container.share h1');
+            if (titleElement) {
+              titleElement.style.marginTop = '70px';
+              titleElement.style.clear = 'both';
+              titleElement.style.fontSize = window.innerWidth <= 480 ? '7vw' : '8vw';
+              titleElement.style.width = '100%';
+              titleElement.style.textAlign = 'center';
+            }
+            
+            // 3. Correction du tableau périodique
+            const skillsGrid = document.querySelector('.skills-grid');
+            if (skillsGrid) {
+              // Remplacer complètement le style
+              skillsGrid.style.cssText = `
+                display: flex !important;
+                flex-wrap: wrap !important;
+                justify-content: center !important;
+                transform: none !important;
+                width: 100% !important;
+                margin: 0 auto !important;
+                gap: ${window.innerWidth <= 480 ? '5px' : '8px'} !important;
+              `;
+            }
+            
+            // 4. Redimensionner les éléments du tableau
+            const tooltipContainers = document.querySelectorAll('.tooltip-container');
+            tooltipContainers.forEach(container => {
+              container.style.width = window.innerWidth <= 480 ? '50px' : '60px';
+              container.style.height = window.innerWidth <= 480 ? '50px' : '60px';
+              container.style.margin = window.innerWidth <= 480 ? '4px' : '5px';
+            });
+            
+            // 5. Ajustement du conteneur de compétences
+            const skillsContainer = document.querySelector('.skills-container');
+            if (skillsContainer) {
+              skillsContainer.style.overflow = 'visible';
+              skillsContainer.style.height = 'auto';
+              skillsContainer.style.minHeight = '400px';
+              skillsContainer.style.padding = '10px';
+            }
+            
+            // 6. Correction du bouton diploma
+            const diplomaButton = document.querySelector('.diploma-button-wrap');
+            if (diplomaButton) {
+              diplomaButton.style.transform = 'scale(0.6)';
+              diplomaButton.style.top = '10px';
+              diplomaButton.style.right = '10px';
+            }
+            
+            // 7. Ajouter un gestionnaire pour les tooltips sur mobile
+            const handleTooltipTouch = function() {
+              tooltipContainers.forEach(container => {
+                container.addEventListener('touchstart', function(e) {
+                  e.preventDefault();
+                  
+                  // Fermer tous les autres tooltips
+                  tooltipContainers.forEach(other => {
+                    if (other !== container) {
+                      other.classList.remove('touch-active');
+                    }
+                  });
+                  
+                  // Activer/désactiver le tooltip courant
+                  container.classList.toggle('touch-active');
+                });
+              });
+              
+              // Fermer les tooltips en touchant ailleurs
+              document.addEventListener('touchstart', function(e) {
+                if (!e.target.closest('.tooltip-container')) {
+                  tooltipContainers.forEach(container => {
+                    container.classList.remove('touch-active');
+                  });
+                }
+              });
+            };
+            
+            setTimeout(handleTooltipTouch, 500);
+          }
+        });
+      </script>
 </body>
 </html>
