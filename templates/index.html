@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='projet/projet.css') }}">
+    <!-- Correction: 'projet.css' remplacé par 'projet-clean.css' et project-card.css -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='projet/projet-clean.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='projet/project-card.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='diploma-button.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- Linking SwiperJS CSS partie projet-->
@@ -174,8 +176,8 @@ Cette solution est une alternative si l'approche JavaScript pose problème.
   </style>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-  <!-- Chargement du CSS responsif après tous les autres styles -->
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='responsive.css') }}">
+  <!-- Commenté temporairement pour résoudre les conflits avec Swiper -->
+  <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='responsive.css') }}"> -->
 </head>
 <body>
     <canvas id="neuro"></canvas>
@@ -394,6 +396,7 @@ Cette solution est une alternative si l'approche JavaScript pose problème.
           }
         });
       </script>
-      <script src="{{ url_for('static', filename='responsive.js') }}"></script>
+      <!-- Commenté temporairement pour résoudre les conflits avec Swiper -->
+      <!-- <script src="{{ url_for('static', filename='responsive.js') }}"></script> -->
 </body>
 </html>
