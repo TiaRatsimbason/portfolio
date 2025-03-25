@@ -29,23 +29,31 @@
 
     /* Reste du code inchangé */
     .first-container.share {
-        height: auto !important;
-        min-height: 300px !important; /* Augmentez la hauteur minimale */
-        padding-top: 40px !important; /* Augmentez le padding supérieur */
-        padding-bottom: 40px !important; /* Augmentez le padding inférieur */
+        width: 100% !important;
+        max-width: 100% !important;
         display: flex !important;
         flex-direction: column !important;
         justify-content: center !important;
         align-items: center !important;
+        padding: 0 15px !important; /* Ajoute un peu de padding latéral */
+        box-sizing: border-box !important; /* S'assure que le padding ne dépasse pas la largeur */
     }
-    
+
     .first-container.share h1 {
-        margin-top: 0 !important; /* Réinitialisez la marge supérieure */
-        margin-bottom: 20px !important; /* Ajoutez une marge inférieure */
-        font-size: clamp(1.5rem, 8vw, 2.5rem) !important;
         width: 100% !important;
+        max-width: 100% !important;
         text-align: center !important;
-        line-height: 1.2 !important; /* Ajustez l'espacement des lignes */
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        font-size: clamp(1.5rem, 8vw, 2.5rem) !important;
+        margin: 0 auto !important; /* Centrage horizontal */
+        line-height: 1.2 !important;
+    }
+
+    .first-container.share h1 span {
+        display: inline-block !important;
+        text-align: center !important;
     }
     
     #rotate-words {
