@@ -1,68 +1,65 @@
-/* mobile-fixes.css - Solution complète pour mobile */
+/* mobile-fixes.css - Version corrigée et stable */
 
-/* ====== SOLUTION FINALE POUR L'ESPACE VIDE ====== */
+/* ====== SOLUTION POUR L'ESPACE VIDE AVEC BANDE NOIRE ====== */
 @media (max-width: 768px) {
-    /* Approche radicale pour l'espace */
+    /* Contact fixe avec bande noire */
     #contact-target, .contact-area {
-        position: fixed !important; /* Position fixe au lieu de relative */
-        bottom: 0 !important; /* Accrocher en bas de l'écran */
+        position: fixed !important;
+        bottom: 0 !important;
         left: 0 !important;
         width: 100% !important;
-        z-index: 1000 !important; /* Très haut z-index pour être au-dessus de tout */
-        background: rgba(0, 0, 0, 0.7) !important; /* Fond semi-transparent */
+        z-index: 1000 !important;
+        background: rgba(0, 0, 0, 0.7) !important;
         margin: 0 !important;
         padding: 10px 0 !important;
     }
     
-    /* Cache complètement l'espace vide */
-    #projet-section, .projet-walkthrough {
+    /* Limiter la hauteur max des projets pour éviter les espaces vides */
+    #projet-section {
+        height: auto !important;
         margin-bottom: 0 !important;
         padding-bottom: 0 !important;
+    }
+    
+    .projet-walkthrough {
         height: auto !important;
-        max-height: 95vh !important; /* Limite la hauteur pour éviter les espaces vides */
-        overflow: hidden !important;
+        margin-bottom: 60px !important; /* Espace pour la barre de contact fixe */
+        padding-bottom: 0 !important;
     }
     
-    /* Réinitialisation de tous les éléments qui pourraient créer de l'espace */
-    body, html, main, section, div {
-        min-height: 0 !important;
-    }
-    
-    /* Structure globale sans espace */
+    /* Réduire tous les espaces entre éléments */
     .content-wrapper {
         gap: 0 !important;
         padding: 0 !important;
         margin: 0 !important;
-        display: flex !important;
-        flex-direction: column !important;
-        overflow: hidden !important;
-    }
-    
-    /* Forcer la page à s'arrêter à la fin du contenu */
-    body {
-        height: auto !important;
-        overflow-x: hidden !important;
     }
     
     /* Force les icônes à être visibles */
     .card {
-        background: rgba(0, 0, 0, 0.7) !important;
-        z-index: 1001 !important; /* Au-dessus de tout */
-        padding: 10px !important;
-        margin: 0 !important;
-        border-radius: 0 !important; /* Pas de coins arrondis */
-    }
-    
-    .card ul {
-        gap: 30px !important; /* Plus d'espace entre les icônes */
+        background: transparent !important; /* Transparent car le parent a déjà un fond */
+        z-index: 1001 !important;
         padding: 5px !important;
         margin: 0 !important;
     }
     
-    /* Empêcher tout contenu de déborder */
-    .section-base {
-        overflow: hidden !important;
-        height: auto !important;
+    .card ul {
+        gap: 30px !important;
+        padding: 5px !important;
+        margin: 0 !important;
+    }
+    
+    /* Empêcher que les slides sortent des limites du conteneur */
+    .swiper-slide {
+        overflow: visible !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    
+    /* S'assurer que le swiper ne disparaît pas */
+    .swiper-container {
+        z-index: 5 !important; /* Plus bas que contact mais visible */
+        opacity: 1 !important;
+        visibility: visible !important;
     }
 }
 
@@ -199,7 +196,7 @@
         width: 100% !important;
         padding: 0 !important;
         margin: 0 auto !important;
-        overflow: hidden !important;
+        overflow: visible !important; /* Changé à visible pour éviter les coupures */
         height: auto !important;
     }
 
@@ -209,16 +206,18 @@
         overflow: hidden !important;
         margin: 0 auto !important;
         padding: 0 30px !important;
+        display: block !important; /* Force l'affichage */
     }
     
-    .swiper-wrapper, .swiper-slide {
-        transform: none !important;
+    .swiper-wrapper {
+        display: flex !important; /* Force l'affichage */
     }
     
     .swiper-slide {
+        display: block !important; /* Force l'affichage */
+        width: 100% !important;
         opacity: 1 !important;
         visibility: visible !important;
-        width: 100% !important;
     }
     
     /* Cartes de projet */
@@ -235,7 +234,7 @@
         margin-bottom: 8px !important;
     }
     
-    .card-item p, .projet-description {
+    .card-item p {
         font-size: 0.9rem !important;
         line-height: 1.3 !important;
     }
@@ -262,6 +261,7 @@
         background: rgba(255,255,255,0.2) !important;
         border-radius: 50% !important;
         box-shadow: 0 0 10px rgba(0,0,0,0.3) !important;
+        display: block !important; /* Force l'affichage */
     }
     
     .swiper-button-prev {
@@ -276,6 +276,13 @@
     .swiper-button-next:after {
         font-size: 15px !important;
         font-weight: bold !important;
+    }
+    
+    /* Force l'affichage de la pagination */
+    .swiper-pagination {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
 }
 
