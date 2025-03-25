@@ -57,12 +57,12 @@
     
     /* ---- Style du titre MACHINE LEARNING ENGINEER ---- */
     .first-container.share h1 {
-        font-size: 2.5rem !important;
+        font-size: 1.9rem !important; /* Taille réduite pour éviter troncature */
         display: block !important;
-        width: 100% !important;
-        margin: 0 auto !important;
+        width: 90% !important; /* Légèrement réduit pour éviter débordement */
+        margin: 0 auto 30px auto !important; /* Ajout d'une marge inférieure importante pour éviter chevauchement */
         text-align: center !important;
-        line-height: 1.2 !important;
+        line-height: 1.1 !important; /* Ligne plus serrée */
         overflow: visible !important;
         max-width: 100% !important;
         flex-wrap: nowrap !important;
@@ -72,11 +72,15 @@
         padding: 0 !important;
         position: relative !important;
         top: 0 !important;
+        letter-spacing: -1px !important; /* Réduire légèrement l'espacement des lettres */
     }
     
     /* Conserver les sauts de ligne explicites */
     .first-container.share h1 br {
         display: block !important;
+        content: " " !important;
+        margin-bottom: 5px !important; /* Ajouter un peu d'espace entre les lignes */
+        line-height: 1.5 !important;
     }
     
     /* Styles des lettres individuelles */
@@ -93,13 +97,17 @@
     .header-extension {
         width: 100% !important;
         padding: 10px 0 !important;
-        margin-top: 10px !important;
+        margin-top: 40px !important; /* Augmenté pour créer plus d'espace avec le titre */
+        position: relative !important;
+        clear: both !important;
     }
     
     .rotating-text-section {
         max-width: 100% !important;
         height: auto !important;
         min-height: 120px !important;
+        position: relative !important;
+        top: 20px !important; /* Déplacer vers le bas */
     }
     
     #rotate-words {
@@ -121,11 +129,22 @@
     }
     
     .first-container.share h1 {
-        font-size: 2rem !important;
+        font-size: 1.7rem !important; /* Encore plus petit pour les très petits écrans */
+        width: 85% !important; /* Plus étroit pour petits écrans */
+        margin-bottom: 40px !important; /* Plus d'espace pour éviter le chevauchement */
+        letter-spacing: -1.5px !important; /* Réduire davantage l'espacement des lettres */
     }
     
     #rotate-words {
         font-size: 1.2em !important;
+        margin-top: 10px !important; /* Espace supplémentaire */
+    }
+    
+    /* Force la séparation entre titre et texte défilant */
+    .header-extension {
+        margin-top: 50px !important;
+        padding-top: 20px !important;
+        border-top: 1px solid rgba(255,255,255,0.1) !important; /* Séparateur subtil */
     }
 }
 
