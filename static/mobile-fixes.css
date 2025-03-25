@@ -29,14 +29,16 @@
 
     /* Reste du code inchangé */
     .first-container.share {
-        width: 100% !important;
+        width: 100vw !important; /* Largeur totale de la viewport */
         max-width: 100% !important;
         display: flex !important;
         flex-direction: column !important;
         justify-content: center !important;
         align-items: center !important;
-        padding: 0 15px !important; /* Ajoute un peu de padding latéral */
-        box-sizing: border-box !important; /* S'assure que le padding ne dépasse pas la largeur */
+        padding: 0 15px !important;
+        box-sizing: border-box !important;
+        position: relative !important; /* Ajouter un positionnement relatif */
+        margin-top: 50px !important; /* Surélevation */
     }
 
     .first-container.share h1 {
@@ -46,14 +48,22 @@
         display: flex !important;
         flex-wrap: wrap !important;
         justify-content: center !important;
-        font-size: clamp(1.5rem, 8vw, 2.5rem) !important;
-        margin: 0 auto !important; /* Centrage horizontal */
+        font-size: clamp(1.5rem, 7vw, 2.5rem) !important; /* Réduction légère de la taille */
+        margin: 0 auto !important;
         line-height: 1.2 !important;
+        overflow: visible !important; /* Assurer la visibilité complète */
     }
 
     .first-container.share h1 span {
         display: inline-block !important;
         text-align: center !important;
+        white-space: nowrap !important; /* Empêche le retour à la ligne */
+    }
+
+    /* Ajustement spécifique pour les lignes */
+    .first-container.share h1 br {
+        width: 100% !important;
+        display: block !important;
     }
     
     #rotate-words {
