@@ -163,7 +163,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function resizeCanvas() {
         // Légère réduction de résolution sur mobile uniquement
-        const scaleFactor = isMobile ? 0.8 : 1.0;
+        const scaleFactor = 1.0;
         canvasEl.width = window.innerWidth * devicePixelRatio * scaleFactor;
         canvasEl.height = window.innerHeight * devicePixelRatio * scaleFactor;
         
