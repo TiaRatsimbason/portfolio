@@ -74,17 +74,22 @@
     .first-container.share {
         width: 100% !important; 
         height: auto !important;
-        padding: 0 10px !important;
+        padding: 0 !important; /* Suppression du padding latéral pour meilleur centrage */
         margin: 0 auto 20px auto !important;
+        position: relative !important;
+        overflow: visible !important; /* Assure que l'animation n'est pas coupée */
     }
     
     .first-container.share h1 {
         font-size: 1.9rem !important;
-        width: 90% !important;
-        margin: 0 auto 30px auto !important;
+        width: 100% !important; /* Largeur complète pour éviter le décalage */
+        margin: 0 auto 40px auto !important; /* Marge inférieure augmentée */
         text-align: center !important;
         line-height: 1.1 !important;
         letter-spacing: -1px !important;
+        position: relative !important;
+        top: -15px !important; /* Rehaussé par rapport à la valeur précédente */
+        transform: translateX(-5%) !important; /* Légère correction pour centrer */
     }
     
     /* Texte rotatif */
