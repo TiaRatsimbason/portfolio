@@ -91,6 +91,11 @@
         top: -15px !important; /* Rehaussé par rapport à la valeur précédente */
         transform: translateX(-5%) !important; /* Légère correction pour centrer */
     }
+
+    .main-container {
+        overflow: visible !important;
+        padding-bottom: 20px !important;
+    }   
     
     /* Texte rotatif */
     .header-extension {
