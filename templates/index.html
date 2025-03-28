@@ -2,268 +2,173 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='projet/projet-clean.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='projet/project-card.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='diploma-button.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <!-- Linking SwiperJS CSS partie projet-->
+    <!-- Linking SwiperJS CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='mobile-fixes.css') }}">
-
-    <!-- Linking SwiperJS script partie projet-->
+    <!-- Linking SwiperJS script -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <title>Mon Portfolio</title>
-    <!-- 
-Solution HTML directe pour intégrer le texte rotatif sans modifier la structure du titre.
-Cette solution est une alternative si l'approche JavaScript pose problème.
--->
-
-<!-- Ajouter dans la partie <head> du document -->
-<style>
-  /* Styles pour le texte rotatif */
-  @import url('https://fonts.googleapis.com/css?family=Oswald:700');
-  @import url('https://fonts.googleapis.com/css?family=Rubik');
-  
-  /* CSS pour contenir le titre dans sa zone */
-  /* Container principal */
-  .main-container {
-    position: relative;
-    overflow: hidden; /* Empêche les débordements */
-  }
-  
-  /* Zone du titre avec hauteur fixe */
-  .first-container.share {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    position: relative;
-    /* Hauteur fixe augmentée */
-    height: 250px; /* Augmenté de 230px à 250px */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: visible; /* Changé à visible pour éviter toute troncature */
-    padding-bottom: 40px; /* Padding inférieur augmenté */
-  }
-  
-  /* Style du titre avec espacement contrôlé */
-  .first-container.share h1 {
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    width: 100%;
-    font-size: clamp(1.5rem, 5vw, 3rem);
-    line-height: 1.2;
-    position: relative;
-    top: -30px; /* Décalage vers le haut augmenté */
-    margin-bottom: 20px; /* Marge inférieure ajoutée */
-  }
-
-  .first-container.share h1 span {
-    overflow: visible; /* Assure que les animations ne sont pas coupées */
-  }
-  
-  /* Contrôle de l'espacement entre les lignes */
-  .first-container.share h1 br {
-    line-height: 1.2;
-  }
-  
-  /* Section pour positionner le texte rotatif après le contenu original du header */
-  .header-extension {
-    width: 100%;
-    padding: 20px 0;
-    position: relative;
-    clear: both;
-    display: block;
-    margin-top: 20px;
-    /* Séparation claire entre le titre et le texte rotatif */
-    padding-top: 20px;
-    border-top: 1px solid transparent; /* Séparateur optionnel */
-  }
-  
-  /* Animation rotative */
-  .rotating-text-section {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0;
-    overflow: hidden;
-    position: relative;
-    height: 140px;
-    z-index: 5;
-  }
-  
-  #rotate-words {
-    width: 100%;
-    margin: 0 auto;
-    padding: 0;
-    height: 140px;
-    font-size: 1.9em;
-    text-transform: uppercase;
-    font-family: 'Oswald', sans-serif;
-    position: relative;
-    text-align: center;
-  }
-  
-  #rotate-words span {
-    display: block;
-    height: 35px;
-    font-size: .7em;
-    text-transform: lowercase;
-    opacity: .9;
-    font-family: 'Rubik', sans-serif;
-  }
-  
-  #rotate-words div {
-    position: absolute;
-    opacity: 0;
-    overflow: hidden;
-    width: 100%;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    line-height: 1.3em;
-    animation: rotate-word 32s linear infinite 0s;
-    color: #fff;
-    text-shadow: 0 0 10px rgba(0,0,0,0.3);
-  }
-  
-  @keyframes rotate-word {
-    0% { opacity: 0; transform: translateX(0); filter: blur(10px); transform: scale(1.2); }
-    3% { opacity: 1; transform: translateX(0); filter: blur(0px); transform: scale(.9); }
-    12% { opacity: 1; transform: translateX(0); filter: blur(0px); transform: scale(1); }
-    16% { opacity: 0; transform: translateX(0); filter: blur(10px); transform: scale(1.2); }
-    80% { opacity: 0; }
-    100% { opacity: 0; }
-  }
-  
-  #rotate-words div:nth-child(2) { animation-delay: 4s; }
-  #rotate-words div:nth-child(3) { animation-delay: 8s; }
-  #rotate-words div:nth-child(4) { animation-delay: 12s; }
-  #rotate-words div:nth-child(5) { animation-delay: 16s; }
-  #rotate-words div:nth-child(6) { animation-delay: 20s; }
-  #rotate-words div:nth-child(7) { animation-delay: 24s; }
-  #rotate-words div:nth-child(8) { animation-delay: 28s; }
-  
-  /* Ajustement responsive */
-  @media (max-width: 768px) {
-    .first-container.share {
-      height: 180px;
-    }
     
-    #rotate-words {
-      font-size: 1.7em;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .first-container.share {
-      height: 150px;
-    }
-    
-    #rotate-words {
-      font-size: 1.5em;
-    }
-    
-    #rotate-words span {
-      height: 30px;
-    }
-  }
-  </style>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-  <!-- CSS de correction urgente pour mobile -->
-  <style>
-    /* Style d'urgence pour mobile - priorité maximale */
-    @media (max-width: 768px) {
-      /* Force la correction du chevauchement photo/titre */
-      .profile-special {
-        position: static !important;
-        transform: none !important;
-        scale: 0.8 !important;
-        margin: 0 auto 40px auto !important;
-        width: 100% !important;
-        top: 0 !important;
-        left: 0 !important;
+    <!-- Styles simplifiés pour le texte rotatif -->
+    <style>
+      /* Styles pour le texte rotatif */
+      @import url('https://fonts.googleapis.com/css?family=Oswald:700');
+      @import url('https://fonts.googleapis.com/css?family=Rubik');
+      
+      /* Container principal */
+      .main-container {
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        padding: 20px 5px;
+        box-sizing: border-box;
       }
       
-      /* Force le titre à être bien visible */
+      /* Zone du titre avec hauteur adaptable */
+      .first-container.share {
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        position: relative;
+        padding-bottom: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      /* Style du titre */
       .first-container.share h1 {
-        margin-top: 70px !important;
-        clear: both !important;
-        font-size: 8vw !important;
-        width: 100% !important;
-        text-align: center !important;
-      }
-      
-      /* Transformation radicale du tableau périodique */
-      .skills-grid {
-        display: flex !important;
-        flex-wrap: wrap !important;
-        justify-content: center !important;
-        transform: none !important;
-        width: 100% !important;
-        margin: 0 auto !important;
-        gap: 8px !important;
-      }
-      
-      /* Redimensionnement des éléments du tableau */
-      .tooltip-container {
-        width: 60px !important;
-        height: 60px !important;
-        margin: 5px !important;
+        margin: 0 0 20px 0;
+        padding: 0;
+        text-align: center;
+        width: 100%;
+        font-size: clamp(1.5rem, 5vw, 3rem);
+        line-height: 1.2;
       }
 
-      /* Ajustement du conteneur de compétences */
+      /* Animation rotative */
+      .header-extension {
+        width: 100%;
+        padding: 20px 0;
+        position: relative;
+        clear: both;
+        display: block;
+        margin-top: 20px;
+      }
+      
+      .rotating-text-section {
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0;
+        position: relative;
+        height: 140px;
+        z-index: 5;
+      }
+      
+      #rotate-words {
+        width: 100%;
+        margin: 0 auto;
+        padding: 0;
+        height: 140px;
+        font-size: 1.9em;
+        text-transform: uppercase;
+        font-family: 'Oswald', sans-serif;
+        position: relative;
+        text-align: center;
+      }
+      
+      #rotate-words span {
+        display: block;
+        height: 35px;
+        font-size: .7em;
+        text-transform: lowercase;
+        opacity: .9;
+        font-family: 'Rubik', sans-serif;
+      }
+      
+      #rotate-words div {
+        position: absolute;
+        opacity: 0;
+        overflow: hidden;
+        width: 100%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        line-height: 1.3em;
+        animation: rotate-word 32s linear infinite 0s;
+        color: #fff;
+        text-shadow: 0 0 10px rgba(0,0,0,0.3);
+      }
+      
+      @keyframes rotate-word {
+        0% { opacity: 0; transform: translateX(0); filter: blur(10px); transform: scale(1.2); }
+        3% { opacity: 1; transform: translateX(0); filter: blur(0px); transform: scale(.9); }
+        12% { opacity: 1; transform: translateX(0); filter: blur(0px); transform: scale(1); }
+        16% { opacity: 0; transform: translateX(0); filter: blur(10px); transform: scale(1.2); }
+        80% { opacity: 0; }
+        100% { opacity: 0; }
+      }
+      
+      #rotate-words div:nth-child(2) { animation-delay: 4s; }
+      #rotate-words div:nth-child(3) { animation-delay: 8s; }
+      #rotate-words div:nth-child(4) { animation-delay: 12s; }
+      #rotate-words div:nth-child(5) { animation-delay: 16s; }
+      #rotate-words div:nth-child(6) { animation-delay: 20s; }
+      #rotate-words div:nth-child(7) { animation-delay: 24s; }
+      #rotate-words div:nth-child(8) { animation-delay: 28s; }
+
+      /* Style pour la grille de compétences responsive */
       .skills-container {
-        overflow: visible !important;
-        height: auto !important;
-        min-height: 400px !important;
-        padding: 10px !important;
+        width: 100%;
+        overflow-x: auto;
+        padding: 2rem 0;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(100,100,100,0.5) transparent;
+      }
+      
+      .skills-container::-webkit-scrollbar {
+        height: 8px;
+      }
+      
+      .skills-container::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      
+      .skills-container::-webkit-scrollbar-thumb {
+        background-color: rgba(100,100,100,0.5);
+        border-radius: 10px;
       }
 
-      /* Amélioration des tooltips sur mobile */
-      .tooltip {
-        width: 250px !important;
-        position: fixed !important;
-        left: 50% !important;
-        top: 50% !important;
-        transform: translate(-50%, -50%) !important;
-        z-index: 1000 !important;
+      /* Responsive design */
+      @media (max-width: 768px) {
+        .first-container.share h1 {
+          font-size: 6vw;
+        }
+        
+        #rotate-words {
+          font-size: 1.3em;
+        }
       }
       
-      /* Ajustement du bouton diploma */
-      .diploma-button-wrap {
-        transform: scale(0.6) !important;
-        top: 10px !important;
-        right: 10px !important;
+      @media (max-width: 480px) {
+        .first-container.share h1 {
+          font-size: 5vw;
+        }
+        
+        #rotate-words {
+          font-size: 1em;
+        }
       }
-    }
-    
-    @media (max-width: 480px) {
-      .profile-special {
-        scale: 0.7 !important;
-      }
-      
-      .first-container.share h1 {
-        font-size: 7vw !important;
-      }
-      
-      .skills-grid {
-        gap: 5px !important;
-      }
-      
-      .tooltip-container {
-        width: 50px !important;
-        height: 50px !important;
-        margin: 4px !important;
-      }
-    }
-  </style>
+    </style>
 </head>
 <body>
     <canvas id="neuro"></canvas>
@@ -278,15 +183,6 @@ Cette solution est une alternative si l'approche JavaScript pose problème.
             </div>
         </a>
     </div>
-    <!-- Dotted Background - caché -->
-    <svg class="diploma-dotted-grid" style="position: absolute; width: 100%; height: 100%; z-index: 0;" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <pattern id="dottedGrid" width="30" height="30" patternUnits="userSpaceOnUse">
-                <circle cx="2" cy="2" r="1" fill="rgba(0,0,0,0.15)" />
-            </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#dottedGrid)" />
-    </svg>
     
     <header>
         <div class="main-container">
@@ -298,69 +194,66 @@ Cette solution est une alternative si l'approche JavaScript pose problème.
                 <p>Tia Ratsimbason</p>
             </div>
           </section>
-        <div class="main-container">
-            <div class="first-container share">
-                <h1>
-                    <span>M</span>
-                    <span>A</span>
-                    <span>C</span>
-                    <span>H</span>
-                    <span>I</span>
-                    <span>N</span>
-                    <span>E</span>
-                  <br>
-                    <span>L</span>
-                    <span>E</span>
-                    <span>A</span>
-                    <span>R</span>
-                    <span>N</span>
-                    <span>I</span>
-                    <span>N</span>
-                    <span>G</span>
-                  <br>
-                    <span>E</span>
-                    <span>N</span>
-                    <span>G</span>
-                    <span>I</span>
-                    <span>N</span>
-                    <span>E</span>
-                    <span>E</span>
-                    <span>R</span>
-                  </h1>
-                  
-            </div>
-        </div>
+        
+          <div class="first-container share">
+            <h1>
+                <span>M</span>
+                <span>A</span>
+                <span>C</span>
+                <span>H</span>
+                <span>I</span>
+                <span>N</span>
+                <span>E</span>
+              <br>
+                <span>L</span>
+                <span>E</span>
+                <span>A</span>
+                <span>R</span>
+                <span>N</span>
+                <span>I</span>
+                <span>N</span>
+                <span>G</span>
+              <br>
+                <span>E</span>
+                <span>N</span>
+                <span>G</span>
+                <span>I</span>
+                <span>N</span>
+                <span>E</span>
+                <span>E</span>
+                <span>R</span>
+            </h1>
+          </div>
           
-  <!-- HTML à ajouter juste après la fermeture de la div du titre -->
-  <!-- Cherchez la div avec classe "first-container share" et ajoutez ce code après la balise </div> -->
-  <div class="header-extension">
-    <div class="rotating-text-section">
-      <div id="rotate-words">  
-        <div>Développement de solution IA<br /><span>Machine Learning & Deep Learning</span></div>
-        <div>Industrialisation d'une solution IA<br /><span>Mise en production & déploiement</span></div>
-        <div>Business Intelligence<br /><span>Data Driven & Design thinking</span></div>
-        <div>Monitoring en production<br /><span>Suivi de la performance avec Prometheus et Grafana</span></div>
-        <div>Automatisation<br /><span>Creation de workflow avec les DAGs d'Airflow</span></div>
-        <div>Création de tableau de bord dynamique<br /><span>PowerBI & Tableau</span></div>
-        <div>manipulation & ingénierie des données<br /><span>Python, numpy & pandas</span></div>
-        <div>MLOps & CI/CD<br /><span>MLFlow, DVC, Git</span></div>
-      </div>
-    </div>
-  </div>
+          <!-- Texte rotatif -->
+          <div class="header-extension">
+            <div class="rotating-text-section">
+              <div id="rotate-words">  
+                <div>Développement de solution IA<br /><span>Machine Learning & Deep Learning</span></div>
+                <div>Industrialisation d'une solution IA<br /><span>Mise en production & déploiement</span></div>
+                <div>Business Intelligence<br /><span>Data Driven & Design thinking</span></div>
+                <div>Monitoring en production<br /><span>Suivi de la performance avec Prometheus et Grafana</span></div>
+                <div>Automatisation<br /><span>Creation de workflow avec les DAGs d'Airflow</span></div>
+                <div>Création de tableau de bord dynamique<br /><span>PowerBI & Tableau</span></div>
+                <div>manipulation & ingénierie des données<br /><span>Python, numpy & pandas</span></div>
+                <div>MLOps & CI/CD<br /><span>MLFlow, DVC, Git</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
     </header>
 
     <main class="content-wrapper">
         <section class="section-base skills-section" id="skills-target">
-            <!-- ... -->
+            <!-- Contenu dynamique généré par skills/index.js -->
         </section>
         
         <section id="projet-target">
             {% include 'projet.html' %}
         </section>
         
-        <!-- Suppression de la classe contact-section -->
         <section id="contact-target">
-            <!-- Le contenu sera injecté ici par contact/index.js -->
+            <!-- Contenu dynamique généré par contact/index.js -->
         </section>
     </main>
 
@@ -430,26 +323,25 @@ Cette solution est une alternative si l'approche JavaScript pose problème.
             gl_FragColor = vec4(color, noise);
         }
     </script>
-    <!-- Modifiez votre script projet pour utiliser babel -->
+    
+    <!-- Scripts JS -->
     <script type="module" src="{{ url_for('static', filename='script.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='skills/index.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='projet/index.js') }}"></script>
     <script type="module" src="{{ url_for('static', filename='contact/index.js') }}"></script>
+    
+    <!-- Script pour Swiper -->
     <script>
-        // Fonction pour initialiser Swiper quand le bouton View Work est cliqué
         document.addEventListener('click', function(e) {
           if (e.target.closest('.project-button')) {
             console.log('View Work button clicked');
             
-            // Attendre un moment pour que la transition se produise
             setTimeout(function() {
               try {
-                // Si Swiper existe déjà, le détruire
                 if (window.mySwiper) {
                   window.mySwiper.destroy();
                 }
                 
-                // Créer une nouvelle instance Swiper
                 window.mySwiper = new Swiper('.swiper-container', {
                   slidesPerView: 1,
                   spaceBetween: 30,
@@ -457,13 +349,11 @@ Cette solution est une alternative si l'approche JavaScript pose problème.
                   centeredSlides: true,
                   loop: false,
                   
-                  // Navigation
                   navigation: {
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
                   },
                   
-                  // Pagination
                   pagination: {
                     el: '.swiper-pagination',
                     clickable: true,
@@ -471,8 +361,6 @@ Cette solution est une alternative si l'approche JavaScript pose problème.
                 });
                 
                 console.log('Swiper initialized');
-                
-                // Forcer l'affichage du premier slide
                 document.querySelector('.swiper-slide').style.opacity = '1';
                 
               } catch(error) {
@@ -481,108 +369,6 @@ Cette solution est une alternative si l'approche JavaScript pose problème.
             }, 1000);
           }
         });
-      </script>
-
-      <!-- Script de correction d'urgence pour mobile -->
-      <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          // Vérification si on est sur mobile
-          const isMobile = window.innerWidth <= 768;
-          
-          if (isMobile) {
-            console.log("Applying mobile fixes");
-            
-            // 1. Correction du chevauchement photo/titre
-            const profileElement = document.querySelector('.profile-special');
-            if (profileElement) {
-              profileElement.style.position = 'static';
-              profileElement.style.transform = 'none';
-              profileElement.style.scale = window.innerWidth <= 480 ? '0.7' : '0.8';
-              profileElement.style.margin = '0 auto 30px auto';
-              profileElement.style.width = '100%';
-            }
-            
-            // 2. Correction du titre
-            const titleElement = document.querySelector('.first-container.share h1');
-            if (titleElement) {
-              titleElement.style.marginTop = '70px';
-              titleElement.style.clear = 'both';
-              titleElement.style.fontSize = window.innerWidth <= 480 ? '7vw' : '8vw';
-              titleElement.style.width = '100%';
-              titleElement.style.textAlign = 'center';
-            }
-            
-            // 3. Correction du tableau périodique
-            const skillsGrid = document.querySelector('.skills-grid');
-            if (skillsGrid) {
-              // Remplacer complètement le style
-              skillsGrid.style.cssText = `
-                display: flex !important;
-                flex-wrap: wrap !important;
-                justify-content: center !important;
-                transform: none !important;
-                width: 100% !important;
-                margin: 0 auto !important;
-                gap: ${window.innerWidth <= 480 ? '5px' : '8px'} !important;
-              `;
-            }
-            
-            // 4. Redimensionner les éléments du tableau
-            const tooltipContainers = document.querySelectorAll('.tooltip-container');
-            tooltipContainers.forEach(container => {
-              container.style.width = window.innerWidth <= 480 ? '50px' : '60px';
-              container.style.height = window.innerWidth <= 480 ? '50px' : '60px';
-              container.style.margin = window.innerWidth <= 480 ? '4px' : '5px';
-            });
-            
-            // 5. Ajustement du conteneur de compétences
-            const skillsContainer = document.querySelector('.skills-container');
-            if (skillsContainer) {
-              skillsContainer.style.overflow = 'visible';
-              skillsContainer.style.height = 'auto';
-              skillsContainer.style.minHeight = '400px';
-              skillsContainer.style.padding = '10px';
-            }
-            
-            // 6. Correction du bouton diploma
-            const diplomaButton = document.querySelector('.diploma-button-wrap');
-            if (diplomaButton) {
-              diplomaButton.style.transform = 'scale(0.6)';
-              diplomaButton.style.top = '10px';
-              diplomaButton.style.right = '10px';
-            }
-            
-            // 7. Ajouter un gestionnaire pour les tooltips sur mobile
-            const handleTooltipTouch = function() {
-              tooltipContainers.forEach(container => {
-                container.addEventListener('touchstart', function(e) {
-                  e.preventDefault();
-                  
-                  // Fermer tous les autres tooltips
-                  tooltipContainers.forEach(other => {
-                    if (other !== container) {
-                      other.classList.remove('touch-active');
-                    }
-                  });
-                  
-                  // Activer/désactiver le tooltip courant
-                  container.classList.toggle('touch-active');
-                });
-              });
-              
-              // Fermer les tooltips en touchant ailleurs
-              document.addEventListener('touchstart', function(e) {
-                if (!e.target.closest('.tooltip-container')) {
-                  tooltipContainers.forEach(container => {
-                    container.classList.remove('touch-active');
-                  });
-                }
-              });
-            };
-            
-            setTimeout(handleTooltipTouch, 500);
-          }
-        });
-      </script>
+    </script>
 </body>
 </html>
