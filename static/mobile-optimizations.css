@@ -1,0 +1,184 @@
+/* CSS responsive pour le tableau de compétences et corrections des espaces */
+
+/* 1. Styles de base pour le conteneur des compétences */
+.skills-container {
+    width: 100%;
+    min-height: auto !important;
+    padding: 1rem 0 !important;
+    margin-bottom: 0 !important;
+    overflow-x: auto; /* Permet le défilement si nécessaire sur desktop */
+    scrollbar-width: thin; /* Scrollbar fine sur Firefox */
+}
+
+/* Cacher la scrollbar mais garder la fonctionnalité */
+.skills-container::-webkit-scrollbar {
+    height: 4px;
+}
+
+.skills-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.skills-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+/* 2. Styles pour la grille de compétences - version desktop */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(9, 80px); /* 9 colonnes de 80px sur desktop */
+    grid-template-rows: repeat(4, 80px); /* 4 rangées de 80px sur desktop */
+    gap: 1rem; /* Espacement uniforme */
+    justify-content: center;
+    align-items: start;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.tooltip-container {
+    width: 80px; /* Taille sur desktop */
+    height: 80px;
+}
+
+.layer span.fab {
+    font-size: 24px; /* Taille du texte sur desktop */
+}
+
+/* 3. Suppression des espaces entre sections */
+.section-base {
+    padding: 1rem 0 !important;
+    margin: 0 !important;
+}
+
+.content-wrapper {
+    gap: 1rem !important; /* Espacement réduit entre les sections */
+}
+
+/* 4. Styles responsives pour les tablettes */
+@media (max-width: 992px) {
+    .skills-grid {
+        grid-template-columns: repeat(9, 70px);
+        grid-template-rows: repeat(4, 70px);
+        gap: 0.8rem;
+    }
+    
+    .tooltip-container {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .layer span.fab {
+        font-size: 20px;
+    }
+}
+
+/* 5. Styles responsives pour les petites tablettes/grands téléphones */
+@media (max-width: 768px) {
+    .skills-grid {
+        grid-template-columns: repeat(9, 60px);
+        grid-template-rows: repeat(4, 60px);
+        gap: 0.5rem;
+    }
+    
+    .tooltip-container {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .layer span.fab {
+        font-size: 18px;
+    }
+    
+    /* Ajustement des espacements */
+    .section-base {
+        padding: 0.5rem 0 !important;
+    }
+}
+
+/* 6. Styles responsives pour les téléphones */
+@media (max-width: 600px) {
+    .skills-container {
+        overflow-x: hidden !important; /* Cacher la barre de défilement sur mobile */
+    }
+    
+    .skills-grid {
+        display: grid !important;
+        grid-template-columns: repeat(5, minmax(55px, 60px)) !important;
+        grid-auto-rows: minmax(55px, 60px) !important;
+        gap: 0.4rem !important;
+        width: fit-content !important;
+        margin: 1rem auto !important;
+    }
+    
+    .tooltip-container {
+        width: 55px !important;
+        height: 55px !important;
+    }
+    
+    .layer span.fab {
+        font-size: 16px !important;
+    }
+}
+
+/* 7. Styles pour les très petits écrans */
+@media (max-width: 375px) {
+    .skills-grid {
+        grid-template-columns: repeat(5, minmax(45px, 50px)) !important;
+        grid-auto-rows: minmax(45px, 50px) !important;
+        gap: 0.3rem !important;
+    }
+    
+    .tooltip-container {
+        width: 45px !important;
+        height: 45px !important;
+    }
+    
+    .layer span.fab {
+        font-size: 14px !important;
+    }
+}
+
+/* 8. Ajustements pour le swiper */
+.swiper-container {
+    width: 100%;
+    overflow: visible !important;
+    position: relative;
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+
+.swiper-slide {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    overflow: visible !important;
+}
+
+.swiper-slide-active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 10 !important;
+}
+
+/* 9. Ajustements des boutons de navigation sur mobile */
+@media (max-width: 480px) {
+    .swiper-button-prev,
+    .swiper-button-next {
+        width: 30px !important;
+        height: 30px !important;
+    }
+    
+    .swiper-button-prev {
+        left: 5px !important;
+    }
+    
+    .swiper-button-next {
+        right: 5px !important;
+    }
+    
+    .swiper-button-prev:after,
+    .swiper-button-next:after {
+        font-size: 14px !important;
+    }
+}
