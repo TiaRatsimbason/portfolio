@@ -1,194 +1,239 @@
-/* CSS responsive pour le tableau de compétences et corrections des espaces */
+/* RESET COMPLET DES ESPACES ET DIMENSIONS - Version définitive */
 
-/* 1. Styles de base pour le conteneur des compétences */
-.skills-container {
-    width: fit-content;
-    min-height: auto !important;
-    padding: 1rem 0 !important;
-    margin-bottom: 0 !important;
-    overflow-x: auto; /* Permet le défilement si nécessaire sur desktop */
-    scrollbar-width: thin; /* Scrollbar fine sur Firefox */
-    box-sizing: content-box;
-    margin: 0 auto;
-    padding: 0 30px !important; /* Marges symétriques gauche et droite */
+/* 1. Correction globale pour tous les conteneurs */
+.skills-section,
+#skills-target,
+.skills-container,
+.skills-grid,
+.skills-section__content {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    display: block !important;
+    position: relative !important;
+    box-sizing: border-box !important;
 }
 
-/* Cacher la scrollbar mais garder la fonctionnalité */
+/* 2. Conteneur principal des compétences */
+.skills-container {
+    padding-top: 10px !important; /* Juste un peu d'espace en haut pour le titre */
+    margin-bottom: 0 !important;
+    width: 100% !important;
+    overflow-x: auto !important; /* Active le défilement horizontal sur desktop si nécessaire */
+}
+
+/* Masquage complet de la scrollbar tout en gardant la fonctionnalité */
 .skills-container::-webkit-scrollbar {
-    height: 4px;
+    height: 3px !important;
 }
 
 .skills-container::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.1);
+    background: transparent !important;
 }
 
 .skills-container::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-radius: 10px !important;
 }
 
-/* 2. Styles pour la grille de compétences - version desktop */
+/* 3. Titre du tableau */
+.skills-container h1 {
+    margin: 0 0 10px 0 !important;
+    padding: 0 !important;
+    font-size: 30px !important;
+}
+
+/* 4. Grille des compétences - desktop */
 .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(9, 80px); /* 9 colonnes de 80px sur desktop */
-    grid-template-rows: repeat(4, 80px); /* 4 rangées de 80px sur desktop */
-    gap: 1rem; /* Espacement uniforme */
-    justify-content: center;
-    align-items: start;
-    margin: 2rem auto;
-    width: fit-content; /* S'adapte au contenu */
-    max-width: 95%; /* Évite le débordement */
+    display: grid !important;
+    grid-template-columns: repeat(9, 80px) !important;
+    grid-template-rows: repeat(4, 80px) !important;
+    gap: 1rem !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: fit-content !important;
+    margin: 0 auto 0 auto !important;
+    padding: 0 !important;
 }
 
+/* 5. Éléments de la grille */
 .tooltip-container {
-    width: 80px; /* Taille sur desktop */
-    height: 80px;
+    width: 80px !important;
+    height: 80px !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .layer span.fab {
-    font-size: 24px; /* Taille du texte sur desktop */
+    font-size: 24px !important;
 }
 
-/* 3. Suppression des espaces entre sections */
+/* 6. Suppression des espaces entre sections */
 .section-base {
-    padding: 1rem 0 !important;
+    padding: 0 !important;
     margin: 0 !important;
+    min-height: 0 !important;
 }
 
 .content-wrapper {
-    gap: 1rem !important; /* Espacement réduit entre les sections */
+    gap: 0 !important;
+    padding-bottom: 0 !important;
 }
 
-/* 4. Styles responsives pour les tablettes */
+/* 7. CORRECTION SPÉCIALE POUR L'ESPACE VERTICAL APRÈS LE TABLEAU */
+/* Cette règle vise spécifiquement les éléments qui suivent le tableau des compétences */
+.skills-section + section, 
+.skills-container + *,
+#skills-target + * {
+    margin-top: 0 !important;
+    padding-top: 5px !important;
+}
+
+/* 8. BREAKPOINTS MOBILES ET TABLETTES OPTIMISÉS */
+/* Grande tablette */
 @media (max-width: 992px) {
     .skills-grid {
-        grid-template-columns: repeat(9, 70px);
-        grid-template-rows: repeat(4, 70px);
-        gap: 0.8rem;
+        grid-template-columns: repeat(9, 70px) !important;
+        grid-template-rows: repeat(4, 70px) !important;
+        gap: 0.7rem !important;
     }
     
     .tooltip-container {
-        width: 70px;
-        height: 70px;
+        width: 70px !important;
+        height: 70px !important;
     }
     
     .layer span.fab {
-        font-size: 20px;
+        font-size: 20px !important;
     }
 }
 
-/* 5. Styles responsives pour les petites tablettes/grands téléphones */
+/* Petite tablette */
 @media (max-width: 768px) {
     .skills-grid {
-        grid-template-columns: repeat(9, 60px);
-        grid-template-rows: repeat(4, 60px);
-        gap: 0.5rem;
+        grid-template-columns: repeat(9, 60px) !important;
+        grid-template-rows: repeat(4, 60px) !important;
+        gap: 0.5rem !important;
     }
     
     .tooltip-container {
-        width: 60px;
-        height: 60px;
+        width: 60px !important;
+        height: 60px !important;
     }
     
     .layer span.fab {
-        font-size: 18px;
+        font-size: 18px !important;
     }
     
-    /* Ajustement des espacements */
-    .section-base {
-        padding: 0.5rem 0 !important;
+    .skills-container h1 {
+        font-size: 26px !important;
     }
 }
 
-/* 6. Styles responsives pour les téléphones */
+/* Grand mobile */
 @media (max-width: 600px) {
     .skills-container {
-        padding: 0 10px !important; /* Réduction des marges sur petit écran */
-        width: fit-content !important;
+        overflow-x: hidden !important; /* Cacher la barre de défilement sur mobile */
     }
     
     .skills-grid {
-        display: grid !important;
-        grid-template-columns: repeat(5, minmax(50px, 55px)) !important; /* Réduction de la taille */
-        grid-auto-rows: minmax(50px, 55px) !important;
+        grid-template-columns: repeat(5, minmax(55px, 60px)) !important;
+        grid-auto-rows: minmax(55px, 60px) !important;
         gap: 0.4rem !important;
-        margin: 1rem auto !important;
-        width: fit-content !important; /* Permet un ajustement automatique */
-        max-width: 95% !important; /* Évite le débordement */
     }
     
     .tooltip-container {
-        width: 50px !important;
-        height: 50px !important;
+        width: 55px !important;
+        height: 55px !important;
     }
     
     .layer span.fab {
         font-size: 16px !important;
     }
+    
+    .skills-container h1 {
+        font-size: 24px !important;
+    }
 }
 
-/* 7. Styles pour les très petits écrans */
+/* Petit mobile */
 @media (max-width: 375px) {
-    .skills-container {
-        padding: 0 5px !important; /* Marges minimales */
-    }
-    
     .skills-grid {
-        grid-template-columns: repeat(5, minmax(40px, 45px)) !important;
-        grid-auto-rows: minmax(40px, 45px) !important;
+        grid-template-columns: repeat(5, minmax(45px, 50px)) !important;
+        grid-auto-rows: minmax(45px, 50px) !important;
         gap: 0.3rem !important;
     }
     
     .tooltip-container {
-        width: 40px !important;
-        height: 40px !important;
+        width: 45px !important;
+        height: 45px !important;
     }
     
     .layer span.fab {
         font-size: 14px !important;
     }
+    
+    .skills-container h1 {
+        font-size: 22px !important;
+    }
 }
 
-/* 8. Ajustements pour le swiper */
+/* 9. Optimisations du Swiper pour les projets */
+.projet-walkthrough {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 10px 0 !important;
+    overflow-x: hidden !important;
+    margin-top: 10px !important;
+}
+
 .swiper-container {
-    width: 100%;
-    overflow: visible !important;
-    position: relative;
-    padding-top: 10px;
-    padding-bottom: 30px;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    position: relative !important;
+    padding: 0 !important;
 }
 
-.swiper-slide {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    overflow: visible !important;
+.card-item {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 15px !important;
 }
 
-.swiper-slide-active {
-    opacity: 1 !important;
-    visibility: visible !important;
-    z-index: 10 !important;
-}
-
-/* 9. Ajustements des boutons de navigation sur mobile */
+/* 10. Boutons de navigation Swiper pour mobile */
 @media (max-width: 480px) {
     .swiper-button-prev,
     .swiper-button-next {
-        width: 30px !important;
-        height: 30px !important;
+        width: 25px !important;
+        height: 25px !important;
     }
     
     .swiper-button-prev {
-        left: 5px !important;
+        left: 2px !important;
     }
     
     .swiper-button-next {
-        right: 5px !important;
+        right: 2px !important;
     }
     
     .swiper-button-prev:after,
     .swiper-button-next:after {
-        font-size: 14px !important;
+        font-size: 12px !important;
     }
+}
+
+/* 11. Hack pour cacher tout élément créant de l'espace vertical indésirable */
+.skills-section:after,
+.skills-container:after,
+.skills-grid:after {
+    content: none !important;
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
