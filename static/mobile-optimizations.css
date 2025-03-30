@@ -2,12 +2,15 @@
 
 /* 1. Styles de base pour le conteneur des compétences */
 .skills-container {
-    width: 100%;
+    width: fit-content;
     min-height: auto !important;
     padding: 1rem 0 !important;
     margin-bottom: 0 !important;
     overflow-x: auto; /* Permet le défilement si nécessaire sur desktop */
     scrollbar-width: thin; /* Scrollbar fine sur Firefox */
+    box-sizing: content-box;
+    margin: 0 auto;
+    padding: 0 30px !important; /* Marges symétriques gauche et droite */
 }
 
 /* Cacher la scrollbar mais garder la fonctionnalité */
@@ -33,7 +36,8 @@
     justify-content: center;
     align-items: start;
     margin: 2rem auto;
-    padding: 0 1rem;
+    width: fit-content; /* S'adapte au contenu */
+    max-width: 95%; /* Évite le débordement */
 }
 
 .tooltip-container {
@@ -99,21 +103,23 @@
 /* 6. Styles responsives pour les téléphones */
 @media (max-width: 600px) {
     .skills-container {
-        overflow-x: hidden !important; /* Cacher la barre de défilement sur mobile */
+        padding: 0 10px !important; /* Réduction des marges sur petit écran */
+        width: fit-content !important;
     }
     
     .skills-grid {
         display: grid !important;
-        grid-template-columns: repeat(5, minmax(55px, 60px)) !important;
-        grid-auto-rows: minmax(55px, 60px) !important;
+        grid-template-columns: repeat(5, minmax(50px, 55px)) !important; /* Réduction de la taille */
+        grid-auto-rows: minmax(50px, 55px) !important;
         gap: 0.4rem !important;
-        width: fit-content !important;
         margin: 1rem auto !important;
+        width: fit-content !important; /* Permet un ajustement automatique */
+        max-width: 95% !important; /* Évite le débordement */
     }
     
     .tooltip-container {
-        width: 55px !important;
-        height: 55px !important;
+        width: 50px !important;
+        height: 50px !important;
     }
     
     .layer span.fab {
@@ -123,15 +129,19 @@
 
 /* 7. Styles pour les très petits écrans */
 @media (max-width: 375px) {
+    .skills-container {
+        padding: 0 5px !important; /* Marges minimales */
+    }
+    
     .skills-grid {
-        grid-template-columns: repeat(5, minmax(45px, 50px)) !important;
-        grid-auto-rows: minmax(45px, 50px) !important;
+        grid-template-columns: repeat(5, minmax(40px, 45px)) !important;
+        grid-auto-rows: minmax(40px, 45px) !important;
         gap: 0.3rem !important;
     }
     
     .tooltip-container {
-        width: 45px !important;
-        height: 45px !important;
+        width: 40px !important;
+        height: 40px !important;
     }
     
     .layer span.fab {
