@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
       videoBackground.id = 'video-background';
       videoBackground.innerHTML = `
         <video autoplay loop muted playsinline id="background-video">
-          <source src="/static/videos/abstract-background.mp4" type="video/mp4">
+          <source src="/static/videos/abstract.mp4" type="video/mp4">
         </video>
       `;
       
