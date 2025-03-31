@@ -66,7 +66,7 @@
 .skills-grid {
     display: grid !important;
     gap: 1rem !important;
-    margin: 1rem 0.5rem 0.5rem 0.5rem !important; /* Marges uniformes */
+    margin: 1rem !important; /* Marges uniformes */
     padding-bottom: 8px !important; /* Espace pour la scrollbar */
     width: auto !important; /* Cruciale : permet à la grille de prendre sa largeur naturelle */
     min-width: fit-content !important; /* Garantit que la grille ne sera pas compressée */
@@ -121,7 +121,7 @@
         grid-template-rows: repeat(4, 80px) !important;
         gap: 1rem !important;
         /* Centrage sur les grands écrans */
-        margin: 1rem auto 0.5rem auto !important;
+        margin: 1rem auto !important;
     }
     
     .tooltip-container {
@@ -141,7 +141,7 @@
         grid-template-rows: repeat(4, 70px) !important;
         gap: 0.8rem !important;
         /* Centrage sur les écrans moyens */
-        margin: 1rem auto 0.5rem auto !important;
+        margin: 1rem auto !important;
     }
     
     .tooltip-container {
@@ -161,7 +161,7 @@
         grid-template-rows: repeat(4, 60px) !important;
         gap: 0.5rem !important;
         /* Centrage sur les petites tablettes */
-        margin: 1rem auto 0.5rem auto !important;
+        margin: 1rem auto !important;
     }
     
     .tooltip-container {
@@ -176,126 +176,77 @@
 
 /* 7. Responsive design - Téléphones */
 @media screen and (max-width: 599px) {
-    /* Configuration des conteneurs pour le centrage sur mobile */
-    #skills-target {
-        position: relative !important;
+    /* Configuration pour affichage complet sans défilement */
+    #skills-target, .skills-container {
         width: 100% !important;
-        /* Ces propriétés permettent de créer un conteneur qui centre son contenu */
+        max-width: 100% !important;
+        overflow: visible !important; /* Plus besoin de défilement */
         display: flex !important;
         justify-content: center !important;
-        overflow: hidden !important; /* Cache le débordement */
+        align-items: center !important;
+        padding: 0 !important;
+        margin: 0 auto !important;
     }
     
-    .skills-container {
-        width: auto !important; /* Prend la largeur du contenu */
-        position: relative !important;
-        /* Ne pas limiter la largeur */
-        max-width: none !important;
-        /* Permet de positionner l'élément pour laisser apparaître les extrémités gauche et droite */
-        margin: 0 -50% !important; /* Technique spéciale pour centrer le contenu défilant */
-        transform: translateX(0) !important; /* Réinitialise transformations qui pourraient interférer */
-        left: 0 !important;
-        right: 0 !important;
-        overflow-x: auto !important; /* Permet le défilement horizontal */
-        -webkit-overflow-scrolling: touch !important;
-        scrollbar-width: thin !important;
-        padding: 0 20px !important; /* Espace pour les indicateurs de défilement */
-    }
-    
-    /* Indicateur de défilement pour suggérer qu'on peut scroller */
-    .skills-container::after {
-        content: "";
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        width: 20px;
-        height: 20px;
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 50%;
-        animation: pulseRight 1.5s infinite;
-        pointer-events: none;
-        z-index: 10 !important;
-    }
-    
-    /* Indicateur de défilement à gauche */
-    .skills-container::before {
-        content: "";
-        position: absolute;
-        left: 10px;
-        top: 50%;
-        width: 20px;
-        height: 20px;
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 50%;
-        animation: pulseLeft 1.5s infinite;
-        pointer-events: none;
-        z-index: 10 !important;
-    }
-    
-    @keyframes pulseRight {
-        0% { transform: translateX(0) scale(1); opacity: 1; }
-        50% { transform: translateX(10px) scale(1.2); opacity: 0.7; }
-        100% { transform: translateX(0) scale(1); opacity: 1; }
-    }
-    
-    @keyframes pulseLeft {
-        0% { transform: translateX(0) scale(1); opacity: 1; }
-        50% { transform: translateX(-10px) scale(1.2); opacity: 0.7; }
-        100% { transform: translateX(0) scale(1); opacity: 1; }
-    }
-    
+    /* Redimensionner la grille pour s'adapter à la largeur disponible */
     .skills-grid {
-        /* Adapter pour 5 colonnes sur mobile */
-        grid-template-columns: repeat(5, minmax(50px, 55px)) !important;
-        grid-auto-rows: minmax(50px, 55px) !important;
-        gap: 0.4rem !important;
-        margin: 0.5rem !important; /* Marge uniforme */
-        justify-content: center !important; /* Centrage important */
-        padding-right: 20px !important; /* Espace à droite pour éviter la troncature */
-        width: auto !important;
-        min-width: fit-content !important; /* Garantit que la grille ne sera pas compressée */
+        width: calc(100% - 24px) !important; /* Largeur totale moins marges */
+        max-width: 100% !important;
+        /* La clé : utiliser des unités FR au lieu de pixels fixes */
+        grid-template-columns: repeat(9, 1fr) !important; /* 9 colonnes égales */
+        grid-template-rows: auto !important; /* Hauteur adaptative */
+        gap: 4px !important; /* Écart minimal entre cellules */
+        margin: 0.75rem !important; /* Marge extérieure */
+        justify-content: center !important;
+        /* Supprimer les propriétés de taille fixe */
+        min-width: 0 !important;
+        transform: scale(0.95) !important; /* Légère réduction pour marges */
     }
     
+    /* Adaptations des cellules */
     .tooltip-container {
-        width: 50px !important;
-        height: 50px !important;
+        width: 100% !important; /* Prend toute la largeur de sa cellule */
+        height: auto !important; /* Hauteur adaptative */
+        min-height: 35px !important; /* Hauteur minimale */
+        aspect-ratio: 1/1 !important; /* Garde le format carré */
+    }
+    
+    .layer {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
     }
     
     .layer span.fab {
-        font-size: 16px !important;
+        font-size: 14px !important; /* Taille réduite du texte */
+    }
+    
+    /* Ajuster les tooltips */
+    .tooltip {
+        width: 220px !important;
+        max-width: 80vw !important;
+        top: -100px !important;
     }
 }
 
 /* 8. Responsive design - Très petits téléphones */
 @media screen and (max-width: 375px) {
     .skills-grid {
-        grid-template-columns: repeat(5, minmax(40px, 45px)) !important;
-        grid-auto-rows: minmax(40px, 45px) !important;
-        gap: 0.3rem !important;
+        transform: scale(0.9) !important; /* Réduction supplémentaire */
+        gap: 3px !important;
     }
     
     .tooltip-container {
-        width: 40px !important;
-        height: 40px !important;
+        min-height: 30px !important;
     }
     
     .layer span.fab {
-        font-size: 14px !important;
+        font-size: 12px !important;
     }
     
-    /* Réduire la taille de l'indicateur de défilement */
-    .skills-container::after,
-    .skills-container::before {
-        width: 15px !important;
-        height: 15px !important;
-    }
-    
-    .skills-container::after {
-        right: 5px !important;
-    }
-    
-    .skills-container::before {
-        left: 5px !important;
+    .tooltip {
+        width: 200px !important;
+        top: -90px !important;
     }
 }
 
@@ -348,21 +299,6 @@
     /* Ces déclarations sont spécifiquement conçues pour annuler les styles
        de la balise <style> dans index.html qui pourraient causer des conflits */
     #skills-target .skills-container {
-        overflow-x: auto !important; /* Garantit le défilement si nécessaire */
-    }
-}
-
-/* Adaptation de la largeur selon le dispositif */
-@media screen and (min-width: 600px) {
-    /* Sur grand écran, on utilise width: 100% pour centrer */
-    .skills-container {
-        width: 100% !important;
-    }
-}
-
-@media screen and (max-width: 599px) {
-    /* Sur mobile, on utilise width: auto pour permettre au contenu de dépasser */
-    .skills-container {
-        width: auto !important;
+        overflow-x: visible !important; /* Pas besoin de défilement */
     }
 }
