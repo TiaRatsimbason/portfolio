@@ -1,4 +1,8 @@
-/* CSS responsive pour le tableau de compétences - SOLUTION UNIVERSELLE */
+/* 
+ * CSS responsive pour le tableau de compétences - SOLUTION UNIVERSELLE
+ * Ce fichier centralise TOUS les ajustements responsifs.
+ * Il doit être chargé en DERNIER pour pouvoir surcharger les autres styles.
+ */
 
 /* 1. Styles de base pour le conteneur principal - adapté à tous les appareils */
 .skills-container {
@@ -173,12 +177,38 @@
 /* 7. Responsive design - Téléphones */
 @media screen and (max-width: 599px) {
     .skills-container {
-        /* Garantir le défilement même sur les appareils les plus petits */
-        overflow-x: scroll !important;
+        /* Permettre au conteneur de s'adapter à la largeur du contenu */
+        width: auto !important; /* IMPORTANT: Auto au lieu de 100% pour s'adapter au contenu */
+        overflow-x: scroll !important;  /* Utiliser scroll au lieu de auto pour forcer l'affichage de la scrollbar */
         -webkit-overflow-scrolling: touch !important;
         touch-action: pan-x !important; /* Permet le défilement horizontal tactile */
         /* Sur mobile, on aligne à gauche pour permettre le défilement */
         justify-content: flex-start !important;
+        padding: 0 !important;  /* Suppression des paddings pour maximiser l'espace */
+        margin: 0 !important;   /* Suppression des marges latérales */
+        /* Ajout d'un indicateur visuel de défilement */
+        position: relative !important;
+    }
+    
+    /* Indicateur de défilement pour suggérer qu'on peut scroller */
+    .skills-container::after {
+        content: "";
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        width: 20px;
+        height: 20px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        animation: pulseRight 1.5s infinite;
+        pointer-events: none;
+        z-index: 10 !important;
+    }
+    
+    @keyframes pulseRight {
+        0% { transform: translateX(0) scale(1); opacity: 1; }
+        50% { transform: translateX(10px) scale(1.2); opacity: 0.7; }
+        100% { transform: translateX(0) scale(1); opacity: 1; }
     }
     
     #skills-target {
@@ -193,6 +223,9 @@
         gap: 0.4rem !important;
         margin: 0.5rem 0 0.5rem 0.5rem !important; /* Marge à gauche pour éviter le bord */
         justify-content: flex-start !important;
+        padding-right: 20px !important; /* Espace à droite pour éviter la troncature et pour voir l'indicateur */
+        width: auto !important;
+        min-width: fit-content !important; /* Garantit que la grille ne sera pas compressée */
     }
     
     .tooltip-container {
@@ -220,6 +253,13 @@
     
     .layer span.fab {
         font-size: 14px !important;
+    }
+    
+    /* Réduire la taille de l'indicateur de défilement */
+    .skills-container::after {
+        width: 15px !important;
+        height: 15px !important;
+        right: 5px !important;
     }
 }
 
@@ -264,5 +304,29 @@
     .swiper-button-prev:after,
     .swiper-button-next:after {
         font-size: 14px !important;
+    }
+}
+
+/* 11. Suppression des styles conflictuels dans index.html */
+@media all {
+    /* Ces déclarations sont spécifiquement conçues pour annuler les styles
+       de la balise <style> dans index.html qui pourraient causer des conflits */
+    #skills-target .skills-container {
+        overflow-x: auto !important; /* Garantit le défilement si nécessaire */
+    }
+}
+
+/* Adaptation de la largeur selon le dispositif */
+@media screen and (min-width: 600px) {
+    /* Sur grand écran, on utilise width: 100% pour centrer */
+    .skills-container {
+        width: 100% !important;
+    }
+}
+
+@media screen and (max-width: 599px) {
+    /* Sur mobile, on utilise width: auto pour permettre au contenu de dépasser */
+    .skills-container {
+        width: auto !important;
     }
 }
