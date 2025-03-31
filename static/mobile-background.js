@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // Mettre à false pour désactiver la vidéo et utiliser WebGL partout
       enableVideoBackground: true,
       // Ajuster la taille de la vidéo (1 = taille normale, <1 pour dézoomer, >1 pour zoomer)
-      videoScale: 1.0
+      videoScale: 0.5
     };
     
     // Détection mobile améliorée
