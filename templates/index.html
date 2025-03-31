@@ -348,5 +348,76 @@
           }
         });
     </script>
+    <script>
+      // Injecter ce script à la fin du body de index.html
+      document.addEventListener('DOMContentLoaded', function() {
+        // Attendre que tous les CSS soient chargés
+        setTimeout(function() {
+          // Créer une nouvelle balise style avec des règles prioritaires
+          const style = document.createElement('style');
+          style.textContent = `
+            /* Styles prioritaires pour l'affichage mobile */
+            @media screen and (max-width: 599px) {
+              /* Conteneur doit montrer tout le contenu sans défilement */
+              #skills-target, .skills-container {
+                width: 100% !important;
+                max-width: 100% !important;
+                overflow: visible !important;
+                display: flex !important;
+                justify-content: center !important;
+                padding: 0 !important;
+                margin: 0 auto !important;
+              }
+              
+              /* Grille adaptative avec colonnes en unités fr */
+              .skills-grid {
+                display: grid !important;
+                grid-template-columns: repeat(9, 1fr) !important;
+                grid-template-rows: auto !important;
+                gap: 4px !important;
+                width: calc(100% - 24px) !important;
+                max-width: 100% !important;
+                min-width: 0 !important;
+                margin: 0.75rem !important;
+                transform: scale(0.95) !important;
+              }
+              
+              /* Cellules carrées adaptatives */
+              .tooltip-container {
+                width: 100% !important;
+                height: auto !important;
+                min-height: 35px !important;
+                aspect-ratio: 1/1 !important;
+              }
+              
+              /* Centrage du contenu des cellules */
+              .layer {
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+              }
+              
+              /* Texte plus petit pour s'adapter */
+              .layer span.fab {
+                font-size: 14px !important;
+              }
+            }
+            
+            @media screen and (max-width: 375px) {
+              .skills-grid {
+                transform: scale(0.9) !important;
+                gap: 3px !important;
+              }
+              
+              .layer span.fab {
+                font-size: 12px !important;
+              }
+            }
+          `;
+          document.head.appendChild(style);
+          console.log('Styles mobiles prioritaires injectés');
+        }, 800); // Délai suffisant pour s'assurer que tous les CSS sont chargés
+      });
+      </script>
 </body>
 </html>
