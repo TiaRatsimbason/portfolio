@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
             /* Style du titre */
             .first-container.share h1 {
               width: 100% !important;
-              font-size: 4.5vw !important;
+              font-size: 5.5vw !important;
               white-space: normal !important;
               letter-spacing: 2px !important;
               line-height: 1.4 !important;
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             /* Style des lettres dans le titre */
             .first-container.share h1 span {
-              font-size: 6vw !important;
+              font-size: 7.2vw !important;
               margin: 0 1px !important;
             }
           }
@@ -48,11 +48,11 @@ document.addEventListener('DOMContentLoaded', function() {
           /* Très petits écrans */
           @media screen and (max-width: 375px) {
             .first-container.share h1 {
-              font-size: 4vw !important;
+              font-size: 5vw !important;
             }
             
             .first-container.share h1 span {
-              font-size: 5.5vw !important;
+              font-size: 6.6vw !important;
             }
           }
         `;
