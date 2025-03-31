@@ -348,5 +348,62 @@
           }
         });
     </script>
+    <!-- Script pour centrer le défilement du tableau de compétences sur mobile -->
+    <script>
+      // Fonction pour centrer le défilement horizontal dans le conteneur des compétences
+      document.addEventListener('DOMContentLoaded', function() {
+        // Fonction qui centre le scroll dans le conteneur skills-container
+        function centerSkillsScroll() {
+          const container = document.querySelector('.skills-container');
+          if (container) {
+            // Vérifier si nous sommes sur mobile (largeur < 600px)
+            if (window.innerWidth < 600) {
+              console.log("Attempting to center skills container scroll");
+              
+              // La largeur totale du contenu (incluant ce qui n'est pas visible)
+              const scrollWidth = container.scrollWidth;
+              // La largeur visible du conteneur
+              const clientWidth = container.clientWidth;
+              
+              // Si le contenu est plus large que le conteneur (nécessite défilement)
+              if (scrollWidth > clientWidth) {
+                // Calculer la position centrale du scroll
+                const scrollPosition = (scrollWidth - clientWidth) / 2;
+                
+                // Centrer le scroll
+                container.scrollLeft = scrollPosition;
+                
+                console.log('Skills container scrolled to center position:', scrollPosition);
+              }
+            }
+          }
+        }
+        
+        // Appliquer le centrage après que les éléments sont chargés
+        // Le délai plus long garantit que tout le contenu est rendu
+        setTimeout(centerSkillsScroll, 500);
+        
+        // Réappliquer lors du redimensionnement et la rotation de l'écran
+        window.addEventListener('resize', function() {
+          setTimeout(centerSkillsScroll, 200);
+        });
+        
+        // Importante optimisation pour les appareils mobiles
+        window.addEventListener('orientationchange', function() {
+          setTimeout(centerSkillsScroll, 300);
+        });
+        
+        // Pour les tableaux qui sont chargés dynamiquement
+        const observer = new MutationObserver(function(mutations) {
+          setTimeout(centerSkillsScroll, 300);
+        });
+        
+        // Observer le conteneur parent pour détecter quand le tableau est ajouté
+        const skillsTarget = document.getElementById('skills-target');
+        if (skillsTarget) {
+          observer.observe(skillsTarget, { childList: true, subtree: true });
+        }
+      });
+      </script>
 </body>
 </html>
