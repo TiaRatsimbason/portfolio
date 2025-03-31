@@ -3,11 +3,19 @@
  * Remplace le shader WebGL par une vidéo en boucle sur les appareils mobiles
  */
 document.addEventListener('DOMContentLoaded', function() {
+    // Configuration du fond d'écran vidéo
+    const config = {
+      // Mettre à false pour désactiver la vidéo et utiliser WebGL partout
+      enableVideoBackground: true,
+      // Ajuster la taille de la vidéo (1 = taille normale, <1 pour dézoomer, >1 pour zoomer)
+      videoScale: 1.0
+    };
+    
     // Détection mobile améliorée
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
                     (window.innerWidth <= 768);
     
-    if (isMobile) {
+    if (isMobile && config.enableVideoBackground) {
       console.log('Appareil mobile détecté, utilisation du fond vidéo');
       
       // 1. Masquer le canvas WebGL
@@ -41,15 +49,23 @@ document.addEventListener('DOMContentLoaded', function() {
         
         #background-video {
           position: absolute;
-          top: 50%;
-          left: 50%;
-          min-width: 100%;
-          min-height: 100%;
-          width: auto;
-          height: auto;
-          transform: translateX(-50%) translateY(-50%);
-          object-fit: cover;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover; /* Ceci assure que la vidéo couvre toute la zone tout en maintenant ses proportions */
+          object-position: center center; /* Centre le contenu */
           opacity: 0.8;
+        }
+        
+        /* Styles alternatifs si object-fit ne fonctionne pas correctement */
+        @media screen and (max-width: 767px) {
+          #background-video {
+            /* Mode alternatif pour certains appareils */
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
         }
       `;
       
@@ -57,8 +73,14 @@ document.addEventListener('DOMContentLoaded', function() {
       document.head.appendChild(videoStyles);
       document.body.insertBefore(videoBackground, document.body.firstChild);
       
-      // 5. S'assurer que la vidéo se lance correctement
+      // 5. S'assurer que la vidéo se lance correctement et appliquer l'échelle
       const video = document.getElementById('background-video');
+      
+      // Appliquer l'échelle de la vidéo si nécessaire
+      if (video && config.videoScale !== 1.0) {
+        // Ajouter du CSS inline pour contrôler l'échelle
+        video.style.transform = `scale(${config.videoScale})`;
+      }
       
       // Fonction pour tenter de lancer la vidéo si elle ne démarre pas automatiquement
       const tryPlayVideo = function() {
@@ -80,6 +102,18 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // 6. Désactiver le script WebGL pour économiser les ressources
       window.webglDisabled = true;
+      
+      // 7. Ajouter une fonction pour ajuster la vidéo depuis la console si nécessaire
+      window.adjustVideoBackground = function(newScale) {
+        const video = document.getElementById('background-video');
+        if (video) {
+          config.videoScale = newScale;
+          video.style.transform = `scale(${config.videoScale})`;
+          console.log(`Échelle de la vidéo ajustée à: ${config.videoScale}`);
+        } else {
+          console.error("Vidéo non trouvée");
+        }
+      };
     } else {
       console.log('Desktop détecté, utilisation du shader WebGL');
     }
