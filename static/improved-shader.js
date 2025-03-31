@@ -3,6 +3,12 @@
  * Avec gestion des contextes perdus et optimisation des performances
  */
 document.addEventListener("DOMContentLoaded", function() {
+    // Vérifier si WebGL est désactivé (sur mobile)
+    if (window.webglDisabled === true) {
+        console.log("WebGL désactivé sur cet appareil, shader ignoré");
+        return;
+    }
+    
     // Système de logs conditionnel
     const DEBUG = false;
     function log(...args) {
