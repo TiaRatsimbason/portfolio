@@ -1,13 +1,21 @@
 /**
- * Solution simplifiée de fond d'écran vidéo pour mobile
+ * Solution de fond d'écran vidéo pour mobile
  * Remplace le shader WebGL par une vidéo en boucle sur les appareils mobiles
  */
 document.addEventListener('DOMContentLoaded', function() {
-    // Détection mobile
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
-                     (window.innerWidth <= 768);
+    // Configuration du fond d'écran vidéo
+    const config = {
+      // Mettre à false pour désactiver la vidéo et utiliser WebGL partout
+      enableVideoBackground: true,
+      // Ajuster la taille de la vidéo (1 = taille normale, <1 pour dézoomer, >1 pour zoomer)
+      videoScale: 1.0
+    };
     
-    if (isMobile) {
+    // Détection mobile améliorée
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+                    (window.innerWidth <= 768);
+    
+    if (isMobile && config.enableVideoBackground) {
       console.log('Appareil mobile détecté, utilisation du fond vidéo');
       
       // 1. Masquer le canvas WebGL
@@ -37,15 +45,27 @@ document.addEventListener('DOMContentLoaded', function() {
           z-index: 0;
           pointer-events: none;
           overflow: hidden;
-          background-color: #151912; /* Couleur de fond qui correspond à votre site */
         }
         
         #background-video {
           position: absolute;
+          top: 0;
+          left: 0;
           width: 100%;
           height: 100%;
-          object-fit: contain; /* Montre toute la vidéo sans la couper */
+          object-fit: cover; /* Ceci assure que la vidéo couvre toute la zone tout en maintenant ses proportions */
+          object-position: center center; /* Centre le contenu */
           opacity: 0.8;
+        }
+        
+        /* Styles alternatifs si object-fit ne fonctionne pas correctement */
+        @media screen and (max-width: 767px) {
+          #background-video {
+            /* Mode alternatif pour certains appareils */
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
         }
       `;
       
@@ -53,25 +73,45 @@ document.addEventListener('DOMContentLoaded', function() {
       document.head.appendChild(videoStyles);
       document.body.insertBefore(videoBackground, document.body.firstChild);
       
-      // 5. S'assurer que la vidéo se lance correctement
+      // 5. S'assurer que la vidéo se lance correctement et appliquer l'échelle
       const video = document.getElementById('background-video');
-      video.play().catch(error => {
-        console.log('Lecture vidéo différée, tentative au prochain clic utilisateur');
-        
-        // Tentative de lecture au clic
-        document.addEventListener('touchstart', function() {
-          video.play().catch(e => console.error('Échec de lecture vidéo:', e));
-        }, { once: true });
-      });
+      
+      // Appliquer l'échelle de la vidéo si nécessaire
+      if (video && config.videoScale !== 1.0) {
+        // Ajouter du CSS inline pour contrôler l'échelle
+        video.style.transform = `scale(${config.videoScale})`;
+      }
+      
+      // Fonction pour tenter de lancer la vidéo si elle ne démarre pas automatiquement
+      const tryPlayVideo = function() {
+        if (video && video.paused) {
+          video.play().catch(error => {
+            console.log('Lecture vidéo différée, nouvelle tentative dans 1s');
+            setTimeout(tryPlayVideo, 1000);
+          });
+        }
+      };
+      
+      // Essayer de lancer la vidéo au chargement
+      tryPlayVideo();
+      
+      // Tentative supplémentaire lors de l'interaction utilisateur
+      document.addEventListener('touchstart', function() {
+        tryPlayVideo();
+      }, { once: true });
       
       // 6. Désactiver le script WebGL pour économiser les ressources
       window.webglDisabled = true;
       
-      // 7. Fonction utilitaire pour basculer entre les modes d'affichage
-      window.toggleVideoFit = function() {
+      // 7. Ajouter une fonction pour ajuster la vidéo depuis la console si nécessaire
+      window.adjustVideoBackground = function(newScale) {
+        const video = document.getElementById('background-video');
         if (video) {
-          video.style.objectFit = video.style.objectFit === 'contain' ? 'cover' : 'contain';
-          console.log(`Mode d'affichage: ${video.style.objectFit}`);
+          config.videoScale = newScale;
+          video.style.transform = `scale(${config.videoScale})`;
+          console.log(`Échelle de la vidéo ajustée à: ${config.videoScale}`);
+        } else {
+          console.error("Vidéo non trouvée");
         }
       };
     } else {
