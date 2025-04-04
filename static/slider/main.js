@@ -160,8 +160,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Ajoutez ceci à la fin de votre fichier main.js existant
-
 // Fonction pour détecter si l'appareil est mobile
 function isMobileDevice() {
     return (window.innerWidth <= 768) || 
@@ -190,7 +188,6 @@ function optimizeForMobile() {
             // Faire disparaître l'indicateur lorsqu'on défile
             desc.addEventListener('scroll', function() {
                 const scrollPosition = this.scrollTop;
-                const maxScroll = this.scrollHeight - this.clientHeight;
                 
                 if (scrollPosition > 10) {
                     scrollIndicator.style.opacity = '0';
@@ -219,18 +216,8 @@ function optimizeForMobile() {
         lastTap = currentTime;
     });
     
-    // Ajuster la hauteur des conteneurs pour éviter les problèmes avec les barres d'adresse mobiles
-    function adjustHeight() {
-        document.querySelector('.container').style.height = `${window.innerHeight * 0.85}px`;
-    }
-    
-    window.addEventListener('resize', adjustHeight);
-    window.addEventListener('orientationchange', function() {
-        setTimeout(adjustHeight, 300); // Attendre que l'orientation soit complètement changée
-    });
-    
-    // Appeler une fois au démarrage
-    adjustHeight();
+    // NE PAS manipuler la hauteur automatiquement
+    // Cela interfère avec le positionnement CSS
 }
 
 // Exécuter après le chargement du DOM
@@ -244,12 +231,11 @@ const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 if (isIOS) {
     document.documentElement.classList.add('ios-device');
     
-    // Correction pour le problème de hauteur sur iOS
-    function setIOSHeight() {
-        const vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
-    }
-    
-    window.addEventListener('resize', setIOSHeight);
-    setIOSHeight();
+    // Solution alternative pour iOS qui n'affecte pas le positionnement
+    document.addEventListener('DOMContentLoaded', function() {
+        // Ajouter un délai pour s'assurer que tout est chargé
+        setTimeout(function() {
+            window.scrollTo(0, 1);
+        }, 100);
+    });
 }
