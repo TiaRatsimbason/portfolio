@@ -165,3 +165,42 @@ function isMobileDevice() {
     // Toujours retourner false pour garder l'apparence PC
     return false;
 }
+
+// Ajoutez ce code à la fin de votre fichier main.js
+
+// Forcer le mode paysage sur les appareils mobiles
+window.addEventListener('load', function() {
+    // Détection des appareils mobiles
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+        // Vérifier et inciter à l'orientation paysage
+        checkOrientation();
+        
+        // Écouter les changements d'orientation
+        window.addEventListener('orientationchange', checkOrientation);
+        window.addEventListener('resize', checkOrientation);
+    }
+    
+    function checkOrientation() {
+        // Si orientation portrait sur mobile
+        if (window.innerWidth < window.innerHeight) {
+            console.log("Orientation portrait détectée, encourager le mode paysage");
+            // Le message est affiché via CSS, pas besoin d'ajouter du code ici
+            
+            // Certains navigateurs mobiles supportent cette API (attention, expérimental)
+            try {
+                if (screen.orientation && screen.orientation.lock) {
+                    screen.orientation.lock('landscape').catch(function(error) {
+                        console.log("Impossible de verrouiller l'orientation: ", error);
+                    });
+                }
+            } catch (e) {
+                console.log("API d'orientation non supportée");
+            }
+        }
+    }
+    
+    // Ajuster le zoom pour que tout soit visible
+    document.documentElement.style.zoom = "98%";
+});
