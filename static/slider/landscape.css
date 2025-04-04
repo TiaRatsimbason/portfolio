@@ -1,84 +1,45 @@
-/* static/slider/landscape.css - Version corrigée */
+/* static/slider/landscape.css - Solution simplifiée */
 
-@media screen and (max-width: 900px) and (orientation: portrait) {
-    /* Force l'orientation paysage avec une rotation mais sans message */
-    .container {
-        transform: rotate(90deg);
-        transform-origin: bottom left;
-        width: 100vh;
-        height: 100vw;
-        position: absolute;
-        top: -100vw;
-        left: 0;
-        overflow: hidden;
-    }
-}
-
-@media screen and (max-width: 900px) and (orientation: landscape) {
-    /* Styles pour petits écrans en paysage */
+/* Style de base pour forcer l'orientation paysage sur mobile */
+@media screen and (max-width: 900px) {
+    /* Réinitialiser tous les styles qui pourraient interférer */
     body {
-        overflow: hidden; /* Empêcher le défilement */
-        margin: 0;
-        padding: 0;
+        overflow: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        height: 100% !important;
+        width: 100% !important;
     }
     
+    /* Style du conteneur principal - maintenu au centre de l'écran */
     .container {
-        width: 100vw;
-        height: 80vh; /* Réduire la hauteur pour éviter les débordements */
-        margin: 0;
-        position: absolute;
-        top: 0;
-        left: 0;
-        transform: none;
-        box-shadow: none; /* Enlever l'ombre pour gagner de l'espace visuel */
+        position: absolute !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        width: 90vw !important;
+        height: 85vh !important; 
+        max-height: 600px !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
     
-    /* Mettre à l'échelle les éléments du slider pour qu'ils rentrent */
-    .container .slide .item {
-        box-shadow: 0 10px 20px rgba(80, 80, 80, 0.5); /* Ombre plus légère */
-    }
-    
-    .slide .item:nth-child(3) {
-        left: 50%;
-    }
-    
-    .slide .item:nth-child(4) {
-        left: calc(50% + 220px);
-    }
-    
-    .slide .item:nth-child(5) {
-        left: calc(50% + 440px);
-    }
-    
-    /* Positionnement fixe du bouton de retour pour qu'il soit toujours visible et ne déborde pas */
+    /* Assurer que le bouton de retour est visible */
     .back-button-container {
-        position: fixed;
-        bottom: 5px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 1000;
+        position: fixed !important;
+        bottom: 10px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        z-index: 1000 !important;
     }
     
-    .back-button {
-        font-size: 14px;
-        padding: 8px 16px;
-        background-color: rgba(51, 51, 51, 0.9);
-        text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+    /* Réduire légèrement les éléments du slider pour les petits écrans */
+    .container .slide .item {
+        transition: .3s !important;
     }
     
-    /* Ajustements des boutons de navigation pour qu'ils ne débordent pas */
+    /* Ajuster les boutons de navigation */
     .button {
-        bottom: 5px;
-    }
-    
-    .button button {
-        width: 35px;
-        height: 30px;
-    }
-    
-    /* Ajustements pour le modal */
-    .modal-content {
-        width: 95%;
-        max-height: 95vh;
+        bottom: 10px !important;
     }
 }

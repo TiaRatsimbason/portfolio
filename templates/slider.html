@@ -2,11 +2,11 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <!-- Remplacer les balises meta viewport et orientation existantes par celles-ci -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="screen-orientation" content="landscape">
-    <meta name="x5-orientation" content="landscape">
-    <meta name="msapplication-orientation" content="landscape">
+    <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
+    <meta name="orientation" content="landscape">
+    <!-- Garder le reste inchangé -->
     <title>Image Slider Effect</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='slider/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='slider/landscape.css') }}">
