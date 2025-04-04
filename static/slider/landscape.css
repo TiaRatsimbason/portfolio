@@ -1,25 +1,7 @@
-/* Créez un nouveau fichier CSS : static/slider/landscape.css */
+/* static/slider/landscape.css - Version corrigée */
 
-/* Ce fichier ne contient que les styles d'orientation et de positionnement essentiels */
-@media screen and (max-width: 768px) and (orientation: portrait) {
-    /* Message pour inciter l'utilisateur à pivoter son appareil */
-    body:before {
-        content: "Pour une meilleure expérience, veuillez tourner votre appareil en mode paysage";
-        display: block;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        background-color: rgba(0, 0, 0, 0.8);
-        color: white;
-        padding: 15px;
-        text-align: center;
-        font-family: system-ui;
-        z-index: 10000;
-        font-size: 16px;
-    }
-    
-    /* Force l'orientation paysage avec une rotation */
+@media screen and (max-width: 900px) and (orientation: portrait) {
+    /* Force l'orientation paysage avec une rotation mais sans message */
     .container {
         transform: rotate(90deg);
         transform-origin: bottom left;
@@ -32,26 +14,46 @@
     }
 }
 
-@media screen and (max-width: 768px) and (orientation: landscape) {
+@media screen and (max-width: 900px) and (orientation: landscape) {
     /* Styles pour petits écrans en paysage */
     body {
         overflow: hidden; /* Empêcher le défilement */
+        margin: 0;
+        padding: 0;
     }
     
     .container {
         width: 100vw;
-        height: 85vh; /* Réduire légèrement la hauteur pour laisser place au bouton */
+        height: 80vh; /* Réduire la hauteur pour éviter les débordements */
         margin: 0;
         position: absolute;
         top: 0;
         left: 0;
         transform: none;
+        box-shadow: none; /* Enlever l'ombre pour gagner de l'espace visuel */
     }
     
-    /* Positionnement fixe du bouton de retour pour qu'il soit toujours visible */
+    /* Mettre à l'échelle les éléments du slider pour qu'ils rentrent */
+    .container .slide .item {
+        box-shadow: 0 10px 20px rgba(80, 80, 80, 0.5); /* Ombre plus légère */
+    }
+    
+    .slide .item:nth-child(3) {
+        left: 50%;
+    }
+    
+    .slide .item:nth-child(4) {
+        left: calc(50% + 220px);
+    }
+    
+    .slide .item:nth-child(5) {
+        left: calc(50% + 440px);
+    }
+    
+    /* Positionnement fixe du bouton de retour pour qu'il soit toujours visible et ne déborde pas */
     .back-button-container {
         position: fixed;
-        bottom: 10px;
+        bottom: 5px;
         left: 50%;
         transform: translateX(-50%);
         z-index: 1000;
@@ -61,10 +63,22 @@
         font-size: 14px;
         padding: 8px 16px;
         background-color: rgba(51, 51, 51, 0.9);
+        text-shadow: 0 1px 2px rgba(0,0,0,0.8);
     }
     
-    /* Ajustements des boutons de navigation */
+    /* Ajustements des boutons de navigation pour qu'ils ne débordent pas */
     .button {
-        bottom: 10px;
+        bottom: 5px;
+    }
+    
+    .button button {
+        width: 35px;
+        height: 30px;
+    }
+    
+    /* Ajustements pour le modal */
+    .modal-content {
+        width: 95%;
+        max-height: 95vh;
     }
 }

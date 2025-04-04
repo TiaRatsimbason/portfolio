@@ -204,3 +204,56 @@ window.addEventListener('load', function() {
     // Ajuster le zoom pour que tout soit visible
     document.documentElement.style.zoom = "98%";
 });
+
+// Ajoutez ce code à la fin de votre fichier main.js
+
+// Optimiser l'affichage sur mobile en mode paysage
+window.addEventListener('load', function() {
+    // Détection des appareils mobiles
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+        // Optimiser le dimensionnement
+        optimizeLandscapeView();
+        
+        // Réoptimiser lors des redimensionnements
+        window.addEventListener('orientationchange', optimizeLandscapeView);
+        window.addEventListener('resize', optimizeLandscapeView);
+    }
+    
+    function optimizeLandscapeView() {
+        // Obtenir les dimensions réelles du viewport
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+        
+        // Calculer le ratio pour s'assurer que tout rentre parfaitement
+        const container = document.querySelector('.container');
+        if (container) {
+            // Ajuster la taille du conteneur en fonction de la hauteur disponible
+            if (viewportWidth < 901) {
+                // Pour les mobiles, s'assurer que tout s'affiche correctement
+                const containerHeight = Math.min(viewportHeight * 0.85, 500);
+                container.style.height = containerHeight + 'px';
+                
+                // Ajuster la taille du conteneur pour éviter les débordements
+                const scale = Math.min(1, (viewportHeight - 50) / 600);
+                if (scale < 1) {
+                    container.style.transform = `scale(${scale})`;
+                    container.style.transformOrigin = 'center center';
+                } else {
+                    container.style.transform = 'none';
+                }
+                
+                // S'assurer que le bouton de retour est toujours visible
+                const backButton = document.querySelector('.back-button-container');
+                if (backButton) {
+                    backButton.style.bottom = '10px';
+                }
+            } else {
+                // Réinitialiser pour les grands écrans
+                container.style.transform = '';
+                container.style.height = '';
+            }
+        }
+    }
+});
