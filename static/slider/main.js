@@ -159,3 +159,97 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(setupFullscreenButtons, 100);
     });
 });
+
+// Ajoutez ceci à la fin de votre fichier main.js existant
+
+// Fonction pour détecter si l'appareil est mobile
+function isMobileDevice() {
+    return (window.innerWidth <= 768) || 
+           ('ontouchstart' in window) || 
+           (navigator.maxTouchPoints > 0) || 
+           (navigator.msMaxTouchPoints > 0);
+}
+
+// Optimisations pour les appareils mobiles
+function optimizeForMobile() {
+    if (!isMobileDevice()) return;
+    
+    console.log('Applying mobile optimizations');
+    
+    // Gérer le défilement des descriptions longues
+    const descriptions = document.querySelectorAll('.content .description');
+    descriptions.forEach(desc => {
+        // Si le contenu est plus grand que la hauteur visible
+        if (desc.scrollHeight > desc.clientHeight) {
+            // Ajouter un indicateur de défilement
+            const scrollIndicator = document.createElement('div');
+            scrollIndicator.className = 'scroll-indicator';
+            scrollIndicator.innerHTML = '<i class="fas fa-chevron-down"></i>';
+            desc.parentNode.insertBefore(scrollIndicator, desc.nextSibling);
+            
+            // Faire disparaître l'indicateur lorsqu'on défile
+            desc.addEventListener('scroll', function() {
+                const scrollPosition = this.scrollTop;
+                const maxScroll = this.scrollHeight - this.clientHeight;
+                
+                if (scrollPosition > 10) {
+                    scrollIndicator.style.opacity = '0';
+                } else {
+                    scrollIndicator.style.opacity = '1';
+                }
+            });
+        }
+    });
+    
+    // Améliorer la gestion des touches pour le modal
+    const modal = document.getElementById('fullscreenModal');
+    
+    // Double-tap pour fermer le modal sur mobile
+    let lastTap = 0;
+    modal.addEventListener('touchend', function(e) {
+        const currentTime = new Date().getTime();
+        const tapLength = currentTime - lastTap;
+        
+        if (tapLength < 300 && tapLength > 0) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            e.preventDefault();
+        }
+        
+        lastTap = currentTime;
+    });
+    
+    // Ajuster la hauteur des conteneurs pour éviter les problèmes avec les barres d'adresse mobiles
+    function adjustHeight() {
+        document.querySelector('.container').style.height = `${window.innerHeight * 0.85}px`;
+    }
+    
+    window.addEventListener('resize', adjustHeight);
+    window.addEventListener('orientationchange', function() {
+        setTimeout(adjustHeight, 300); // Attendre que l'orientation soit complètement changée
+    });
+    
+    // Appeler une fois au démarrage
+    adjustHeight();
+}
+
+// Exécuter après le chargement du DOM
+document.addEventListener('DOMContentLoaded', function() {
+    // Appeler après un court délai pour s'assurer que tout est chargé
+    setTimeout(optimizeForMobile, 800);
+});
+
+// Vérifier si l'appareil est iOS pour appliquer des corrections spécifiques
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+if (isIOS) {
+    document.documentElement.classList.add('ios-device');
+    
+    // Correction pour le problème de hauteur sur iOS
+    function setIOSHeight() {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+    
+    window.addEventListener('resize', setIOSHeight);
+    setIOSHeight();
+}
