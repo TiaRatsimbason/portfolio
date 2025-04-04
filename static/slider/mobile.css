@@ -1,151 +1,118 @@
+/* static/slider/mobile.css */
+
 /* Optimisations mobiles améliorées pour le slider */
 
-/* Smartphones (portrait) */
-@media only screen and (max-width: 480px) {
+/* Smartphones (portrait) et écrans jusqu'à 767px */
+@media only screen and (max-width: 767px) {
     body {
-      overflow-x: hidden;
-      overflow-y: auto;
-      position: relative;
-      height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+        position: relative;
+        height: 100%;
     }
     
     .container {
-      position: absolute;
-      width: 95%;
-      height: 85vh;
-      min-height: 450px;
-      max-height: 600px;
+        position: absolute; /* Garder absolute pour le centrage, ou passer à flexbox/grid */
+        width: 90%; /* Ajusté à 90% */
+        height: 85%; /* Ajusté à 85% */
+        max-height: 500px; /* Conserver la max-height de 500px */
+        transform: translate(-50%, -50%); /* Pour le centrage */
+        top: 50%; /* Pour le centrage */
+        left: 50%; /* Pour le centrage */
     }
     
     .item .content {
-      left: 15px;
-      width: calc(100% - 30px);
-      max-width: 100%;
-      padding: 15px;
+        left: 15px;
+        width: calc(100% - 30px);
+        max-width: 100%;
+        padding: 15px;
     }
     
     .content .name {
-      font-size: 20px;
-      line-height: 1.2;
+        font-size: 24px; /* Conserver 24px */
+        line-height: 1.2;
     }
     
     .content .description {
-      font-size: 14px;
-      line-height: 1.3;
-      max-height: 35vh;
-      overflow-y: auto;
-      padding-right: 10px;
+        font-size: 14px; /* Conserver 14px */
+        line-height: 1.3;
+        max-height: 120px; /* Ajusté à 120px */
+        overflow-y: auto;
+        padding-right: 10px;
     }
     
     .content button {
-      font-size: 14px;
-      padding: 8px 15px;
-      width: 100%;
-      margin-top: 10px;
-    }
-    
-    /* Ajustement du modal pour mobile */
-    .modal-content {
-      width: 95%;
-    }
-    
-    .modal-image-container {
-      height: auto;
-      max-height: 40vh;
-    }
-    
-    #fullscreenImage {
-      object-fit: contain;
+        font-size: 14px; /* Conserver 14px */
+        padding: 8px 16px; /* Conserver 8px 16px */
+        width: 100%;
+        margin-top: 10px;
     }
     
     .back-button-container {
-      bottom: 10px;
-      left: 10px;
+        bottom: 10px;
+        left: 10px;
     }
-    
-    .back-button {
-      padding: 8px 15px;
-      font-size: 14px;
-    }
-  }
-  
-  /* Pour les très petits écrans */
-  @media only screen and (max-width: 360px) {
+}
+
+/* Pour les très petits écrans (jusqu'à 480px) */
+@media only screen and (max-width: 480px) {
     .container {
-      min-height: 400px;
+        width: 95%; /* Conserver 95% */
+        height: 70%; /* Ajusté à 70% */
+        min-height: 400px;
     }
     
     .content .name {
-      font-size: 18px;
+        font-size: 20px; /* Conserver 20px */
     }
     
     .content .description {
-      font-size: 12px;
-      margin-bottom: 10px;
+        margin-bottom: 10px;
     }
     
     .content button {
-      font-size: 12px;
-      padding: 6px 12px;
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+    
+    .button { /* Ajuster la position des boutons de navigation */
+        bottom: 10px;
     }
     
     .button button {
-      width: 32px;
-      height: 32px;
+        width: 36px;
+        height: 36px;
     }
+}
+
+/* ... (reste du style de la scrollbar et fix iOS si nécessaire) ... */
+
+/* Styles pour la scrollbar sur la description (mobile) */
+.content .description::-webkit-scrollbar {
+  width: 4px;
+}
+
+.content .description::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.content .description::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+/* Fix pour Safari et iOS */
+@supports (-webkit-touch-callout: none) {
+  .container {
+    position: fixed;
+    top: 50%;
   }
   
-  /* Styles pour la scrollbar sur la description (mobile) */
-  .content .description::-webkit-scrollbar {
-    width: 4px;
+  body {
+    position: fixed;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
   }
-  
-  .content .description::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-  }
-  
-  .content .description::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
-  }
-  
-  /* Pour tablettes et appareils moyens */
-  @media only screen and (min-width: 481px) and (max-width: 767px) {
-    .container {
-      width: 95%;
-      height: 80vh;
-      min-height: 500px;
-    }
-    
-    .item .content {
-      left: 20px;
-      width: 80%;
-      max-width: 450px;
-    }
-    
-    .content .name {
-      font-size: 24px;
-    }
-    
-    .content .description {
-      font-size: 16px;
-      max-height: 40vh;
-      overflow-y: auto;
-    }
-  }
-  
-  /* Fix pour Safari et iOS */
-  @supports (-webkit-touch-callout: none) {
-    .container {
-      position: fixed;
-      top: 50%;
-    }
-    
-    body {
-      position: fixed;
-      overflow: hidden;
-      width: 100%;
-      height: 100%;
-    }
-  }
+}

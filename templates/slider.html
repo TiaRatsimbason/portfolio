@@ -7,65 +7,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='slider/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='slider/mobile.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <style>
-        /* Correction simple pour l'affichage mobile du slider */
-        @media only screen and (max-width: 767px) {
-          /* Conteneur principal : plus petit et centré */
-          .container {
-            width: 90%;
-            height: 85%;
-            max-height: 500px;
-            transform: translate(-50%, -50%);
-            top: 50%;
-            left: 50%;
-          }
-          
-          /* Adapter le texte pour qu'il soit lisible sur petit écran */
-          .content .name {
-            font-size: 24px;
-          }
-          
-          .content .description {
-            font-size: 14px;
-            max-height: 120px;
-            overflow-y: auto;
-          }
-          
-          /* S'assurer que le bouton est bien visible */
-          .content button {
-            font-size: 14px;
-            padding: 8px 16px;
-          }
-          
-          /* Pour le bouton de retour */
-          .back-button-container {
-            bottom: 10px;
-            left: 10px;
-          }
-        }
-    
-        /* Pour les très petits écrans */
-        @media only screen and (max-width: 480px) {
-          .container {
-            width: 95%;
-            height: 70%;
-          }
-          
-          .content .name {
-            font-size: 20px;
-          }
-          
-          /* Augmenter la visibilité des boutons de navigation */
-          .button {
-            bottom: 10px;
-          }
-          
-          .button button {
-            width: 36px;
-            height: 36px;
-          }
-        }
-    </style>
 </head>
 <body>
     <div class="container">
