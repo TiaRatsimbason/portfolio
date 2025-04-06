@@ -300,7 +300,7 @@
   .slider-button {
       padding: 8px 16px;
       font-size: 0.9rem;
-      width: 100%;
+      width: calc(100% - 40px);
       margin-top: 10px;
   }
 }

@@ -1,14 +1,15 @@
-/* static/slider/landscape.css - Solution simplifiée */
+/* static/slider/landscape.css - Optimisation pour affichage mobile en paysage */
 
 /* Style de base pour forcer l'orientation paysage sur mobile */
 @media screen and (max-width: 900px) {
     /* Réinitialiser tous les styles qui pourraient interférer */
     body {
-        overflow: auto !important;
+        overflow: hidden !important; /* Empêcher le défilement */
         margin: 0 !important;
         padding: 0 !important;
-        height: 100% !important;
-        width: 100% !important;
+        height: 100vh !important;
+        width: 100vw !important;
+        position: fixed !important; /* Fixer la position pour éviter le défilement */
     }
     
     /* Style du conteneur principal - maintenu au centre de l'écran */
@@ -17,29 +18,67 @@
         top: 50% !important;
         left: 50% !important;
         transform: translate(-50%, -50%) !important;
-        width: 90vw !important;
-        height: 85vh !important; 
-        max-height: 600px !important;
+        width: 95vw !important; /* Légèrement plus large */
+        height: 80vh !important; /* Réduit pour laisser de l'espace pour le bouton */
+        max-height: 550px !important; /* Ajusté pour mieux s'adapter aux petits écrans */
         margin: 0 !important;
         padding: 0 !important;
     }
     
-    /* Assurer que le bouton de retour est visible */
+    /* Repositionner le bouton de retour en bas à droite */
     .back-button-container {
         position: fixed !important;
-        bottom: 10px !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
+        bottom: 15px !important;
+        right: 15px !important; /* Changé de left à right */
+        left: auto !important; /* Annuler la valeur left */
+        transform: none !important; /* Annuler la transformation */
         z-index: 1000 !important;
     }
     
-    /* Réduire légèrement les éléments du slider pour les petits écrans */
-    .container .slide .item {
-        transition: .3s !important;
+    /* Style spécifique pour le bouton */
+    .back-button {
+        padding: 8px 16px !important; /* Légèrement plus petit */
+        font-size: 14px !important; /* Police réduite */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important; /* Ombre pour meilleure visibilité */
+        background-color: rgba(51, 51, 51, 0.9) !important; /* Légèrement transparent */
     }
     
     /* Ajuster les boutons de navigation */
     .button {
-        bottom: 10px !important;
+        bottom: 15px !important;
+    }
+    
+    /* Adapter le contenu des slides pour un meilleur ajustement */
+    .item .content {
+        left: 20px !important;
+        width: 70% !important; /* Réduit pour éviter la superposition */
+        max-width: 350px !important;
+    }
+    
+    /* Décaler davantage les tuiles suivantes vers la droite pour éviter toute superposition avec le texte */
+    .slide .item:nth-child(3) {
+        left: 78% !important; /* Augmenté de 65% à 78% */
+    }
+    
+    .slide .item:nth-child(4) {
+        left: calc(78% + 220px) !important; /* Ajusté en fonction de la nouvelle position de la 3ème tuile */
+    }
+    
+    .slide .item:nth-child(5) {
+        left: calc(78% + 440px) !important; /* Ajusté en fonction de la nouvelle position */
+    }
+    
+    .slide .item:nth-child(n + 6) {
+        left: calc(78% + 440px) !important; /* Ajusté en fonction de la nouvelle position */
+    }
+    
+    /* Réduire légèrement la taille des polices */
+    .content .name {
+        font-size: 26px !important; /* Légèrement plus petit */
+    }
+    
+    .content .description {
+        font-size: 15px !important;
+        line-height: 1.3 !important;
     }
 }
