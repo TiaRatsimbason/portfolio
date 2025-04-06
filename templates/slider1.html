@@ -8,14 +8,14 @@
     <meta name="orientation" content="landscape">
     <!-- Garder le reste inchangé -->
     <title>Image Slider Effect</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='slider/style.css') }}?v={{ static_version }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='slider/landscape.css') }}?v={{ static_version }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='slider/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='slider/landscape.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
         <div class="slide">
-            <div class="item" style="background: url('{{ url_for('static', filename='images/grafana.png') }}?v={{ static_version }}');">
+            <div class="item" style="background: url('{{ url_for('static', filename='images/grafana.png') }}');">
                 <!-- Ajout d'un overlay pour améliorer la lisibilité -->
                 <div class="overlay"></div>
                 <div class="content">
@@ -24,7 +24,7 @@
                     <button onclick="openFullscreen(this)" class="fullscreen-btn">Voir un exemple de graphique <i class="fa-solid fa-expand"></i></button>
                 </div>
             </div>
-            <div class="item" style="background: url('{{ url_for('static', filename='images/Docker.png') }}?v={{ static_version }}');">
+            <div class="item" style="background: url('{{ url_for('static', filename='images/Docker.png') }}');">
                 <div class="overlay"></div>
                 <div class="content">
                     <div class="name">Services déployés dans des conteneurs Docker</div>
@@ -32,7 +32,7 @@
                     <button onclick="openFullscreen(this)" class="fullscreen-btn">Voir les Services <i class="fa-solid fa-expand"></i></button>
                 </div>
             </div>
-            <div class="item" style="background: url('{{ url_for('static', filename='images/FastAPI.png') }}?v={{ static_version }}');">
+            <div class="item" style="background: url('{{ url_for('static', filename='images/FastAPI.png') }}');">
                 <div class="overlay"></div>
                 <div class="content">
                     <div class="name">Exposition de l'application via FastAPI</div>
@@ -40,7 +40,7 @@
                     <button>Voir les différentes routes <i class="fa-solid fa-expand"></i></button>
                 </div>
             </div>
-            <div class="item" style="background: url('{{ url_for('static', filename='images/Mongodb.png') }}?v={{ static_version }}');">
+            <div class="item" style="background: url('{{ url_for('static', filename='images/Mongodb.png') }}');">
                 <div class="overlay"></div>
                 <div class="content">
                     <div class="name">Gestion des données via MongoDB</div>
@@ -48,7 +48,7 @@
                     <button>Voir les collections <i class="fa-solid fa-expand"></i></button>
                 </div>
             </div>
-            <div class="item" style="background: url('{{ url_for('static', filename='images/mlflow.png') }}?v={{ static_version }}');">
+            <div class="item" style="background: url('{{ url_for('static', filename='images/mlflow.png') }}');">
                 <div class="overlay"></div>
                 <div class="content">
                     <div class="name">Suivi des modèles sous MLflow</div>
@@ -56,7 +56,7 @@
                     <button>Voir les différents entraînements <i class="fa-solid fa-expand"></i></button>
                 </div>
             </div>
-            <div class="item" style="background: url('{{ url_for('static', filename='images/airflow.png') }}?v={{ static_version }}');">
+            <div class="item" style="background: url('{{ url_for('static', filename='images/airflow.png') }}');">
                 <div class="overlay"></div>
                 <div class="content">
                     <div class="name">Orchestration des workflows avec Airflow</div>
@@ -64,7 +64,7 @@
                     <button>Voir les DAGs <i class="fa-solid fa-expand"></i></button>
                 </div>
             </div>
-            <div class="item" style="background: url('{{ url_for('static', filename='images/prometheus.png') }}?v={{ static_version }}');">
+            <div class="item" style="background: url('{{ url_for('static', filename='images/prometheus.png') }}');">
                 <!-- Ajout d'un overlay pour améliorer la lisibilité -->
                 <div class="overlay"></div>
                 <div class="content">
@@ -85,7 +85,7 @@
         <a href="{{ url_for('accueil') }}" class="back-button">Retour au Portfolio</a>
     </div>
     
-    <script src="{{ url_for('static', filename='slider/main.js') }}?v={{ static_version }}"></script>
+    <script src="{{ url_for('static', filename='slider/main.js') }}"></script>
 
 <!-- Modal pour afficher l'image en plein écran -->
 <div id="fullscreenModal" class="modal">
