@@ -13,6 +13,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 <body>
+    <!-- Fond d'écran vidéo en boucle -->
+    <video class="background-video" autoplay loop muted playsinline>
+        <source src="{{ url_for('static', filename='videos/background.mp4') }}?v={{ static_version }}" type="video/mp4">
+        <!-- Vous pouvez ajouter d'autres formats pour une meilleure compatibilité -->
+    </video>
+    
     <div class="container">
         <div class="slide">
             <div class="item" style="background: url('{{ url_for('static', filename='images/grafana.png') }}?v={{ static_version }}');">
