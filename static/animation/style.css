@@ -1,0 +1,333 @@
+body {
+  margin: 0;
+  touch-action: none;
+  overflow: hidden;
+  display: grid;
+  user-select: none;
+}
+
+/* Wrapper pour contenir le canvas et l'animation textuelle */
+.content-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+canvas {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+body > * {
+  grid-row: 1;
+  grid-column: 1;
+}
+main {
+  display: grid;
+  position: relative;
+}
+
+main > * {
+  grid-row: 1;
+  grid-column: 1;
+  z-index: 1;
+}
+article {
+  position: relative;
+  align-self: center;
+  justify-self: center;
+  width: 85%;
+  max-width: 900px;
+  font: bold 22px/1.5 system-ui;
+  color: #b5b5b5;
+  text-rendering: optimizeLegibility;
+  margin: 0 auto;
+  padding: 25px;
+  text-align: justify;
+}
+article > h2 {
+  text-align: center;
+  line-height: 1.2;
+  margin: 0 0 20px 0;
+  font-size: 3.2em;
+  color: #1e90ff;
+  opacity: 0;
+  animation: fade-in 3s forwards 0s; /* Animation légèrement plus longue, mais pas trop */
+}
+article > p {
+  position: relative;
+  font-size: 22px;
+  line-height: 1.6;
+  margin: 0;
+  opacity: 0;
+  animation: fade-in 3s forwards 1s; /* Décalé pour avoir un effet progressif */
+}
+article > p::before {
+  opacity: 0;
+  animation: fade-in 3s forwards 2s; /* Décalé encore plus */
+}
+article > p::after {
+  opacity: 0;
+  animation: fade-in 3s forwards 2s; /* Décalé encore plus */
+}
+
+@media screen and (min-width: 600px) {
+  article.final-image::before {
+    content: "";
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    border-top: 2px solid transparent;
+    border-left: 2px solid transparent;
+    border-image: linear-gradient(315deg, #b5b5b5, transparent) 1;
+    left: -80px;
+    top: -65px;
+    opacity: 0;
+    animation: fade-in 10s forwards 0s;
+  }
+  article.final-image::after {
+    content: "";
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    border-bottom: 2px solid transparent;
+    border-right: 2px solid transparent;
+    border-image: linear-gradient(135deg, #b5b5b5, transparent) 1;
+    right: -80px;
+    bottom: -55px;
+    opacity: 0;
+    animation: fade-in 10s forwards 0s;
+  }
+}
+.hide {
+  display: none !important; /* Forçage du display none */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none; /* Empêcher les interactions avec les éléments cachés */
+}
+
+.hide > *,
+.hide > *::before,
+.hide > *::after {
+  animation: fade-out 1s forwards 0s;
+}
+.hidden {
+  visibility: hidden;
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  70% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Animation textuelle */
+@import url(https://fonts.googleapis.com/css?family=Fjalla+One);
+
+/* S'assurer que les styles de l'animation textuelle n'affectent pas les autres éléments */
+.container h1 {
+  font-family: 'Fjalla One', sans-serif;
+}
+
+/* Ajouter des styles spécifiques pour positionner l'animation au-dessus de l'image finale */
+.final-image-section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 200;
+  pointer-events: none; /* Permet aux clics de passer à travers */
+}
+
+.final-image-section .button {
+  pointer-events: auto; /* Réactive les clics pour le bouton */
+}
+
+.container {
+  position: absolute;
+  top: 22%; /* Position ajustée */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none; /* Masquer au début */
+  max-width: 500px; /* Plus large pour PC */
+  z-index: 9999; /* Valeur très élevée pour être au-dessus de TOUT */
+  pointer-events: auto; /* Activer les interactions */
+}
+.button{
+  float: left;
+  position: relative;
+  bottom: -75px; /* Ajusté vers le bas */
+  left: 50%;
+  transform: translateX(-50%) rotate(-10deg);
+  color: #e55643;
+  text-transform: uppercase;
+  opacity: 0;
+  visibility: hidden;
+  cursor: pointer;
+  font-size: 20px; /* Police plus grande */
+}
+.button span{
+  transform: skew(-10deg);
+  display: block;
+  float: left;
+  text-shadow: #533d4a 1px 1px, #533d4a 2px 2px, #533d4a 3px 3px, #533d4a 4px 4px;
+}
+h1{
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 50px;
+  margin: 0;
+  line-height: 55px;
+  letter-spacing: 2px;
+  white-space: nowrap; /* Empêcher le retour à la ligne */
+  overflow: visible; /* S'assurer que tout le texte est visible */
+  width: auto; /* Laisser la largeur s'adapter au contenu */
+}
+.title{
+  transform: translateX(-50%) rotate(-10deg);
+  display: block;
+  float: left;
+  left: 50%;
+  position: relative;
+  white-space: nowrap; /* Empêcher le retour à la ligne */
+}
+.title span {
+  transform: skew(-10deg);
+  display: block;
+  float: left;
+  text-shadow: #533d4a 1px 1px, #533d4a 2px 2px, #533d4a 3px 3px, #533d4a 4px 4px, #533d4a 5px 5px, #533d4a 6px 6px;
+  min-width: 10px;
+  min-height: 10px;
+  position: relative;
+  white-space: nowrap; /* Empêcher le retour à la ligne */
+}
+.title:nth-child(1){
+  color: #e55643;
+}
+.title:nth-child(2){
+  color: #2b9f5e;
+}
+.title:nth-child(3){
+  color: #f1c83c;
+}
+
+.final-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  position: relative;
+  opacity: 1;
+  width: auto;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.final-image img {
+  width: auto;
+  max-width: 90%;
+  max-height: 80vh;
+  object-fit: contain;
+  opacity: 0;
+  animation: fade-in 3s forwards 0s;
+  /* Suppression du halo bleu */
+  border-radius: 0;
+  box-shadow: none;
+  display: block;
+  margin: 0 auto;
+}
+
+.final-image.hide {
+  opacity: 0;
+  visibility: hidden;
+  display: none !important;
+}
+
+/* Styles pour s'assurer que l'animation s'affiche correctement sur mobile */
+@media screen and (max-width: 768px) {
+  /* Conserver les tailles originales sur mobile */
+  article {
+    font: bold 20px/1.4 system-ui;
+    width: 80%;
+    max-width: 800px;
+    padding: 20px;
+  }
+  
+  article > h2 {
+    font-size: 2.5em;
+    margin: 0 0 15px 0;
+  }
+  
+  article > p {
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  .container {
+    top: 25%; /* Position adaptée pour les mobiles */
+    max-width: 300px; /* Retour à une taille plus petite pour mobile */
+  }
+  
+  h1 {
+    font-size: 34px;
+    line-height: 38px;
+  }
+  
+  .title {
+    white-space: nowrap !important; /* Empêcher le retour à la ligne sur mobile */
+  }
+  
+  .title span {
+    white-space: nowrap !important; /* Empêcher le retour à la ligne sur mobile */
+  }
+  
+  /* Décaler le bouton "Again" vers la droite sur mobile */
+  .button {
+    /* Conservons les styles originaux pour desktop */
+    /* Ces styles ne s'appliquent QUE sur mobiles grâce au media query */
+    bottom: 50px !important;
+    right: 20px !important;
+    left: auto !important;
+    position: fixed !important;
+    background-color: rgba(0,0,0,0.7) !important;
+    padding: 8px !important;
+    border-radius: 5px !important;
+    z-index: 1001 !important;
+  }
+  
+  /* Placer les titres au-dessus des textes sur mobile */
+  article {
+    display: flex !important;
+    flex-direction: column !important;
+    text-align: center !important;
+    padding: 15px !important;
+  }
+  
+  article > h2 {
+    width: 100% !important;
+    margin-bottom: 20px !important;
+  }
+  
+  article > p {
+    width: 100% !important;
+    text-align: justify !important;
+  }
+}

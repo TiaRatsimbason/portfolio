@@ -35,12 +35,31 @@
         z-index: 1000 !important;
     }
     
-    /* Style spécifique pour le bouton */
-    .back-button {
-        padding: 8px 16px !important; /* Légèrement plus petit */
-        font-size: 14px !important; /* Police réduite */
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important; /* Ombre pour meilleure visibilité */
-        background-color: rgba(51, 51, 51, 0.9) !important; /* Légèrement transparent */
+    /* Réduire la taille du bouton cool-button pour les appareils mobiles */
+    .cool-button {
+        transform: rotate(353deg) skewX(4deg) scale(0.75) !important; /* Réduction plus forte sur mobile */
+        width: 150px !important;
+        height: 55px !important;
+        margin-right: 15px !important;
+    }
+    
+    /* Positionner correctement le conteneur de bouton */
+    .back-button-container {
+        position: fixed !important;
+        bottom: 12px !important;
+        right: 12px !important;
+        left: auto !important;
+        z-index: 1000 !important;
+    }
+    
+    /* Ajuster le contenu du bouton pour éviter le chevauchement */
+    .cool-button .content {
+        gap: 8px !important;
+    }
+    
+    /* Ajuster la taille de la police pour le bouton */
+    .cool-button .char span {
+        font-size: 0.85em !important;
     }
     
     /* Ajuster les boutons de navigation */

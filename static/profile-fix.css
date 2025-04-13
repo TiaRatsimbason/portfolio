@@ -1,0 +1,53 @@
+/* Correctifs minimaux pour la photo de profil */
+.profile-avatar {
+  /* Augmenter légèrement la taille du conteneur pour accommoder le zoom */
+  margin-top: 5px;
+  position: relative;
+}
+
+.profile-avatar-img {
+  /* Légère augmentation de la zone de clipping */
+  clip-path: path("M -20 110 L 60 50 L 300 50 L 370 110 L 370 240 C 180 360, -20 300, -20 240 Z");
+  position: relative; /* Ajout pour positionnement correct */
+}
+
+.profile-avatar-img > img {
+  /* Conserver les propriétés originales tout en ajustant la position */
+  object-position: center 20%;
+  /* Aucune autre modification pour préserver la qualité */
+  cursor: pointer; /* Indiquer que l'image est cliquable */
+}
+
+/* Indication "CLICK ME" */
+.profile-avatar-img::after {
+  content: "";
+  position: absolute;
+  bottom: 20px;
+  right: -60px;
+  width: 70px;
+  height: 70px;
+  background-image: url('../images/ui/click-me.svg'), url('../images/ui/click-me.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 9999;
+  animation: pulse 2s infinite;
+  pointer-events: none; /* Ne pas interférer avec les clics */
+}
+
+/* Animation de pulsation */
+@keyframes pulse {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+/* Style adaptatif pour mobile */
+@media screen and (max-width: 768px) {
+  .profile-avatar-img::after {
+    width: 50px; /* Plus petit sur mobile */
+    height: 50px;
+    right: -30px; /* Ajusté pour mobile */
+    bottom: 10px;
+  }
+}

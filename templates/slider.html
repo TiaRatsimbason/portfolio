@@ -1,4 +1,44 @@
-<!DOCTYPE html>
+    <!-- Styles inline pour le bouton Accueil sur mobile -->
+    <style>
+        @media screen and (max-width: 900px) {
+            /* Réduction du bouton Accueil sur mobile uniquement */
+            .cool-button {
+                transform: rotate(353deg) skewX(4deg) scale(0.7) !important;
+                width: 140px !important;
+                height: 50px !important;
+                margin-right: 10px !important;
+            }
+            
+            /* Positionner correctement le conteneur du bouton */
+            .back-button-container {
+                position: fixed !important;
+                bottom: 10px !important;
+                right: 10px !important;
+                left: auto !important;
+                z-index: 1001 !important;
+            }
+            
+            /* Ajuster le texte pour s'assurer qu'il s'affiche bien */
+            .cool-button .char span {
+                font-size: 0.8em !important;
+            }
+            
+            /* Ajuster l'espacement des éléments */
+            .cool-button .content {
+                gap: 6px !important;
+            }
+            
+            /* Ajuster l'icône flèche */
+            .cool-button .icon div {
+                width: 16px !important;
+            }
+            
+            /* S'assurer que le bouton ne chevauche pas le carousel */
+            .slide {
+                margin-bottom: 20px !important;
+            }
+        }
+    </style><!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -12,6 +52,48 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='slider/landscape.css') }}?v={{ static_version }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='buttons/fancy-button.css') }}?v={{ static_version }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    
+    <!-- Styles inline pour le bouton Accueil sur mobile -->
+    <style>
+        @media screen and (max-width: 900px) {
+            /* Réduction du bouton Accueil sur mobile uniquement */
+            .cool-button {
+                transform: rotate(353deg) skewX(4deg) scale(0.7) !important;
+                width: 140px !important;
+                height: 50px !important;
+                margin-right: 10px !important;
+            }
+            
+            /* Positionner correctement le conteneur du bouton */
+            .back-button-container {
+                position: fixed !important;
+                bottom: 10px !important;
+                right: 10px !important;
+                left: auto !important;
+                z-index: 1001 !important;
+            }
+            
+            /* Ajuster le texte pour s'assurer qu'il s'affiche bien */
+            .cool-button .char span {
+                font-size: 0.8em !important;
+            }
+            
+            /* Ajuster l'espacement des éléments */
+            .cool-button .content {
+                gap: 6px !important;
+            }
+            
+            /* Ajuster l'icône flèche */
+            .cool-button .icon div {
+                width: 16px !important;
+            }
+            
+            /* S'assurer que le bouton ne chevauche pas le carousel */
+            .slide {
+                margin-bottom: 20px !important;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Fond d'écran vidéo en boucle -->

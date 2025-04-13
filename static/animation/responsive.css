@@ -1,0 +1,343 @@
+/* Correction pour l'animation finale sur mobile */
+.mobile-device .final-image-section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+}
+
+/* Conserver les styles exacts de l'animation pour mobile */
+.mobile-device .container {
+  transform: translate(-50%, -50%) !important;
+  top: 50% !important;
+  left: 50% !important;
+  display: block !important; /* S'assurer que c'est visible */
+  position: absolute !important;
+  max-width: 225px !important;
+  z-index: 9999 !important; /* Valeur très élevée pour être au-dessus de TOUT */
+  pointer-events: auto !important; /* Activer les interactions */
+  font-family: 'Fjalla One', sans-serif !important;
+}
+
+/* Conserver les styles exacts pour les titres */
+.mobile-device h1 {
+  color: #fff !important;
+  text-transform: uppercase !important;
+  font-size: 42px !important;
+  margin: 0 !important;
+  line-height: 47px !important;
+  letter-spacing: 2px !important;
+}
+
+.mobile-device .title {
+  transform: translateX(-50%) rotate(-10deg) !important;
+  display: block !important;
+  float: left !important;
+  left: 50% !important;
+  position: relative !important;
+}
+
+.mobile-device .title span {
+  transform: skew(-10deg) !important;
+  display: block !important;
+  float: left !important;
+  text-shadow: #533d4a 1px 1px, #533d4a 2px 2px, #533d4a 3px 3px, #533d4a 4px 4px, #533d4a 5px 5px, #533d4a 6px 6px !important;
+  min-width: 10px !important;
+  min-height: 10px !important;
+  position: relative !important;
+}
+
+/* Couleurs des titres */
+.mobile-device .title:nth-child(1) { color: #e55643 !important; }
+.mobile-device .title:nth-child(2) { color: #2b9f5e !important; }
+.mobile-device .title:nth-child(3) { color: #f1c83c !important; }
+
+/* Conserver le style exact du bouton */
+.mobile-device .button {
+  float: left !important;
+  position: relative !important;
+  bottom: -65px !important;
+  left: 50% !important;
+  transform: translateX(-50%) rotate(-10deg) !important;
+  color: #e55643 !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  z-index: 10000 !important;
+}
+
+.mobile-device .button span {
+  transform: skew(-10deg) !important;
+  display: block !important;
+  float: left !important;
+  text-shadow: #533d4a 1px 1px, #533d4a 2px 2px, #533d4a 3px 3px, #533d4a 4px 4px !important;
+}
+
+.mobile-device .button span {
+  text-shadow: #533d4a 1px 1px, #533d4a 2px 2px, #533d4a 3px 3px;
+  font-size: 18px !important;
+}
+
+/* S'assurer que l'image est bien positionnée et visible */
+.mobile-device .final-image {
+  position: relative;
+  z-index: 1;
+  margin-top: 20px;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 100vh !important;
+}
+
+/* S'assurer que l'image est visible dans l'article final */
+.mobile-device .final-image img {
+  max-height: 70vh !important;
+  opacity: 1 !important;
+  display: block !important;
+}/* Styles responsifs pour l'animation */
+
+/* Styles de base - restent identiques sur tous les appareils */
+article > h2 {
+  text-align: center;
+  line-height: 1.2;
+  margin: 0 0 15px 0;
+  font-size: 2.5em;
+  color: #1e90ff;
+}
+
+article > p {
+  position: relative;
+  font-size: 18px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Disposition verticale sur mobile - titre en haut, paragraphe en bas */
+.mobile-device article {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 15px;
+  box-sizing: border-box;
+  text-align: center;
+  height: 85vh; /* Hauteur fixe pour uniformité */
+}
+
+.mobile-device article > h2 {
+  font-size: 2em;
+  width: 100%;
+  margin-bottom: 25px;
+  /* Effet de titre en gros plus visible */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.mobile-device article > p {
+  font-size: 16px;
+  line-height: 1.5;
+  width: 100%;
+  /* Meilleur espacement des lignes pour la lisibilité */
+  padding: 0 10px;
+  text-align: justify;
+}
+
+.mobile-device .container {
+  max-width: 90%;
+}
+
+.mobile-device.portrait .container {
+  top: 15%;
+}
+
+.mobile-device.landscape .container {
+  top: 5%;
+}
+
+.mobile-device h1 {
+  font-size: 32px;
+  line-height: 36px;
+}
+
+/* Petits appareils - plus petit texte */
+.small-device article > h2 {
+  font-size: 1.8em;
+}
+
+.small-device article > p {
+  font-size: 14px;
+}
+
+.small-device h1 {
+  font-size: 26px;
+  line-height: 30px;
+}
+
+.small-device .title span {
+  text-shadow: #533d4a 1px 1px, #533d4a 2px 2px, #533d4a 3px 3px;
+}
+
+/* Ajustements spécifiques pour l'orientation paysage */
+.mobile-device.landscape article {
+  margin-top: 40px;
+  height: 70vh; /* Plus petit en hauteur pour s'adapter au paysage */
+}
+
+.mobile-device.landscape article > h2 {
+  margin-bottom: 15px; /* Moins d'espace en mode paysage */
+}
+
+.mobile-device.landscape article > p {
+  font-size: 15px; /* Légèrement plus petit en mode paysage */
+}
+
+.mobile-device.landscape .final-image img {
+  max-height: 50vh;
+}
+
+/* Image finale centrée en mobile */
+.mobile-device .final-image {
+  justify-content: center;
+  align-items: center;
+}
+
+/* Styles principaux pour les média queries - resteront actifs si les classes spécifiques ne s'appliquent pas */
+
+/* Ajustements pour tablettes */
+@media screen and (max-width: 768px) {
+  article {
+    width: 90%;
+    padding: 15px;
+    /* Disposition verticale titre en haut, paragraphe en bas */
+    display: flex !important;
+    flex-direction: column !important;
+    text-align: center;
+  }
+  
+  article > h2 {
+    font-size: 2.2em;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  article > p {
+    font-size: 16px;
+    width: 100%;
+    line-height: 1.5;
+    text-align: justify;
+  }
+  
+  .final-image img {
+    max-width: 85%;
+    max-height: 70vh;
+  }
+  
+  h1 {
+    font-size: 36px;
+    line-height: 40px;
+  }
+  
+  .container {
+    max-width: 380px;
+    top: 20%;
+  }
+}
+
+/* Ajustements pour smartphones */
+@media screen and (max-width: 480px) {
+  article {
+    width: 95%;
+    padding: 12px;
+    height: 85vh;
+  }
+  
+  article > h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+  }
+  
+  article > p {
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 0 5px;
+  }
+  
+  .final-image img {
+    max-width: 90%;
+    max-height: 60vh;
+  }
+  
+  h1 {
+    font-size: 30px;
+    line-height: 34px;
+    letter-spacing: 1px;
+  }
+  
+  .container {
+    max-width: 320px;
+    top: 15%;
+  }
+  
+  .button {
+    bottom: -50px;
+    font-size: 14px;
+  }
+  
+  .title span {
+    text-shadow: #533d4a 1px 1px, #533d4a 2px 2px, #533d4a 3px 3px, #533d4a 4px 4px;
+  }
+}
+
+/* Ajustements pour petits smartphones */
+@media screen and (max-width: 360px) {
+  article > h2 {
+    font-size: 1.6em;
+  }
+  
+  article > p {
+    font-size: 14px;
+  }
+  
+  h1 {
+    font-size: 26px;
+    line-height: 30px;
+  }
+  
+  .container {
+    max-width: 280px;
+  }
+}
+
+/* Ajustements pour l'orientation paysage sur mobile */
+@media screen and (max-height: 480px) and (orientation: landscape) {
+  article {
+    width: 80%;
+    padding: 10px;
+    margin-top: 40px; /* Espace pour le bouton de fermeture */
+    height: 70vh;
+  }
+  
+  article > h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  article > p {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  
+  .final-image img {
+    max-height: 50vh;
+  }
+  
+  .container {
+    top: 10%;
+  }
+  
+  h1 {
+    font-size: 28px;
+    line-height: 32px;
+  }
+}

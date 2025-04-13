@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Just In Case</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="./style.css">
+  
+  <!-- Bibliothèques pour l'animation textuelle -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TimelineMax.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.7.0/jquery.lettering.min.js"></script>
+  
+  <!-- Styles inlinés pour les corrections mobiles immédiates -->
+  <style>
+    @media screen and (max-width: 768px) {
+      /* Style uniquement pour les écrans mobiles */
+      .container .button {
+        /* Cache pour que le bouton en dehors du conteneur ne soit pas visible sur mobile */
+        display: none !important;
+      }
+      
+      /* Ajout d'un bouton "Again" positionné en bas à droite spécifiquement pour mobile */
+      .final-image-section .button {
+        bottom: 50px !important;
+        right: 20px !important;
+        left: auto !important;
+        position: fixed !important;
+        background-color: rgba(0,0,0,0.7) !important;
+        padding: 8px !important;
+        border-radius: 5px !important;
+        z-index: 1001 !important;
+        color: #e55643 !important;
+        font-weight: bold !important;
+      }
+    }
+  </style>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="content-wrapper">
+  <canvas id="canvas"></canvas>
+</div>
+<main class="hidden">
+  <article class="hide">
+    <h2>Innovation</h2>
+    <p>Ingénieur de formation issu du monde de l'exploration minière et du génie civil, j'ai toujours été attiré par l'innovation, la recherche et les évolutions techniques. J'essayais de bricoler des scripts pour automatiser des traitements chez moi jusqu'au jour où l'IA a changé la donne, me laissant entrevoir une mine d'opportunités et d'innovations en tous genres.</p>
+  </article>
+  <article class="hide">
+    <h2>Adaptabilité</h2>
+    <p>Alors voulant apporter ma brique, j'ai sauté le pas pour me former et devenir un Machine Learning Engineer pour avoir les compétences non pas juste d'un Data Scientist concentré sur le perfectionnement d'algorithmes, mais d'un professionnel ancré dans le besoin métier et le développement, capable de fournir une solution clé en main adaptée au contexte et à l'environnement !</p>
+  </article>
+  <article class="hide">
+    <h2>Action</h2>
+    <p>Aimant être un touche-à-tout et pas me limiter dans mes compétences, j'aime bien apprendre mais surtout pouvoir dire dans n'importe quel contexte, que le problème métier soit grand ou petit : "Laissez-moi m'en occuper...". C'est en s'essayant et en se confrontant aux problématiques qu'on apprend...</p>
+  </article>
+  <article class="hide final-image">
+    <img src="Tia.png" alt="Tia - Machine Learning Engineer" style="opacity: 1; animation: none;">
+  </article>
+</main>
+<div class="final-image-section">
+  <section class="container">
+    <h1>
+      <span class="title">Let's
+        
+      </span>
+      <span class="title">work
+      </span>
+      <span class="title">together</span>
+    </h1>
+    
+    <div class="button">Again</div>
+  </section>
+</div>
+<script type="x-shader/x-fragment">#version 300 es
+/*********
+* made by Matthias Hurrle (@atzedent)
+*/   
+precision highp float;
+out vec4 O;
+uniform float time;
+uniform vec2 resolution;
+#define FC gl_FragCoord.xy
+#define R resolution
+#define MN min(R.x,R.y)
+#define T (time+660.)
+#define S smoothstep
+#define N normalize
+#define rot(a) mat2(cos((a)-vec4(0,11,33,0)))
+float rnd(vec2 p) {
+	p=fract(p*vec2(12.9898,78.233));
+	p+=dot(p,p+34.56);
+	return fract(p.x*p.y);
+}
+float noise(vec2 p) {
+	vec2 i=floor(p), f=fract(p), u=f*f*(3.-2.*f), k=vec2(1,0);
+	float
+	a=rnd(i),
+	b=rnd(i+k),
+	c=rnd(i+k.yx),
+	d=rnd(i+1.);
+	return mix(mix(a,b,u.x),mix(c,d,u.x),u.y);
+}
+float fbm(vec2 p) {
+	float t=.0, a=1., h=.0; mat2 m=mat2(1.,-1.2,.2,1.2);
+	for (float i=.0; i<5.; i++) {
+		t+=a*noise(p);
+		p*=2.*m;
+		a*=.5;
+		h+=a;
+	}
+	return t/h;
+}
+void main() {
+	vec2 uv=(FC-.5*R)/R.y, k=vec2(0,T*.015); 
+	vec3 col=vec3(1);
+  uv.x+=.25;
+	uv*=vec2(2,1);
+	float n=fbm(uv*.28+vec2(-T*.01,0));
+	n=noise(uv*3.+n*2.);
+	col.r-=fbm(uv+k+n);
+	col.g-=fbm(uv*1.003+k+n+.003);
+	col.b-=fbm(uv*1.006+k+n+.006);
+	col=mix(col,vec3(1),dot(col,vec3(.21,.71,.07)));
+	col=mix(vec3(.08),col,min(time*.1,1.));
+	col=clamp(col,.08,1.);
+	O=vec4(col,1);
+}</script>
+<!-- partial -->
+  <script src="./script.js"></script>
+  <script src="./mobile-compatibility.js"></script>
+  <!-- Script de secours pour mobile -->
+  <script src="./mobile-fallback.js"></script>
+
+</body>
+</html>
