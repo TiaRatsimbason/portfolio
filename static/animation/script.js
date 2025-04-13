@@ -126,6 +126,16 @@ function showNextArticle(articles) {
   // Débug - afficher l'index actuel
   console.log("Affichage de l'article ", currentIndex);
   
+  // Afficher le message "Cliquez pour continuer" pour toutes les étapes sauf la dernière
+  const clickToContinue = document.querySelector('.click-to-continue');
+  if (clickToContinue) {
+    if (articles[currentIndex].classList.contains('final-image')) {
+      clickToContinue.style.display = 'none';
+    } else {
+      clickToContinue.style.display = 'block';
+    }
+  }
+  
   // Si c'est l'image finale (dernier article), afficher l'animation textuelle
   if (articles[currentIndex].classList.contains('final-image')) {
     setTimeout(showTextAnimation, 500); // Petit délai pour laisser l'image s'afficher d'abord
@@ -179,6 +189,12 @@ function init() {
     article.classList.add('hide');
     article.style.display = 'none';
   });
+  
+  // Masquer le message "Cliquez pour continuer" initialement
+  const clickToContinue = document.querySelector('.click-to-continue');
+  if (clickToContinue) {
+    clickToContinue.style.display = 'none';
+  }
   
   // Ajouter les écouteurs d'événements pour le clic
   document.addEventListener('click', handleClick);
