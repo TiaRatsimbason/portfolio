@@ -1,4 +1,69 @@
-.back-button-container {
+/* Styles spécifiques pour les appareils mobiles */
+@media screen and (max-width: 900px) {
+  .cool-button {
+    /* Réduction de la taille du bouton sur mobile */
+    width: 160px; /* Réduction de la largeur */
+    height: 60px; /* Réduction de la hauteur */
+    transform: rotate(353deg) skewX(4deg) scale(0.85); /* Réduction supplémentaire avec scale */
+    margin-right: 10px; /* Décaler légèrement vers la droite */
+    font-size: 18px; /* Réduction de la taille de police */
+  }
+  
+  /* Adapter le conteneur du bouton */
+  .back-button-container {
+    bottom: 15px;
+    right: 15px;
+    left: auto;
+  }
+  
+  /* Ajuster les éléments internes du bouton */
+  .cool-button .content {
+    gap: 10px; /* Réduire l'espace entre les éléments */
+  }
+  
+  /* Ajuster l'icône flèche */
+  .cool-button .icon div {
+    width: 18px; /* Réduire la taille de la flèche */
+  }
+  
+  /* Ajuster le texte pour qu'il soit mieux positionné */
+  .cool-button .char {
+    transform: scale(0.9);
+  }
+  
+  /* Ajuster la position du texte */
+  .cool-button .char.state-2 {
+    left: 60px; /* Déplacer légèrement vers la gauche */
+  }
+  
+  /* Ajuster les animations pour la version mobile */
+  @keyframes arrow {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      transform: translateX(40px);
+      opacity: 0;
+    }
+    51% {
+      transform: translateX(-140px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(-90px);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes resetArrow {
+    0% {
+      transform: translateX(-90px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+}.back-button-container {
   position: fixed;
   bottom: 20px;
   left: 20px;
