@@ -5,14 +5,14 @@
   left: 0;
   right: 0;
   text-align: center;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.9);
   font-size: 18px;
   font-weight: 500;
   padding: 15px;
   animation: pulse-opacity 2s infinite;
   pointer-events: none;
   z-index: 100;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
   letter-spacing: 1px;
 }
 
@@ -72,20 +72,22 @@ article {
   width: 85%;
   max-width: 900px;
   font: bold 22px/1.5 system-ui;
-  color: #b5b5b5;
+  color: #ffffff;
   text-rendering: optimizeLegibility;
   margin: 0 auto;
   padding: 25px;
   text-align: justify;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 article > h2 {
   text-align: center;
   line-height: 1.2;
   margin: 0 0 20px 0;
   font-size: 3.2em;
-  color: #1e90ff;
+  color: #ff9500;
   opacity: 0;
   animation: fade-in 3s forwards 0s; /* Animation légèrement plus longue, mais pas trop */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 }
 article > p {
   position: relative;
@@ -112,7 +114,7 @@ article > p::after {
     width: 100vw;
     border-top: 2px solid transparent;
     border-left: 2px solid transparent;
-    border-image: linear-gradient(315deg, #b5b5b5, transparent) 1;
+    border-image: linear-gradient(315deg, #ffffff, transparent) 1;
     left: -80px;
     top: -65px;
     opacity: 0;
@@ -125,7 +127,7 @@ article > p::after {
     width: 100vw;
     border-bottom: 2px solid transparent;
     border-right: 2px solid transparent;
-    border-image: linear-gradient(135deg, #b5b5b5, transparent) 1;
+    border-image: linear-gradient(135deg, #ffffff, transparent) 1;
     right: -80px;
     bottom: -55px;
     opacity: 0;
