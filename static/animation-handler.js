@@ -3,6 +3,51 @@ document.addEventListener('DOMContentLoaded', function() {
     // Vérifier si l'appareil est mobile
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     
+    // Variable pour stocker l'iframe préchargé
+    let preloadedIframe = null;
+    
+    // Fonction pour précharger l'iframe
+    function preloadModalContent() {
+        // Créer un conteneur caché pour l'iframe
+        const preloadContainer = document.createElement('div');
+        preloadContainer.style.cssText = `
+            position: absolute;
+            width: 0;
+            height: 0;
+            overflow: hidden;
+            opacity: 0;
+            pointer-events: none;
+        `;
+        
+        // Créer l'iframe pour précharger le contenu
+        preloadedIframe = document.createElement('iframe');
+        preloadedIframe.src = '/static/animation/index.html';
+        preloadedIframe.style.cssText = `
+            width: 100%;
+            height: 100%;
+            border: none;
+            overflow: hidden;
+        `;
+        
+        // Ajouter l'iframe au conteneur caché
+        preloadContainer.appendChild(preloadedIframe);
+        
+        // Ajouter le conteneur au document
+        document.body.appendChild(preloadContainer);
+        
+        // Précharger également la vidéo de fond
+        const videoPreload = document.createElement('link');
+        videoPreload.rel = 'preload';
+        videoPreload.href = '/static/videos/modale.mp4';
+        videoPreload.as = 'video';
+        document.head.appendChild(videoPreload);
+        
+        console.log('Contenu de la modale préchargé');
+    }
+    
+    // Démarrer le préchargement après un court délai
+    setTimeout(preloadModalContent, 2000);
+    
     // Sélectionner l'élément de la photo de profil
     const profileImage = document.querySelector('.profile-avatar-img img');
     
@@ -51,15 +96,25 @@ document.addEventListener('DOMContentLoaded', function() {
             transition: opacity 0.5s ease;
         `;
         
-        // Créer l'iframe pour l'animation avec optimisation mobile
-        const iframe = document.createElement('iframe');
-        iframe.src = '/static/animation/index.html';
-        iframe.style.cssText = `
-            width: 100%;
-            height: 100%;
-            border: none;
-            overflow: hidden;
-        `;
+        // Utiliser l'iframe préchargé si disponible, sinon en créer un nouveau
+        let iframe;
+        if (preloadedIframe && preloadedIframe.contentWindow) {
+            iframe = preloadedIframe;
+            // Détacher l'iframe de son parent actuel
+            if (iframe.parentNode) {
+                iframe.parentNode.removeChild(iframe);
+            }
+        } else {
+            // Fallback: créer un nouvel iframe si le préchargement a échoué
+            iframe = document.createElement('iframe');
+            iframe.src = '/static/animation/index.html';
+            iframe.style.cssText = `
+                width: 100%;
+                height: 100%;
+                border: none;
+                overflow: hidden;
+            `;
+        }
         
         // Ajouter un bouton de fermeture explicite
         const closeButton = document.createElement('button');
@@ -118,11 +173,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Fonction pour fermer la modal
+        // Relancer le préchargement après fermeture
         function closeModal() {
             modal.style.opacity = '0';
             setTimeout(() => {
                 document.body.removeChild(modal);
+                // Précharger à nouveau pour la prochaine ouverture
+                setTimeout(preloadModalContent, 500);
             }, 500);
         }
     }

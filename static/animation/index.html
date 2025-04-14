@@ -34,12 +34,34 @@
         font-weight: bold !important;
       }
     }
+    
+    /* Styles pour la vidéo de fond */
+    .video-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+    
+    /* On garde le canvas original (mais caché) pour éviter les erreurs JavaScript */
+    #canvas {
+      display: none;
+    }
   </style>
 
 </head>
 <body>
 <!-- partial:index.partial.html -->
 <div class="content-wrapper">
+  <!-- Vidéo de fond à la place du canvas -->
+  <video class="video-background" autoplay loop muted playsinline>
+    <source src="/static/videos/modale.mp4" type="video/mp4">
+  </video>
+  
+  <!-- On conserve le canvas original (mais caché) pour que les scripts ne génèrent pas d'erreur -->
   <canvas id="canvas"></canvas>
 </div>
 <main class="hidden">
@@ -136,5 +158,22 @@ void main() {
   <!-- Script de secours pour mobile -->
   <script src="./mobile-fallback.js"></script>
 
+  <!-- Script pour éviter les erreurs causées par le canvas caché -->
+  <script>
+    // Ce petit script intercepte les erreurs causées par le canvas caché
+    // et laisse le reste du script fonctionner normalement
+    window.addEventListener('error', function(e) {
+      // Si l'erreur est liée au contexte WebGL, l'ignorer silencieusement
+      if (e.message && (
+          e.message.includes('WebGL') || 
+          e.message.includes('canvas') || 
+          e.message.includes('context')
+      )) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('Erreur WebGL ignorée - la vidéo est utilisée à la place');
+      }
+    }, true);
+  </script>
 </body>
 </html>
