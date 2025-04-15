@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <!-- Script d'urgence pour garantir le chargement même en cas de problème -->
+    <script src="{{ url_for('static', filename='emergency-loader.js') }}?v={{ static_version }}"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}?v={{ static_version }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='loading-screen.css') }}?v={{ static_version }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='loading-spinner.css') }}?v={{ static_version }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='projet/projet-clean.css') }}?v={{ static_version }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='projet/project-card.css') }}?v={{ static_version }}">
@@ -162,6 +166,10 @@
     </style>
 </head>
 <body>
+    <!-- Écran de chargement avec spinner CSS -->
+    <div id="loading-screen">
+        <span class="loader"></span>
+    </div>
     <canvas id="neuro"></canvas>
     
     <!-- Diploma Button -->
@@ -439,5 +447,6 @@
       <script src="{{ url_for('static', filename='title-mobile-fix.js') }}?v={{ static_version }}"></script>
       <script src="{{ url_for('static', filename='rotating-text-mobile-fix.js') }}?v={{ static_version }}"></script>
       <script type="module" src="{{ url_for('static', filename='mobile-background.js') }}?v={{ static_version }}"></script>
+      <script src="{{ url_for('static', filename='simplified-loader.js') }}?v={{ static_version }}"></script>
 </body>
 </html>
